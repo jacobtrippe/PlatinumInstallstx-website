@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Platinum Installs – Concrete Coatings</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6ITeUBLsEGE2r22JEUnKyR8LS6toFIsI"></script>
+<style>
+  :root {
+    --bg:#2f2f30;--bg-light:#3a3a3b;--bg-dark:#1e1e1f;
+    --platinum:#e5e4e2;--platinum-bright:#f8f7f5;--platinum-dim:#a8a8a6;
+    --text:#e8e7e5;--text-dim:#9a9a98;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+  .page{display:none;min-height:100vh;}
+  .page.active{display:block;animation:pageEnter .45s ease both;}
+  @keyframes sheen{0%{background-position:-200% center}100%{background-position:200% center}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes lineGrow{from{width:0}to{width:80px}}
+  @keyframes pageEnter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;background:rgba(26,26,27,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(200,195,185,.12);}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;letter-spacing:.08em;cursor:pointer;flex-shrink:0;background:linear-gradient(90deg,var(--platinum-dim) 0%,var(--platinum-bright) 30%,#fff 50%,var(--platinum-bright) 70%,var(--platinum-dim) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 4s linear infinite;}
+  .nav-links{display:flex;gap:1.6rem;list-style:none;align-items:center;flex-wrap:nowrap;}
+  .nav-links a{color:var(--platinum-dim);text-decoration:none;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;cursor:pointer;padding-bottom:2px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;white-space:nowrap;}
+  .nav-links a:hover,.nav-links a.active{color:var(--platinum-bright);border-bottom-color:rgba(200,195,185,.4);}
+
+  /* HAMBURGER BUTTON — large, visible, platinum-styled */
+  .nav-hamburger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:6px;
+    cursor:pointer;
+    padding:10px 12px;
+    background:rgba(200,195,185,.1);
+    border:1px solid rgba(200,195,185,.3);
+    border-radius:2px;
+    min-width:48px;
+    min-height:48px;
+    align-items:center;
+    -webkit-tap-highlight-color:transparent;
+    transition:background .25s, border-color .25s;
+  }
+  .nav-hamburger:hover, .nav-hamburger.open{
+    background:rgba(200,195,185,.2);
+    border-color:rgba(200,195,185,.6);
+  }
+  .nav-hamburger span{
+    display:block;
+    width:24px;
+    height:2px;
+    background:var(--platinum-bright);
+    border-radius:2px;
+    transition:all .3s ease;
+    transform-origin:center;
+  }
+  .nav-hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+  .nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+  .nav-hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+
+  /* MOBILE DRAWER */
+  .nav-drawer{
+    display:none;
+    position:fixed;
+    top:63px;
+    left:0;right:0;
+    background:rgba(20,20,21,.99);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(200,195,185,.15);
+    z-index:201;
+    flex-direction:column;
+    padding:0;
+    box-shadow:0 8px 32px rgba(0,0,0,.5);
+  }
+  .nav-drawer.open{display:flex;}
+  .nav-drawer a{
+    color:var(--platinum-dim);
+    text-decoration:none;
+    font-size:.95rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-weight:600;
+    cursor:pointer;
+    padding:1.1rem 2.5rem;
+    border-bottom:1px solid rgba(200,195,185,.08);
+    transition:color .2s, background .2s, padding-left .2s;
+    display:block;
+  }
+  .nav-drawer a:hover{color:var(--platinum-bright);background:rgba(200,195,185,.05);padding-left:3rem;}
+  .nav-drawer a.active-d{
+    color:var(--platinum-bright);
+    background:rgba(200,195,185,.07);
+    border-left:2px solid var(--platinum-bright);
+  }
+  .nav-drawer a:last-child{
+    margin:1rem 1.5rem 1.5rem;
+    border:none;
+    background:linear-gradient(135deg,#c9c0b0,#e5e4e2,#f8f7f5,#e0ddd8,#c0bbb2);
+    color:#1e1e1f;
+    text-align:center;
+    padding:1rem 2rem;
+    border-left:none;
+    font-weight:700;
+    letter-spacing:.22em;
+    transition:opacity .2s;
+  }
+  .nav-drawer a:last-child:hover{opacity:.9;background:linear-gradient(135deg,#c9c0b0,#e5e4e2,#f8f7f5,#e0ddd8,#c0bbb2);color:#1e1e1f;padding-left:2rem;}
+
+  @media(max-width:1020px){
+    .nav-links{display:none;}
+    .nav-hamburger{display:flex;}
+  }
+  @media(min-width:1021px){
+    .nav-drawer{display:none!important;}
+    .nav-hamburger{display:none!important;}
+  }
+
+  /* SHARED BUTTONS */
+  .btn-primary{padding:.9rem 2.4rem;background:linear-gradient(135deg,#c9c0b0,#e5e4e2,#f8f7f5,#e0ddd8,#c0bbb2);background-size:200% auto;color:#1e1e1f;font-family:'Rajdhani',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background-position .5s,transform .2s;}
+  .btn-primary:hover{background-position:right center;transform:translateY(-2px);}
+  .btn-outline{padding:.9rem 2.4rem;background:transparent;color:var(--platinum);font-family:'Rajdhani',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;border:1px solid rgba(200,195,185,.35);cursor:pointer;text-decoration:none;display:inline-block;transition:border-color .3s,color .3s,transform .2s;}
+  .btn-outline:hover{border-color:var(--platinum);color:var(--platinum-bright);transform:translateY(-2px);}
+
+  /* SECTION HEADER */
+  .section-header{display:flex;align-items:baseline;gap:2rem;margin-bottom:3rem;}
+  .section-tag{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--platinum-dim);white-space:nowrap;}
+  .section-rule{flex:1;height:1px;background:linear-gradient(to right,rgba(200,195,185,.25),transparent);}
+  h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;letter-spacing:.01em;margin-bottom:3rem;}
+  h2 em{font-style:italic;background:linear-gradient(90deg,var(--platinum-dim),var(--platinum-bright),var(--platinum-dim));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 4s linear infinite;}
+
+  /* FOOTER */
+  footer{padding:3rem 4rem;background:var(--bg-dark);display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(200,195,185,.1);}
+  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;letter-spacing:.08em;background:linear-gradient(90deg,var(--platinum-dim),var(--platinum-bright),var(--platinum-dim));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 4s linear infinite;}
+  .footer-copy{font-size:.75rem;color:var(--text-dim);letter-spacing:.12em;}
+  .footer-tagline{font-size:.72rem;color:var(--platinum-dim);letter-spacing:.22em;text-transform:uppercase;}
+
+  /* ── HOME ── */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:0 4rem;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 50%,rgba(200,195,185,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(200,195,185,.04) 0%,transparent 60%),linear-gradient(160deg,#1e1e1f 0%,#2f2f30 40%,#252526 100%);}
+  .hero-bg::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 40px,rgba(200,195,185,.018) 40px,rgba(200,195,185,.018) 41px);}
+  .hero-watermark{position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:38vw;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(200,195,185,.04);line-height:1;pointer-events:none;user-select:none;}
+  .hero-content{position:relative;z-index:2;max-width:700px;animation:fadeUp 1s ease both;}
+  .hero-eyebrow{font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--platinum-dim);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}
+  .hero-eyebrow::before{content:'';display:inline-block;height:1px;background:linear-gradient(to right,var(--platinum-dim),transparent);animation:lineGrow 1.2s ease .5s both;width:80px;}
+  h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:300;line-height:1.0;margin-bottom:.2rem;}
+  h1 .pw{display:block;font-weight:700;background:linear-gradient(90deg,#a8a8a6 0%,#d4d0cb 20%,#f8f7f5 40%,#fff 50%,#f0eeeb 60%,#c9c0b0 80%,#a8a8a6 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 3.5s linear infinite;}
+  .hero-sub{font-size:1.05rem;color:var(--platinum-dim);letter-spacing:.06em;margin:2rem 0 3rem;max-width:440px;line-height:1.7;font-weight:300;animation:fadeUp 1s ease .3s both;}
+  .hero-ctas{display:flex;gap:1.2rem;flex-wrap:wrap;animation:fadeUp 1s ease .5s both;}
+
+  .stats{display:flex;justify-content:space-around;padding:3.5rem 4rem;background:linear-gradient(to right,var(--bg-dark),#282829,var(--bg-dark));border-top:1px solid rgba(200,195,185,.1);border-bottom:1px solid rgba(200,195,185,.1);}
+  .stat{text-align:center;}
+  .stat-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;line-height:1;background:linear-gradient(90deg,var(--platinum-dim),var(--platinum-bright),var(--platinum-dim));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 5s linear infinite;}
+  .stat-label{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-dim);margin-top:.5rem;}
+
+  .services{padding:7rem 4rem;}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,195,185,.1);}
+  .service-card{background:var(--bg);padding:3rem 2.5rem;position:relative;transition:background .4s;}
+  .service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(to right,transparent,var(--platinum-dim),transparent);opacity:0;transition:opacity .4s;}
+  .service-card:hover{background:var(--bg-light);}
+  .service-card:hover::before{opacity:1;}
+  .service-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:rgba(200,195,185,.08);line-height:1;margin-bottom:1.5rem;}
+  .service-title{font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--platinum);margin-bottom:1rem;}
+  .service-desc{font-size:.9rem;color:var(--text-dim);line-height:1.8;font-weight:300;}
+
+  .process{padding:6rem 4rem;background:var(--bg-dark);position:relative;}
+  .process::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(200,195,185,.2) 50%,transparent);}
+  .process-steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:4rem;position:relative;}
+  .process-steps::before{content:'';position:absolute;top:2rem;left:12%;right:12%;height:1px;background:linear-gradient(to right,rgba(200,195,185,.1),rgba(200,195,185,.4) 50%,rgba(200,195,185,.1));}
+  .process-step{text-align:center;padding:0 1.5rem;}
+  .step-circle{width:4rem;height:4rem;border:1px solid rgba(200,195,185,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--platinum-dim);background:var(--bg-dark);position:relative;z-index:1;transition:border-color .3s,color .3s;}
+  .process-step:hover .step-circle{border-color:var(--platinum);color:var(--platinum-bright);}
+  .step-title{font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--platinum);margin-bottom:.8rem;font-weight:600;}
+  .step-desc{font-size:.82rem;color:var(--text-dim);line-height:1.8;font-weight:300;}
+
+  .cta-section{padding:8rem 4rem;text-align:center;position:relative;overflow:hidden;}
+  .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 50% 50%,rgba(200,195,185,.05) 0%,transparent 70%);}
+  .cta-section h2{margin-bottom:1.5rem;text-align:center;}
+  .cta-sub{color:var(--text-dim);font-size:1rem;letter-spacing:.08em;margin-bottom:3rem;font-weight:300;}
+
+  /* PAGE HERO */
+  .page-hero{padding:10rem 4rem 5rem;position:relative;overflow:hidden;}
+  .page-hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#1a1a1b 0%,#2f2f30 60%,#252526 100%);}
+  .page-hero-bg::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 40px,rgba(200,195,185,.015) 40px,rgba(200,195,185,.015) 41px);}
+  .page-hero-content{position:relative;z-index:2;}
+  .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:300;line-height:1.1;margin-bottom:1rem;}
+  .page-hero p{font-size:1rem;color:var(--text-dim);font-weight:300;letter-spacing:.06em;max-width:500px;line-height:1.7;}
+  .page-hero .pw{font-weight:700;background:linear-gradient(90deg,#a8a8a6 0%,#d4d0cb 20%,#f8f7f5 40%,#fff 50%,#f0eeeb 60%,#c9c0b0 80%,#a8a8a6 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 3.5s linear infinite;}
+
+  /* GALLERY */
+  .gallery-wrap{padding:4rem;}
+  .gallery-filters{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:3rem;}
+  .filter-btn{padding:.5rem 1.4rem;background:transparent;border:1px solid rgba(200,195,185,.2);color:var(--platinum-dim);font-family:'Rajdhani',sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:all .25s;}
+  .filter-btn:hover,.filter-btn.active{background:rgba(200,195,185,.08);border-color:rgba(200,195,185,.5);color:var(--platinum-bright);}
+  .gallery-grid{position:relative;width:100%;height:600px;overflow:hidden;border-radius:0;}
+  .gallery-item{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;width:100%;height:100%;}
+  .gallery-item.active{opacity:1;z-index:10;}
+  .gallery-item.tall{height:100%;}
+  .gallery-item.wide{height:100%;}
+  .gallery-swatch{width:100%;height:100%;transition:transform .5s ease;object-fit:contain;background:#1a1a1c;}
+  .gallery-item:hover .gallery-swatch{transform:scale(1.04);}
+  .carousel-controls{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:1rem;z-index:20;}
+  .carousel-btn{width:2.5rem;height:2.5rem;border:1px solid rgba(200,195,185,.4);background:rgba(18,18,20,.7);color:var(--platinum);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .3s;font-weight:700;}
+  .carousel-btn:hover{background:rgba(200,195,185,.2);border-color:var(--platinum);}
+  .carousel-dots{position:absolute;bottom:2rem;right:2rem;display:flex;gap:.6rem;z-index:20;}
+  .carousel-dot{width:.8rem;height:.8rem;border-radius:50%;background:rgba(200,195,185,.3);cursor:pointer;transition:background .3s,transform .3s;}
+  .carousel-dot.active{background:var(--platinum);transform:scale(1.3);}
+
+  .s-grey{background:linear-gradient(135deg,#3a3a3c,#4a4a4c,#525254,#424244,#383838);}
+  .s-blue{background:linear-gradient(135deg,#1a2535,#243048,#1e2a42,#182030);}
+  .s-fw{background:radial-gradient(circle at 20% 30%,rgba(240,238,235,.9) 0%,transparent 1.5%),radial-gradient(circle at 60% 15%,rgba(220,215,210,.8) 0%,transparent 1%),radial-gradient(circle at 80% 50%,rgba(200,195,188,.7) 0%,transparent 1.2%),radial-gradient(circle at 35% 70%,rgba(230,225,220,.85) 0%,transparent 1%),radial-gradient(circle at 75% 80%,rgba(215,210,205,.9) 0%,transparent 1.5%),linear-gradient(160deg,#c8c4be,#d8d4ce,#ccc8c2);}
+  .s-copper{background:linear-gradient(125deg,#5c3a1e,#8b5e3c,#c8874a,#a06530,#7a4a22,#b07840,#8b5e3c);}
+  .s-silver{background:linear-gradient(125deg,#888886,#b0aeac,#d8d6d4,#f0eeec,#d0cecc,#a8a6a4,#c0beba,#989694);}
+  .s-fb{background:radial-gradient(circle at 25% 35%,rgba(80,78,75,.9) 0%,transparent 1.5%),radial-gradient(circle at 65% 20%,rgba(60,58,55,.8) 0%,transparent 1%),radial-gradient(circle at 85% 55%,rgba(70,68,65,.7) 0%,transparent 1.2%),linear-gradient(160deg,#1c1c1e,#242424,#1a1a1c);}
+  .s-tan{background:linear-gradient(160deg,#1a3a4a,#1e4458,#163448,#1a3a4a);position:relative;}
+  .s-tan::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 18px,rgba(255,255,255,.03) 18px,rgba(255,255,255,.03) 19px),repeating-linear-gradient(90deg,transparent,transparent 18px,rgba(255,255,255,.03) 18px,rgba(255,255,255,.03) 19px);}
+  .s-tan{background:linear-gradient(135deg,#8a7a6a,#a08c7a,#b89e8a,#9a8878,#847468);}
+  .s-ft{background:radial-gradient(circle at 30% 25%,rgba(170,150,130,.9) 0%,transparent 1.5%),radial-gradient(circle at 70% 40%,rgba(150,130,110,.8) 0%,transparent 1%),radial-gradient(circle at 20% 65%,rgba(180,160,140,.7) 0%,transparent 1.2%),linear-gradient(160deg,#8a7a6a,#a09080,#b8a898);}
+
+  .gallery-overlay{display:none;}
+  .g-corner{display:none;}
+
+  .ba-section{padding:6rem 4rem;background:var(--bg-dark);}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:3rem;}
+  .ba-swatch{width:100%;padding-bottom:60%;position:relative;}
+  .ba-inner{position:absolute;inset:0;}
+  .ba-before{background:linear-gradient(135deg,#4a4040,#5a5050,#484040,#3c3838);}
+  .ba-after{background:linear-gradient(135deg,#2a2e3a,#363c4c,#404858,#343a4a,#282c3a);}
+  .ba-tag{position:absolute;top:1rem;left:1rem;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:.35rem .9rem;font-weight:700;}
+  .ba-tag.before{background:rgba(80,75,70,.85);color:var(--text-dim);border:1px solid rgba(150,140,130,.3);}
+  .ba-tag.after{background:rgba(200,195,185,.2);color:var(--platinum-bright);border:1px solid rgba(200,195,185,.4);}
+  .ba-caption{padding:1.5rem 0 0;font-size:.8rem;color:var(--text-dim);letter-spacing:.1em;}
+  .ba-caption strong{color:var(--platinum);font-weight:600;display:block;margin-bottom:.25rem;letter-spacing:.15em;text-transform:uppercase;font-size:.85rem;}
+
+  /* INTERACTIVE BEFORE/AFTER */
+  .ba-interactive-wrap{position:relative;width:100%;overflow:hidden;max-height:500px;}
+  .ba-interactive-img{width:100%;height:auto;display:block;}
+  .ba-before-overlay{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;background:transparent;}
+  .ba-before-overlay img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  /* ESTIMATE */
+  .estimate-wrap{padding:4rem;display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;}
+  .estimate-sidebar h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;margin-bottom:2rem;color:var(--platinum);}
+  .contact-item{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem;}
+  .c-icon{width:2.5rem;height:2.5rem;flex-shrink:0;border:1px solid rgba(200,195,185,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+  .c-label{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.3rem;}
+  .c-val{color:var(--platinum);font-weight:500;letter-spacing:.05em;font-size:.88rem;}
+  .trust-items{margin-top:2.5rem;}
+  .trust-item{display:flex;align-items:center;gap:1rem;padding:.9rem 0;border-bottom:1px solid rgba(200,195,185,.08);font-size:.83rem;color:var(--text-dim);letter-spacing:.06em;}
+  .trust-item::before{content:'✓';color:var(--platinum-dim);font-size:.7rem;width:1.4rem;height:1.4rem;border:1px solid rgba(200,195,185,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+  .form-wrap{background:rgba(200,195,185,.03);border:1px solid rgba(200,195,185,.1);padding:3rem;}
+  .form-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:.5rem;color:var(--platinum-bright);}
+  .form-subtitle{font-size:.82rem;color:var(--text-dim);letter-spacing:.06em;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid rgba(200,195,185,.1);line-height:1.7;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+  .form-group{margin-bottom:1.2rem;}
+  .form-group label{display:block;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.5rem;font-weight:600;}
+  .form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(200,195,185,.04);border:1px solid rgba(200,195,185,.15);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:.92rem;font-weight:400;letter-spacing:.04em;padding:.85rem 1rem;outline:none;transition:border-color .3s,background .3s;appearance:none;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(200,195,185,.45);background:rgba(200,195,185,.07);}
+  .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(168,168,166,.4);}
+  .form-group select option{background:#2f2f30;}
+  .form-group textarea{resize:vertical;min-height:100px;}
+
+  .price-block{background:rgba(200,195,185,.05);border:1px solid rgba(200,195,185,.12);padding:1.2rem 1.5rem;margin:.4rem 0 1.2rem;display:none;justify-content:space-between;align-items:center;}
+  .price-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);}
+  .price-note{font-size:.7rem;color:var(--text-dim);margin-top:.3rem;}
+  .price-range{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;background:linear-gradient(90deg,var(--platinum-dim),var(--platinum-bright),var(--platinum-dim));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 3s linear infinite;}
+
+  .form-submit{width:100%;padding:1.1rem 2rem;background:linear-gradient(135deg,#c9c0b0,#e5e4e2,#f8f7f5,#e0ddd8,#c0bbb2);background-size:200% auto;color:#1e1e1f;font-family:'Rajdhani',sans-serif;font-size:.85rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;border:none;cursor:pointer;transition:background-position .5s,transform .2s;margin-top:.6rem;}
+  .form-submit:hover{background-position:right center;transform:translateY(-2px);}
+  .form-disclaimer{font-size:.7rem;color:var(--text-dim);letter-spacing:.08em;text-align:center;margin-top:1rem;line-height:1.7;}
+
+  .form-success{display:none;text-align:center;padding:4rem 2rem;}
+  .success-icon{width:5rem;height:5rem;border:1px solid rgba(200,195,185,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 2rem;background:rgba(200,195,185,.05);color:var(--platinum);}
+  .success-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--platinum-bright);margin-bottom:1rem;}
+  .success-sub{font-size:.9rem;color:var(--text-dim);letter-spacing:.06em;line-height:1.8;}
+
+  @media(max-width:900px){
+    nav{padding:1.2rem 2rem;}
+    .nav-links{gap:1.5rem;}
+    .nav-links a{font-size:.75rem;}
+    .hero,.services,.process,.cta-section,footer,.page-hero,.gallery-wrap,.ba-section{padding-left:2rem;padding-right:2rem;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .process-steps{grid-template-columns:1fr 1fr;gap:3rem;}
+    .process-steps::before{display:none;}
+    .stats{flex-wrap:wrap;gap:2rem;}
+    footer{flex-direction:column;gap:1rem;text-align:center;}
+    .gallery-grid{height:500px;}
+    .carousel-controls{bottom:1.5rem;}
+    .carousel-dots{right:1.5rem;}
+    .ba-grid{grid-template-columns:1fr;}
+    .estimate-wrap{grid-template-columns:1fr;gap:3rem;padding:2rem;}
+    .form-row{grid-template-columns:1fr;}
+    .form-wrap{padding:2rem;}
+  }
+  @media(max-width:580px){
+    .nav-links{display:none;}
+    .services-grid{grid-template-columns:1fr;}
+    .gallery-grid{height:400px;}
+  }
+
+  /* REVIEWS */
+  .reviews-section{padding:7rem 4rem;background:var(--bg-dark);position:relative;}
+  .reviews-section::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(200,195,185,.2) 50%,transparent);}
+  .rating-hero{display:flex;align-items:center;gap:3rem;margin-bottom:4rem;padding-bottom:3rem;border-bottom:1px solid rgba(200,195,185,.1);}
+  .rating-big{font-family:'Cormorant Garamond',serif;font-size:6rem;font-weight:700;line-height:1;background:linear-gradient(90deg,var(--platinum-dim),var(--platinum-bright),var(--platinum-dim));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 4s linear infinite;}
+  .rating-details{flex:1;}
+  .stars{font-size:1.4rem;letter-spacing:.1em;margin-bottom:.5rem;color:#f0c040;}
+  .rating-count{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;}
+  .google-badge{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem 1.2rem;border:1px solid rgba(200,195,185,.2);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--platinum-dim);}
+  .google-badge span{font-size:1rem;}
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,195,185,.08);}
+  .review-card{background:var(--bg-dark);padding:2.5rem;position:relative;transition:background .3s;}
+  .review-card:hover{background:#222224;}
+  .review-quote{font-size:3rem;font-family:'Cormorant Garamond',serif;color:rgba(200,195,185,.15);line-height:.8;margin-bottom:1rem;}
+  .review-text{font-size:.88rem;color:var(--text-dim);line-height:1.85;font-weight:300;margin-bottom:1.8rem;font-style:italic;}
+  .review-author{display:flex;align-items:center;gap:1rem;}
+  .review-avatar{width:2.8rem;height:2.8rem;border-radius:50%;border:1px solid rgba(200,195,185,.2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--platinum-dim);background:rgba(200,195,185,.05);flex-shrink:0;}
+  .review-name{font-size:.85rem;font-weight:600;letter-spacing:.08em;color:var(--platinum);margin-bottom:.15rem;}
+  .review-meta{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);}
+  .review-stars{font-size:.8rem;color:#f0c040;margin-left:auto;}
+  .review-placeholder-note{text-align:center;margin-top:2.5rem;padding:1rem;border:1px dashed rgba(200,195,185,.15);font-size:.75rem;color:var(--text-dim);letter-spacing:.1em;line-height:1.7;}
+
+  /* SERVICE AREA */
+  .area-intro{padding:4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+  .area-intro-text p{font-size:.95rem;color:var(--text-dim);line-height:1.9;font-weight:300;letter-spacing:.04em;margin-bottom:1.5rem;}
+  .area-map-placeholder{position:relative;background:linear-gradient(160deg,#1a2535,#1e2a40,#182030);border:1px solid rgba(200,195,185,.12);overflow:hidden;min-height:400px;display:flex;align-items:center;justify-content:center;}
+  .area-map-placeholder::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(200,195,185,.04) 28px,rgba(200,195,185,.04) 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(200,195,185,.04) 28px,rgba(200,195,185,.04) 29px);}
+  .map-label{position:relative;z-index:2;text-align:center;}
+  .map-label .map-icon{font-size:2.5rem;margin-bottom:1rem;display:block;}
+  .map-label p{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--platinum-dim);line-height:1.8;}
+  .map-label a{color:var(--platinum);text-decoration:underline;cursor:pointer;}
+  .dfwpin{position:absolute;width:12px;height:12px;border-radius:50%;background:rgba(200,195,185,.6);border:2px solid rgba(200,195,185,.9);box-shadow:0 0 12px rgba(200,195,185,.4);}
+
+  .cities-section{padding:5rem 4rem;background:var(--bg-dark);}
+  .cities-section::before{content:'';display:block;height:1px;background:linear-gradient(to right,transparent,rgba(200,195,185,.2) 50%,transparent);margin-bottom:4rem;}
+  .cities-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+  .city-group h4{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--platinum-dim);margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid rgba(200,195,185,.12);}
+  .city-list{list-style:none;}
+  .city-list li{font-size:.85rem;color:var(--text-dim);padding:.4rem 0;letter-spacing:.06em;border-bottom:1px solid rgba(200,195,185,.05);transition:color .2s;cursor:default;}
+  .city-list li:hover{color:var(--platinum);}
+  .city-list li::before{content:'→ ';color:rgba(200,195,185,.25);font-size:.75rem;}
+
+  .coverage-badges{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:3rem;}
+  .coverage-badge{padding:.45rem 1.2rem;border:1px solid rgba(200,195,185,.15);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--platinum-dim);transition:all .25s;}
+  .coverage-badge:hover{border-color:rgba(200,195,185,.4);color:var(--platinum-bright);}
+
+  @media(max-width:900px){
+    .reviews-grid{grid-template-columns:1fr;}
+    .rating-hero{flex-direction:column;gap:1.5rem;}
+    .area-intro{grid-template-columns:1fr;gap:3rem;padding:2rem;}
+    .cities-section{padding:3rem 2rem;}
+    .cities-columns{grid-template-columns:1fr 1fr;}
+    .reviews-section{padding:4rem 2rem;}
+  }
+  @media(max-width:580px){
+    .cities-columns{grid-template-columns:1fr;}
+  }
+
+  /* ── COMMERCIAL PAGE ── */
+  .comm-hero-wrap{padding:4rem;display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:center;}
+  .comm-hero-text h2{font-size:clamp(2rem,3.5vw,3.2rem);margin-bottom:1.5rem;}
+  .comm-hero-text p{font-size:.95rem;color:var(--text-dim);line-height:1.9;font-weight:300;letter-spacing:.04em;margin-bottom:1.5rem;}
+  .comm-stat-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(200,195,185,.1);margin:2rem 0;}
+  .comm-stat-cell{background:var(--bg-dark);padding:1.8rem;text-align:center;}
+  .comm-stat-cell .n{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;line-height:1;background:linear-gradient(90deg,var(--platinum-dim),var(--platinum-bright),var(--platinum-dim));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 5s linear infinite;}
+  .comm-stat-cell .l{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-dim);margin-top:.5rem;}
+  .comm-hero-visual{background:linear-gradient(135deg,#1a2535,#243048,#1e2a42,#182030);position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .comm-hero-visual::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 22px,rgba(200,195,185,.04) 22px,rgba(200,195,185,.04) 23px),repeating-linear-gradient(90deg,transparent,transparent 22px,rgba(200,195,185,.04) 22px,rgba(200,195,185,.04) 23px);}
+  .comm-visual-label{position:relative;z-index:2;text-align:center;}
+  .comm-visual-label .big{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(200,195,185,.15);line-height:1;}
+  .comm-visual-label p{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--platinum-dim);margin-top:.5rem;}
+
+  /* PARTNER SEGMENTS */
+  .segments{padding:6rem 4rem;background:var(--bg-dark);position:relative;}
+  .segments::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(200,195,185,.2) 50%,transparent);}
+  .segments-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(200,195,185,.08);}
+  .segment-card{background:var(--bg-dark);padding:3rem;position:relative;transition:background .35s;overflow:hidden;}
+  .segment-card:hover{background:#222224;}
+  .segment-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(200,195,185,.25),transparent);opacity:0;transition:opacity .35s;}
+  .segment-card:hover::after{opacity:1;}
+  .segment-icon{font-size:2rem;margin-bottom:1.5rem;display:block;}
+  .segment-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--platinum-bright);margin-bottom:.8rem;}
+  .segment-sub{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--platinum-dim);margin-bottom:1.5rem;}
+  .segment-desc{font-size:.88rem;color:var(--text-dim);line-height:1.9;font-weight:300;margin-bottom:2rem;}
+  .segment-bullets{list-style:none;margin-bottom:2rem;}
+  .segment-bullets li{font-size:.82rem;color:var(--text-dim);padding:.4rem 0;border-bottom:1px solid rgba(200,195,185,.06);letter-spacing:.05em;}
+  .segment-bullets li::before{content:'→ ';color:var(--platinum-dim);font-size:.75rem;}
+  .segment-cta{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--platinum-dim);cursor:pointer;transition:color .25s;text-decoration:none;}
+  .segment-cta:hover{color:var(--platinum-bright);}
+  .segment-cta::after{content:' →';}
+
+  /* WHY PLATINUM COMMERCIAL */
+  .comm-why{padding:6rem 4rem;}
+  .comm-why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,195,185,.1);margin-top:1rem;}
+  .comm-why-card{background:var(--bg);padding:2.5rem;transition:background .3s;}
+  .comm-why-card:hover{background:var(--bg-light);}
+  .comm-why-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:700;color:rgba(200,195,185,.08);line-height:1;margin-bottom:1rem;}
+  .comm-why-title{font-size:.9rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--platinum);margin-bottom:.8rem;}
+  .comm-why-desc{font-size:.85rem;color:var(--text-dim);line-height:1.8;font-weight:300;}
+
+  /* COMMERCIAL CONTACT FORM */
+  .comm-contact{padding:6rem 4rem;background:var(--bg-dark);position:relative;}
+  .comm-contact::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(200,195,185,.2) 50%,transparent);}
+  .comm-contact-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start;}
+  .comm-contact-sidebar h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--platinum);margin-bottom:1rem;}
+  .comm-contact-sidebar p{font-size:.88rem;color:var(--text-dim);line-height:1.9;font-weight:300;margin-bottom:2rem;}
+  .comm-perks{list-style:none;margin-top:1rem;}
+  .comm-perks li{display:flex;align-items:flex-start;gap:1rem;padding:.9rem 0;border-bottom:1px solid rgba(200,195,185,.08);font-size:.83rem;color:var(--text-dim);letter-spacing:.05em;line-height:1.6;}
+  .comm-perks li::before{content:'✦';color:var(--platinum-dim);font-size:.6rem;margin-top:.3rem;flex-shrink:0;}
+
+  @media(max-width:900px){
+    .comm-hero-wrap{grid-template-columns:1fr;gap:3rem;padding:2rem;}
+    .comm-hero-visual{min-height:260px;}
+    .segments{padding:4rem 2rem;}
+    .segments-grid{grid-template-columns:1fr;}
+    .comm-why{padding:4rem 2rem;}
+    .comm-why-grid{grid-template-columns:1fr 1fr;}
+    .comm-contact{padding:4rem 2rem;}
+    .comm-contact-wrap{grid-template-columns:1fr;gap:3rem;}
+  }
+  @media(max-width:580px){
+    .comm-why-grid{grid-template-columns:1fr;}
+    .comm-stat-row{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">Platinum Installs</div>
+  <ul class="nav-links">
+    <li><a id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
+    <li><a id="nav-gallery" onclick="showPage('gallery')">Gallery</a></li>
+    <li><a id="nav-reviews" onclick="showPage('reviews')">Reviews</a></li><li><a id="nav-area" onclick="showPage('area')">Service Area</a></li><li><a id="nav-commercial" onclick="showPage('commercial')">Commercial</a></li><li><a id="nav-estimate" onclick="showPage('estimate')">Free Estimate</a></li>
+  </ul>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleDrawer()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="nav-drawer" id="nav-drawer">
+  <a onclick="showPage('home');toggleDrawer()">Home</a>
+  <a onclick="showPage('gallery');toggleDrawer()">Gallery</a>
+  <a onclick="showPage('reviews');toggleDrawer()">Reviews</a>
+  <a onclick="showPage('area');toggleDrawer()">Service Area</a>
+  <a onclick="showPage('commercial');toggleDrawer()">Commercial</a>
+  <a onclick="showPage('estimate');toggleDrawer()">Free Estimate</a>
+</div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-watermark">P</div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Concrete Coating Specialists</div>
+      <h1>Surface<br><span class="pw">Perfected.</span></h1>
+      <p class="hero-sub">Premium concrete coating solutions for residential and commercial spaces. Built to last. Finished to impress.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" onclick="showPage('estimate')">Get a Free Quote</a>
+        <a class="btn-outline" onclick="showPage('gallery')">View Our Work</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Satisfaction Rate</div></div>
+    <div class="stat"><div class="stat-num">15yr</div><div class="stat-label">Warranty Available</div></div>
+    <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Avg. Residential Install</div></div>
+  </div>
+
+  <section class="services">
+    <div class="section-header"><span class="section-tag">What We Do</span><div class="section-rule"></div></div>
+    <h2>Coatings built for<br><em>every surface</em></h2>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-num">01</div><div class="service-title">Epoxy Floors</div><p class="service-desc">High-performance epoxy systems for garages, warehouses, and commercial floors. Chemical resistant, seamless, and stunning.</p></div>
+      <div class="service-card"><div class="service-num">02</div><div class="service-title">Polyaspartic</div><p class="service-desc">Fast-cure, UV-stable topcoats ideal for same-day installs. Superior hardness and flexibility in a single-day application.</p></div>
+      <div class="service-card"><div class="service-num">03</div><div class="service-title">Decorative Flake</div><p class="service-desc">Full-broadcast vinyl flake systems offering texture, slip resistance, and showroom aesthetics for any space.</p></div>
+      <div class="service-card"><div class="service-num">04</div><div class="service-title">Metallic Systems</div><p class="service-desc">Flowing, one-of-a-kind metallic pigment floors that create a luxurious, custom look unique to every install.</p></div>
+      <div class="service-card"><div class="service-num">05</div><div class="service-title">Outdoor Concrete</div><p class="service-desc">Slip-resistant, UV-stable coatings for patios, driveways, and outdoor spaces built to handle the elements.</p></div>
+      <div class="service-card"><div class="service-num">06</div><div class="service-title">Commercial</div><p class="service-desc">Large-scale coating systems for retail, hospitality, healthcare, and industrial facilities. On-schedule, on-spec.</p></div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="section-header"><span class="section-tag">How It Works</span><div class="section-rule"></div></div>
+    <h2>Our <em>platinum</em> process</h2>
+    <div class="process-steps">
+      <div class="process-step"><div class="step-circle">1</div><div class="step-title">Consult</div><p class="step-desc">Free on-site assessment and custom quote tailored to your space.</p></div>
+      <div class="process-step"><div class="step-circle">2</div><div class="step-title">Prepare</div><p class="step-desc">Diamond grinding and surface repair to ensure lasting adhesion.</p></div>
+      <div class="process-step"><div class="step-circle">3</div><div class="step-title">Install</div><p class="step-desc">Precision coating application by our certified crew.</p></div>
+      <div class="process-step"><div class="step-circle">4</div><div class="step-title">Deliver</div><p class="step-desc">Final walkthrough, care guide, and warranty documentation.</p></div>
+    </div>
+  </section>
+
+
+  <!-- REVIEWS ON HOME -->
+  <section class="reviews-section">
+    <div class="section-header"><span class="section-tag">What Customers Say</span><div class="section-rule"></div></div>
+    <h2>Trusted across<br><em>the DFW area</em></h2>
+    <div class="rating-hero">
+      <div class="rating-big">5.0</div>
+      <div class="rating-details">
+        <div class="stars">★★★★★</div>
+        <div class="rating-count">37 Google Reviews · 5 Stars across all reviews</div>
+        <div class="google-badge"><span>G</span> Google Business Profile</div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <p class="review-text">Platinum Installs completely transformed our garage. The team was professional, clean, and finished ahead of schedule. The floor looks absolutely incredible — our neighbors keep asking who did it.</p>
+        <div class="review-author">
+          <div class="review-avatar">MR</div>
+          <div><div class="review-name">Marcus R.</div><div class="review-meta">Southlake, TX · Garage Epoxy</div></div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <p class="review-text">We had our commercial warehouse done — over 6,000 sq ft. They handled it in two days with zero disruption to our operations. The polyaspartic coating is holding up perfectly six months later.</p>
+        <div class="review-author">
+          <div class="review-avatar">JT</div>
+          <div><div class="review-name">Jennifer T.</div><div class="review-meta">Irving, TX · Commercial Warehouse</div></div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-quote">"</div>
+        <p class="review-text">Got the metallic epoxy system for our living room and entryway. It's one of a kind — every person who walks in stops and stares. Worth every penny. Platinum Installs earned a customer for life.</p>
+        <div class="review-author">
+          <div class="review-avatar">DL</div>
+          <div><div class="review-name">David L.</div><div class="review-meta">Frisco, TX · Metallic Epoxy</div></div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-placeholder-note">
+      ⚙ These are placeholder reviews. Once our Google Business Profile is verified, real reviews will be connected here automatically.
+    </div>
+  </section>
+  <section class="cta-section">
+    <div class="section-header" style="justify-content:center;margin-bottom:2rem;"><span class="section-tag">Ready to Start</span></div>
+    <h2>Transform your<br><em>space today</em></h2>
+    <p class="cta-sub">Serving residential and commercial clients. Free estimates. No obligation.</p>
+    <div class="hero-ctas" style="justify-content:center;">
+      <a class="btn-primary" onclick="showPage('estimate')">Book a Free Estimate</a>
+      <a class="btn-outline" onclick="showPage('gallery')">See Our Work</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
+    <div class="footer-tagline">Concrete Coatings · Residential & Commercial</div>
+  </footer>
+</div>
+
+<!-- GALLERY -->
+<div class="page" id="page-gallery">
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="hero-eyebrow">Our Portfolio</div>
+      <h1>Work that<br><span class="pw">speaks for itself.</span></h1>
+      <p>Every floor is a custom installation. Browse completed projects across coatings, spaces, and finishes.</p>
+    </div>
+  </div>
+
+  <div class="gallery-wrap">
+    <div class="gallery-grid">
+      <div class="gallery-item active" data-type="metallic"><img src="gallery/IMG_7391.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Copper Metallic</div><div class="g-sub">Luxe Shimmer</div></div></div>
+      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_8266.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Pearl Flake</div><div class="g-sub">Speckled Elegance</div></div></div>
+      <div class="gallery-item" data-type="metallic"><img src="gallery/IMG_7396.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Silver Metallic</div><div class="g-sub">Modern Polish</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_8269.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Polished Aggregate</div><div class="g-sub">Exposed Elegance</div></div></div>
+      <div class="gallery-item" data-type="commercial"><img src="gallery/IMG_7450.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Premium Gold Metallic</div><div class="g-sub">Showroom Finish</div></div></div>
+      <div class="gallery-item" data-type="metallic"><img src="gallery/IMG_7439.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Bronze Shimmer</div><div class="g-sub">Warm Radiance</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_7468.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Industrial Concrete</div><div class="g-sub">Polished Aggregate</div></div></div>
+      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_8277.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">White Quartz Flake</div><div class="g-sub">Bright & Clean</div></div></div>
+      <div class="gallery-item" data-type="commercial"><img src="gallery/IMG_7286.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Natural Concrete</div><div class="g-sub">Aggregate Polish</div></div></div>
+      <div class="gallery-item" data-type="metallic"><img src="gallery/IMG_8259.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Gold Metallic Blend</div><div class="g-sub">Luxury Depth</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_8295.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Signature Speckle</div><div class="g-sub">Premium Showroom Finish</div></div></div>
+      <div class="carousel-controls"><button class="carousel-btn" id="prev-btn">‹</button><button class="carousel-btn" id="next-btn">›</button></div>
+      <div class="carousel-dots" id="carousel-dots"></div>
+    </div>
+  </div>
+
+  <section class="ba-section">
+    <div class="section-header"><span class="section-tag">Transformations</span><div class="section-rule"></div></div>
+    <h2>Before &amp; <em>after</em></h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(200,195,185,.1);margin-top:3rem;">
+      <div>
+        <div class="ba-interactive-wrap" id="ba-interactive">
+          <img src="gallery/IMG_7434.jpeg" class="ba-interactive-img" alt="Before">
+          <div class="ba-before-overlay" id="ba-overlay">
+            <img src="gallery/IMG_7455.jpeg" alt="After">
+          </div>
+          <span class="ba-tag before" id="ba-tag" style="opacity:1;">Before</span>
+        </div>
+        <div class="ba-caption"><strong>Stained Concrete</strong>Worn, discolored concrete with years of use transformed into a stunning commercial-grade floor.</div>
+      </div>
+      <div>
+        <div class="ba-interactive-wrap" id="ba-interactive-2">
+          <img src="gallery/after-3.jpeg" class="ba-interactive-img" alt="Before">
+          <div class="ba-before-overlay" id="ba-overlay-2">
+            <img src="gallery/before-3.jpeg" alt="After">
+          </div>
+          <span class="ba-tag before" id="ba-tag-2" style="opacity:1;">Before</span>
+        </div>
+        <div class="ba-caption"><strong>Decorative Flake System</strong>A showroom-quality finish with custom flake pattern and lasting protection.</div>
+      </div>
+    </div>
+  </section>
+
+<section class="cta-section">
+    <div class="section-header" style="justify-content:center;margin-bottom:2rem;"><span class="section-tag">Your Project Next</span></div>
+    <h2>Ready to see your<br><em>floor transformed?</em></h2>
+    <p class="cta-sub">Get a free, no-obligation estimate — we'll come to you.</p>
+    <div class="hero-ctas" style="justify-content:center;"><a class="btn-primary" onclick="showPage('estimate')">Get a Free Estimate</a></div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
+    <div class="footer-tagline">Concrete Coatings · Residential & Commercial</div>
+  </footer>
+</div>
+
+
+<!-- REVIEWS PAGE -->
+<div class="page" id="page-reviews">
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="hero-eyebrow">Google Reviews</div>
+      <h1>What our customers<br><span class="pw">are saying.</span></h1>
+      <p>Real feedback from real DFW homeowners and businesses. Placeholder reviews shown below — your live Google reviews connect here once your Business Profile is verified.</p>
+    </div>
+  </div>
+
+  <section class="reviews-section" style="padding-top:5rem;">
+    <div class="rating-hero">
+      <div class="rating-big">5.0</div>
+      <div class="rating-details">
+        <div class="stars">★★★★★</div>
+        <div class="rating-count">37 Verified Google Reviews · Perfect 5.0 Rating</div>
+        <div class="google-badge"><span>G</span> Verified Google Reviews</div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-quote">"</div><p class="review-text">Platinum Installs completely transformed our garage. The team was professional, clean, and finished ahead of schedule. The floor looks absolutely incredible.</p><div class="review-author"><div class="review-avatar">MR</div><div><div class="review-name">Marcus R.</div><div class="review-meta">Southlake, TX · Garage Epoxy</div></div><div class="review-stars">★★★★★</div></div></div>
+      <div class="review-card"><div class="review-quote">"</div><p class="review-text">Had our commercial warehouse done — over 6,000 sq ft. Two days, zero disruption. The polyaspartic coating is holding up perfectly six months later.</p><div class="review-author"><div class="review-avatar">JT</div><div><div class="review-name">Jennifer T.</div><div class="review-meta">Irving, TX · Commercial</div></div><div class="review-stars">★★★★★</div></div></div>
+      <div class="review-card"><div class="review-quote">"</div><p class="review-text">Got the metallic epoxy for our entryway. Every person who walks in stops and stares. Worth every penny. Platinum Installs earned a customer for life.</p><div class="review-author"><div class="review-avatar">DL</div><div><div class="review-name">David L.</div><div class="review-meta">Frisco, TX · Metallic Epoxy</div></div><div class="review-stars">★★★★★</div></div></div>
+      <div class="review-card"><div class="review-quote">"</div><p class="review-text">My outdoor concrete was cracked and faded. They resurfaced it in one day and it looks brand new. Slip-resistant coating is a huge plus with kids running around.</p><div class="review-author"><div class="review-avatar">AL</div><div><div class="review-name">Amanda L.</div><div class="review-meta">Plano, TX · Outdoor Concrete</div></div><div class="review-stars">★★★★★</div></div></div>
+      <div class="review-card"><div class="review-quote">"</div><p class="review-text">I got three quotes. Platinum Installs wasn't the cheapest but they were the most thorough — explained everything, no surprises. The finished product is stunning.</p><div class="review-author"><div class="review-avatar">RK</div><div><div class="review-name">Robert K.</div><div class="review-meta">McKinney, TX · Full Flake</div></div><div class="review-stars">★★★★★</div></div></div>
+      <div class="review-card"><div class="review-quote">"</div><p class="review-text">Hired them for our restaurant floor. They worked overnight to avoid closing during business hours. Professionalism was top-tier. Highly recommend for any commercial job.</p><div class="review-author"><div class="review-avatar">SP</div><div><div class="review-name">Sandra P.</div><div class="review-meta">Dallas, TX · Restaurant Floor</div></div><div class="review-stars">★★★★★</div></div></div>
+    </div>
+
+    <div class="review-placeholder-note" style="margin-top:3rem;">
+      ⚙ <strong style="color:var(--platinum-dim);">These are sample reviews.</strong> Once our Google Business Profile is verified and connected via the Google Places API, this page will automatically display our real, live reviews in real time.
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="section-header" style="justify-content:center;margin-bottom:2rem;"><span class="section-tag">Join Our Happy Customers</span></div>
+    <h2>Ready for your<br><em>transformation?</em></h2>
+    <p class="cta-sub">Get a free estimate and see why DFW trusts Platinum Installs.</p>
+    <div class="hero-ctas" style="justify-content:center;"><a class="btn-primary" onclick="showPage('estimate')">Get a Free Estimate</a></div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
+    <div class="footer-tagline">Concrete Coatings · Residential & Commercial</div>
+  </footer>
+</div>
+
+<!-- SERVICE AREA PAGE -->
+<div class="page" id="page-area">
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="hero-eyebrow">Where We Work</div>
+      <h1>Proudly serving<br><span class="pw">Greater DFW.</span></h1>
+      <p>From Fort Worth to Rockwall, Denton to Mansfield — if you're in the DFW metroplex, we come to you. Free on-site estimates throughout the entire area.</p>
+    </div>
+  </div>
+
+  <div class="area-intro">
+    <div class="area-intro-text">
+      <div class="section-header"><span class="section-tag">Our Coverage</span><div class="section-rule"></div></div>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.5rem;">All of DFW,<br><em>one call away.</em></h2>
+      <p>Platinum Installs serves the entire Dallas-Fort Worth metroplex — one of the largest metro areas in the country. We cover all major cities and suburbs across Tarrant, Dallas, Collin, Denton, and Rockwall counties.</p>
+      <p>No travel fees within our service area. We come to your home or commercial property for a free estimate, typically within 24–24 hours of your request.</p>
+      <div class="coverage-badges">
+        <div class="coverage-badge">Tarrant County</div>
+        <div class="coverage-badge">Dallas County</div>
+        <div class="coverage-badge">Collin County</div>
+        <div class="coverage-badge">Denton County</div>
+        <div class="coverage-badge">Rockwall County</div>
+        <div class="coverage-badge">Ellis County</div>
+        <div class="coverage-badge">Johnson County</div>
+      </div>
+      <br>
+      <a class="btn-primary" onclick="showPage('estimate')" style="display:inline-block;margin-top:1rem;">Get a Free Estimate</a>
+    </div>
+    <div id="service-area-map" style="width:100%;height:400px;border:1px solid rgba(200,195,185,.12);"></div>
+  </div>
+
+  <div class="cities-section">
+    <div class="section-header"><span class="section-tag">Cities We Serve</span><div class="section-rule"></div></div>
+    <div class="cities-columns">
+      <div class="city-group">
+        <h4>Dallas & Surrounding</h4>
+        <ul class="city-list">
+          <li>Dallas</li>
+          <li>Garland</li>
+          <li>Irving</li>
+          <li>Grand Prairie</li>
+          <li>Mesquite</li>
+          <li>Balch Springs</li>
+          <li>Duncanville</li>
+          <li>DeSoto</li>
+          <li>Cedar Hill</li>
+          <li>Lancaster</li>
+        </ul>
+      </div>
+      <div class="city-group">
+        <h4>Fort Worth & West</h4>
+        <ul class="city-list">
+          <li>Fort Worth</li>
+          <li>Arlington</li>
+          <li>Mansfield</li>
+          <li>Burleson</li>
+          <li>Crowley</li>
+          <li>Haltom City</li>
+          <li>North Richland Hills</li>
+          <li>Richland Hills</li>
+          <li>Euless</li>
+          <li>Bedford</li>
+        </ul>
+      </div>
+      <div class="city-group">
+        <h4>North DFW & Collin</h4>
+        <ul class="city-list">
+          <li>Plano</li>
+          <li>Frisco</li>
+          <li>McKinney</li>
+          <li>Allen</li>
+          <li>Richardson</li>
+          <li>Prosper</li>
+          <li>Celina</li>
+          <li>Murphy</li>
+          <li>Wylie</li>
+          <li>Sachse</li>
+        </ul>
+      </div>
+      <div class="city-group">
+        <h4>Denton, Rockwall & More</h4>
+        <ul class="city-list">
+          <li>Denton</li>
+          <li>Lewisville</li>
+          <li>Flower Mound</li>
+          <li>Southlake</li>
+          <li>Keller</li>
+          <li>Grapevine</li>
+          <li>Rockwall</li>
+          <li>Rowlett</li>
+          <li>Carrollton</li>
+          <li>Coppell</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:2.5rem;font-size:.82rem;color:var(--text-dim);letter-spacing:.08em;">Don't see your city? <a onclick="showPage('estimate')" style="color:var(--platinum);cursor:pointer;text-decoration:underline;">Contact us</a> — we likely cover your area and can confirm within minutes.</p>
+  </div>
+
+  <section class="cta-section">
+    <div class="section-header" style="justify-content:center;margin-bottom:2rem;"><span class="section-tag">Serving Your Neighborhood</span></div>
+    <h2>Get a free estimate<br><em>at your location.</em></h2>
+    <p class="cta-sub">We come to you — no travel fees anywhere in greater DFW.</p>
+    <div class="hero-ctas" style="justify-content:center;">
+      <a class="btn-primary" onclick="showPage('estimate')">Book My Free Estimate</a>
+      <a class="btn-outline" onclick="showPage('gallery')">View Our Work</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
+    <div class="footer-tagline">Concrete Coatings · Greater DFW</div>
+  </footer>
+</div>
+
+<!-- ESTIMATE -->
+<div class="page" id="page-estimate">
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="hero-eyebrow">No Cost. No Obligation.</div>
+      <h1>Get your free<br><span class="pw">estimate.</span></h1>
+      <p>Tell us about your space and we'll schedule a free on-site visit within 24 hours.</p>
+    </div>
+  </div>
+
+  <div class="form-success" id="form-success" style="background:var(--bg-dark);">
+    <div class="success-icon">✓</div>
+    <div class="success-title">Request Received</div>
+    <p class="success-sub">Thank you! We'll reach out within 24 hours to schedule your free on-site estimate.<br><br>Questions? Call us at <strong style="color:var(--platinum)">(949) 289-4375</strong></p>
+    <br><br>
+    <a class="btn-outline" onclick="showPage('gallery')" style="display:inline-block">View Our Gallery</a>
+  </div>
+
+  <div class="estimate-wrap">
+    <div class="estimate-sidebar">
+      <h3>Let's talk about your project</h3>
+      <div style="margin-bottom:2.5rem;">
+        <div class="contact-item"><div class="c-icon">📞</div><div><div class="c-label">Phone</div><div class="c-val">(949) 289-4375</div></div></div>
+        <div class="contact-item"><div class="c-icon">📍</div><div><div class="c-label">Service Area</div><div class="c-val" onclick="showPage('area')" style="cursor:pointer;color:var(--platinum);text-decoration:underline;">The Greater DFW Metro Area</div></div></div>
+      </div>
+      <div class="trust-items">
+        <div class="trust-item">Free on-site estimate, no pressure</div>
+        <div class="trust-item">Response within 24 hours</div>
+        <div class="trust-item">Insured & certified crew</div>
+        <div class="trust-item">Warranty available on all installations</div>
+        <div class="trust-item">Residential & commercial accepted</div>
+        <div class="trust-item">Additional financial options available</div>
+      </div>
+    </div>
+
+    <div class="form-wrap">
+      <div id="form-inner">
+        <div class="form-title">Request Your Estimate</div>
+        <div class="form-subtitle">Fill out the form and we'll get back to you within 24 hours to schedule your free on-site visit.</div>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" id="fname" placeholder="John"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="lname" placeholder="Smith"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone</label><input type="tel" id="phone" placeholder="(555) 000-0000"></div>
+        </div>
+        <div class="form-group"><label>Project Address / City</label><input type="text" placeholder="123 Main St, Your City"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Project Type</label><select><option value="">Select type...</option><option>Residential Garage</option><option>Basement</option><option>Patio / Outdoor</option><option>Commercial Floor</option><option>Warehouse / Industrial</option><option>Other</option></select></div>
+          <div class="form-group"><label>Coating System</label><select id="coating" onchange="calcPrice()"><option value="">Select system...</option><option>Epoxy Solid Color</option><option>Decorative Flake</option><option>Metallic Epoxy</option><option>Polyaspartic</option><option>Not Sure</option></select></div>
+        </div>
+        <div class="form-group"><label>Size of Garage</label><select id="garage-size"><option value="">Select size...</option><option value="300">1 Car</option><option value="600">2 Car</option><option value="900">3 Car</option><option value="1200">4 Car</option><option value="1500">5+ Car</option><option value="3000">Commercial Site</option></select></div>
+        <div class="form-group"><label>Additional Details <span style="color:var(--text-dim);">(Optional)</span></label><textarea placeholder="Tell us about your space — cracks, stains, current condition, or any questions..."></textarea></div>
+        <div class="form-group"><label>How did you hear about us?</label><select><option value="">Select...</option><option>Google Search</option><option>Referral</option><option>Facebook / Instagram</option><option>Yard Sign / Vehicle</option><option>Other</option></select></div>
+        <button class="form-submit" onclick="submitForm()">Submit Estimate Request →</button>
+        <div class="form-disclaimer">We respect your privacy. Your information is never sold or shared.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
+    <div class="footer-tagline">Concrete Coatings · Residential & Commercial</div>
+  </footer>
+</div>
+
+<script>
+function initServiceMap(){
+  const serviceAreaBoundary=[
+    {lat:33.3089,lng:-96.3856},
+    {lat:33.3211,lng:-96.5306},
+    {lat:33.2358,lng:-97.3706},
+    {lat:33.0319,lng:-97.6569},
+    {lat:32.7486,lng:-97.8114},
+    {lat:32.4244,lng:-97.5317},
+    {lat:32.3506,lng:-97.3917},
+    {lat:32.3830,lng:-96.8317},
+    {lat:32.7392,lng:-96.2617},
+    {lat:33.1778,lng:-96.1161}
+  ];
+  const center={lat:32.7767,lng:-96.7970};
+  const map=new google.maps.Map(document.getElementById('service-area-map'),{
+    zoom:9,
+    center:center
+  });
+  const serviceBoundary=new google.maps.Polygon({
+    paths:serviceAreaBoundary,
+    strokeColor:'#c9a961',
+    strokeOpacity:1,
+    strokeWeight:4,
+    fillColor:'#c9a961',
+    fillOpacity:0.08,
+    map:map,
+    editable:false
+  });
+}
+function toggleDrawer(){
+  const drawer=document.getElementById('nav-drawer');
+  const btn=document.getElementById('nav-hamburger');
+  drawer.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function showPage(id){
+  const pages=['home','gallery','reviews','area','commercial','estimate'];
+  pages.forEach(p=>{const el=document.getElementById('page-'+p);if(el)el.classList.remove('active');const nav=document.getElementById('nav-'+p);if(nav)nav.classList.remove('active');});
+
+  document.getElementById('page-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  if(id==='area'&&typeof google!=='undefined')initServiceMap();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function filterGallery(type,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.gallery-item').forEach(item=>{
+    const match=type==='all'||item.dataset.type===type;
+    item.style.opacity=match?'1':'0.1';
+    item.style.transform=match?'scale(1)':'scale(0.97)';
+  });
+}
+const rates={'Epoxy Solid Color':[2.5,4],'Decorative Flake':[3,5],'Metallic Epoxy':[5,9],'Polyaspartic':[4,7],'Not Sure':[3,6]};
+function calcPrice(){
+  const sqft=parseInt(document.getElementById('garage-size').value)||0;
+  const coating=document.getElementById('coating').value;
+  const block=document.getElementById('price-block');
+  if(!sqft||!coating||!rates[coating]){block.style.display='none';return;}
+  const[lo,hi]=rates[coating];
+  const min=Math.round(sqft*lo/100)*100;
+  const max=Math.round(sqft*hi/100)*100;
+  document.getElementById('price-range').textContent='$'+min.toLocaleString()+' – $'+max.toLocaleString();
+  block.style.display='flex';
+}
+function submitCommForm(){
+  const f=document.getElementById('cfname').value.trim();
+  const l=document.getElementById('clname').value.trim();
+  const p=document.getElementById('cphone').value.trim();
+  const e=document.getElementById('cemail').value.trim();
+  if(!f||!l||!p||!e){alert('Please fill in your name, phone, and email to continue.');return;}
+  document.getElementById('comm-form-inner').style.display='none';
+  const s=document.getElementById('comm-form-success');
+  s.style.display='block';
+  s.style.animation='fadeIn .6s ease both';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+async function submitForm(){
+  const f=document.getElementById('fname').value.trim();
+  const l=document.getElementById('lname').value.trim();
+  const p=document.getElementById('phone').value.trim();
+  if(!f||!l||!p){alert('Please fill in your name and phone to continue.');return;}
+
+  const selects=document.querySelectorAll('.form-group select');
+  let projectType='';
+  let garageSize='';
+  let coatingSystem='';
+
+  selects.forEach(sel=>{
+    const label=sel.previousElementSibling?.textContent||'';
+    if(label.includes('Project Type'))projectType=sel.value;
+    if(label.includes('Size of Garage'))garageSize=sel.value;
+    if(label.includes('Coating System'))coatingSystem=sel.value;
+  });
+
+  const projectDetails=document.querySelector('textarea')?.value||'';
+  const address=document.querySelector('input[placeholder*="123 Main"]')?.value||'';
+
+  try{
+    const res=await fetch('http://localhost:3000/api/inquiries',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({firstName:f,lastName:l,phone:p,projectType,garageSize,coatingSystem,projectDetails,address})
+    });
+    if(!res.ok)throw new Error('Submit failed');
+    document.getElementById('form-inner').style.display='none';
+    const s=document.getElementById('form-success');
+    s.style.display='block';
+    s.style.animation='fadeIn .6s ease both';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }catch(e){
+    console.error('Form submission error:',e);
+    alert('Error submitting form. Please try again or call (949) 289-4375.');
+  }
+}
+function updateScrollReveal(elId,overlayId,tagId){
+  const el=document.getElementById(elId);
+  if(!el)return;
+  const rect=el.getBoundingClientRect();
+  const viewHeight=window.innerHeight;
+  const revealStartPoint=viewHeight*0.35;
+  const revealEndPoint=viewHeight*0.25;
+  let scrollPercent=0;
+  if(rect.top<revealStartPoint&&rect.top>revealEndPoint){
+    scrollPercent=1-((rect.top-revealEndPoint)/(revealStartPoint-revealEndPoint));
+  }else if(rect.top<=revealEndPoint){
+    scrollPercent=1;
+  }
+  scrollPercent=Math.max(0,Math.min(1,scrollPercent));
+  const overlay=document.getElementById(overlayId);
+  const tag=document.getElementById(tagId);
+  if(overlay){overlay.style.clipPath=`inset(0 ${100-scrollPercent*100}% 0 0)`;}
+  if(tag){tag.textContent=scrollPercent<0.3?'Before':scrollPercent>0.7?'After':'Revealing...';}
+}
+let carouselIndex=0;
+const galleryItems=document.querySelectorAll('.gallery-grid .gallery-item');
+const totalSlides=galleryItems.length;
+function initCarousel(){
+  const dotsContainer=document.getElementById('carousel-dots');
+  dotsContainer.innerHTML='';
+  for(let i=0;i<totalSlides;i++){
+    const dot=document.createElement('div');
+    dot.className='carousel-dot'+(i===0?' active':'');
+    dot.onclick=()=>goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
+  document.getElementById('prev-btn').onclick=()=>prevSlide();
+  document.getElementById('next-btn').onclick=()=>nextSlide();
+  startAutoPlay();
+}
+function showSlide(n){
+  galleryItems.forEach((item,i)=>{item.classList.toggle('active',i===n);});
+  document.querySelectorAll('.carousel-dot').forEach((dot,i)=>{dot.classList.toggle('active',i===n);});
+}
+function nextSlide(){
+  carouselIndex=(carouselIndex+1)%totalSlides;
+  showSlide(carouselIndex);
+  resetAutoPlay();
+}
+function prevSlide(){
+  carouselIndex=(carouselIndex-1+totalSlides)%totalSlides;
+  showSlide(carouselIndex);
+  resetAutoPlay();
+}
+function goToSlide(n){
+  carouselIndex=n;
+  showSlide(carouselIndex);
+  resetAutoPlay();
+}
+let autoPlayTimer;
+function startAutoPlay(){autoPlayTimer=setInterval(nextSlide,3000);}
+function resetAutoPlay(){clearInterval(autoPlayTimer);startAutoPlay();}
+initCarousel();
+window.addEventListener('scroll',()=>{
+  updateScrollReveal('ba-interactive','ba-overlay','ba-tag');
+  updateScrollReveal('ba-interactive-2','ba-overlay-2','ba-tag-2');
+});
+
+</script>
+
+<!-- COMMERCIAL PAGE -->
+<div class="page" id="page-commercial">
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="hero-eyebrow">Commercial Partnerships</div>
+      <h1>Built for the<br><span class="pw">professionals who build.</span></h1>
+      <p>Platinum Installs partners with general contractors, warehouse operators, real estate professionals, and property managers across the DFW metroplex to deliver premium concrete coating solutions on schedule and on spec.</p>
+    </div>
+  </div>
+
+  <!-- INTRO + STATS -->
+  <div class="comm-hero-wrap">
+    <div class="comm-hero-text">
+      <div class="section-header"><span class="section-tag">Why Partner With Us</span><div class="section-rule"></div></div>
+      <h2>Your clients deserve<br><em>a platinum finish.</em></h2>
+      <p>We understand that commercial jobs operate differently — tight timelines, multiple trades, strict site requirements, and clients who expect perfection. Platinum Installs is built to operate inside that environment seamlessly.</p>
+      <p>Whether you're a GC coordinating a multi-phase build, a property manager turning over units, or a real estate agent prepping a listing for top dollar, we show up on time, work clean, and deliver results that make you look good.</p>
+      <div class="comm-stat-row">
+        <div class="comm-stat-cell"><div class="n">24h</div><div class="l">Avg. Residential Install</div></div>
+        <div class="comm-stat-cell"><div class="n">100%</div><div class="l">On-Time Completion</div></div>
+        </div>
+      <a class="btn-primary" onclick="showPage('estimate')" style="display:inline-block;">Get a Commercial Quote</a>
+    </div>
+    <div class="comm-hero-visual">
+      <div class="comm-visual-label">
+        <div class="big">B2B</div>
+        <p>Commercial-grade results<br>on every install</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNER SEGMENTS -->
+  <section class="segments">
+    <div class="section-header"><span class="section-tag">Who We Partner With</span><div class="section-rule"></div></div>
+    <h2>Built for every<br><em>commercial professional</em></h2>
+
+    <div class="segments-grid">
+
+      <!-- General Contractors -->
+      <div class="segment-card">
+        <span class="segment-icon">🏗️</span>
+        <div class="segment-title">General Contractors</div>
+        <div class="segment-sub">New Construction & Renovation</div>
+        <p class="segment-desc">We integrate smoothly into your project schedule as a reliable flooring subcontractor. Our crews work alongside other trades, hit deadlines, and produce work that passes inspection the first time.</p>
+        <ul class="segment-bullets">
+          <li>Subcontractor-ready — we carry full insurance & licensing</li>
+          <li>Flexible scheduling around your project phases</li>
+          <li>Commercial invoicing, lien waivers, and COI on request</li>
+          <li>Rapid mobilization for time-sensitive builds</li>
+          <li>Experience with retail, office, industrial & multi-family</li>
+        </ul>
+        <a class="segment-cta" onclick="showPage('estimate')">Start a Partnership</a>
+      </div>
+
+      <!-- Warehouse & Industrial -->
+      <div class="segment-card">
+        <span class="segment-icon">🏭</span>
+        <div class="segment-title">Warehouse & Industrial Owners</div>
+        <div class="segment-sub">High-Traffic & Heavy-Duty Spaces</div>
+        <p class="segment-desc">Industrial floors take a beating. We install chemical-resistant, heavy-load epoxy and polyaspartic systems designed to handle forklifts, pallet jacks, and daily foot traffic for years without degrading.</p>
+        <ul class="segment-bullets">
+          <li>High-build epoxy systems rated for forklift traffic</li>
+          <li>Anti-slip additives for safety compliance</li>
+          <li>Fast-cure options to minimize operational downtime</li>
+          <li>Large-format installs — 10,000+ sq ft capacity</li>
+          <li>Chemical and moisture barrier coatings available</li>
+        </ul>
+        <a class="segment-cta" onclick="showPage('estimate')">Request Industrial Quote</a>
+      </div>
+
+      <!-- Real Estate Agents -->
+      <div class="segment-card">
+        <span class="segment-icon">🏠</span>
+        <div class="segment-title">Real Estate Agents</div>
+        <div class="segment-sub">Pre-Listing & Property Value</div>
+        <p class="segment-desc">A freshly coated garage floor can add thousands to a home's perceived value and help listings sell faster. We work directly with agents and sellers to prep properties before they hit the market.</p>
+        <ul class="segment-bullets">
+          <li>Fast 1–2 day installs before listing photos</li>
+          <li>Dramatically improves garage appeal for buyers</li>
+          <li>Preferred pricing available for repeat agent referrals</li>
+          <li>We coordinate directly with homeowners on your behalf</li>
+          <li>Buyer incentive: coating warranty transfers with the home</li>
+        </ul>
+        <a class="segment-cta" onclick="showPage('estimate')">Partner With Us</a>
+      </div>
+
+      <!-- Property Managers -->
+      <div class="segment-card">
+        <span class="segment-icon">🏢</span>
+        <div class="segment-title">Property Managers</div>
+        <div class="segment-sub">Multi-Unit & Commercial Properties</div>
+        <p class="segment-desc">From apartment garage common areas to retail strip centers, we help property managers maintain attractive, durable concrete surfaces across their portfolio with minimal disruption to tenants.</p>
+        <ul class="segment-bullets">
+          <li>Portfolio pricing for multi-property accounts</li>
+          <li>Scheduled maintenance and recoat programs</li>
+          <li>Tenant-friendly install windows (nights & weekends)</li>
+          <li>Consistent results across every location</li>
+          <li>Single point of contact for all your properties</li>
+        </ul>
+        <a class="segment-cta" onclick="showPage('estimate')">Manage Your Portfolio</a>
+      </div>
+
+      <!-- Interior Designers & Builders -->
+      <div class="segment-card">
+        <span class="segment-icon">✏️</span>
+        <div class="segment-title">Interior Designers & Home Builders</div>
+        <div class="segment-sub">Custom & Luxury Finishes</div>
+        <p class="segment-desc">For designers and custom builders who want flooring that makes a statement, our metallic epoxy and decorative flake systems deliver one-of-a-kind finishes that complement high-end interiors.</p>
+        <ul class="segment-bullets">
+          <li>Custom color matching to design specs</li>
+          <li>Metallic, flake, and solid color systems available</li>
+          <li>Referral program for design professionals</li>
+          <li>Samples and mock-ups available on request</li>
+          <li>White-glove installation with zero mess left behind</li>
+        </ul>
+        <a class="segment-cta" onclick="showPage('estimate')">Explore Design Options</a>
+      </div>
+
+      <!-- HOA & Community -->
+      <div class="segment-card">
+        <span class="segment-icon">🏘️</span>
+        <div class="segment-title">HOA & Community Associations</div>
+        <div class="segment-sub">Common Areas & Shared Spaces</div>
+        <p class="segment-desc">We help HOAs and community associations maintain clean, attractive common area floors — clubhouses, fitness centers, parking structures, and entryways — with coatings built for high-traffic durability.</p>
+        <ul class="segment-bullets">
+          <li>HOA board presentation materials available</li>
+          <li>Volume pricing for community-wide projects</li>
+          <li>Meets commercial code & ADA slip-resistance standards</li>
+          <li>Phased installs to keep common areas accessible</li>
+          <li>Long-term maintenance agreements available</li>
+        </ul>
+        <a class="segment-cta" onclick="showPage('estimate')">Get Community Pricing</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY PLATINUM -->
+  <section class="comm-why">
+    <div class="section-header"><span class="section-tag">Our Commercial Commitment</span><div class="section-rule"></div></div>
+    <h2>What sets us apart<br><em>on commercial jobs</em></h2>
+    <div class="comm-why-grid">
+      <div class="comm-why-card">
+        <div class="comm-why-num">01</div>
+        <div class="comm-why-title">Fully Insured & Documented</div>
+        <p class="comm-why-desc">We carry full general liability and workers' comp insurance. COIs, lien waivers, and W-9s are available same day upon request — no delays to your project paperwork.</p>
+      </div>
+      <div class="comm-why-card">
+        <div class="comm-why-num">02</div>
+        <div class="comm-why-title">Deadline-Driven Crews</div>
+        <p class="comm-why-desc">Commercial projects run on schedules. Our crews are trained to mobilize fast, work efficiently, and complete jobs on time — every time. We protect your timeline like it's our own.</p>
+      </div>
+      <div class="comm-why-card">
+        <div class="comm-why-num">03</div>
+        <div class="comm-why-title">Scalable Capacity</div>
+        <p class="comm-why-desc">From a 500 sq ft retail suite to a 50,000 sq ft warehouse, we have the crew size and equipment to match. We scale to your project — not the other way around.</p>
+      </div>
+      <div class="comm-why-card">
+        <div class="comm-why-num">04</div>
+        <div class="comm-why-title">Preferred Partner Pricing</div>
+        <p class="comm-why-desc">GCs, agents, and property managers who refer or repeat business receive preferred pricing, priority scheduling, and a dedicated account contact for streamlined communication.</p>
+      </div>
+      <div class="comm-why-card">
+        <div class="comm-why-num">05</div>
+        <div class="comm-why-title">Referral Revenue Program</div>
+        <p class="comm-why-desc">Refer us to your clients and earn a referral fee on every completed job. Real estate agents and GCs especially benefit — it's a zero-effort revenue stream for business you're already doing.</p>
+      </div>
+      <div class="comm-why-card">
+        <div class="comm-why-num">06</div>
+        <div class="comm-why-title">Transferable Warranties</div>
+        <p class="comm-why-desc">Our warranties transfer to new owners and tenants. For real estate agents and property managers, this is a powerful selling point — buyers and renters get coverage from day one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMERCIAL CONTACT -->
+  <section class="comm-contact">
+    <div class="section-header"><span class="section-tag">Let's Work Together</span><div class="section-rule"></div></div>
+    <div class="comm-contact-wrap">
+      <div class="comm-contact-sidebar">
+        <h3>Start a commercial conversation.</h3>
+        <p>Whether you have an active project, want to establish a preferred vendor relationship, or just want to learn more about our commercial capabilities — reach out and we'll respond within a few hours.</p>
+        <ul class="comm-perks">
+          <li>Dedicated commercial account manager assigned to your account</li>
+          <li>Same-day response to all commercial inquiries</li>
+          <li>On-site walkthroughs available within 24 hours</li>
+          <li>Flexible billing terms for established partners</li>
+          <li>Volume discounts starting at 2,000+ sq ft</li>
+          <li>References from active GC and property management partners available</li>
+        </ul>
+        <div style="margin-top:2rem;">
+          <div class="contact-item"><div class="c-icon">📞</div><div><div class="c-label">Commercial Direct</div><div class="c-val">(555) 820-4400</div></div></div>
+          <div class="contact-item"><div class="c-icon">✉</div><div><div class="c-label">Commercial Email</div><div class="c-val">commercial@platinuminstalls.com</div></div></div>
+        </div>
+      </div>
+
+      <div class="form-wrap">
+        <div id="comm-form-inner">
+          <div class="form-title">Commercial Inquiry</div>
+          <div class="form-subtitle">Tell us about your business and project needs. We'll follow up with a custom proposal and preferred partner information.</div>
+
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" id="cfname" placeholder="John"></div>
+            <div class="form-group"><label>Last Name</label><input type="text" id="clname" placeholder="Smith"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone</label><input type="tel" id="cphone" placeholder="(555) 000-0000"></div>
+            <div class="form-group"><label>Business Email</label><input type="email" id="cemail" placeholder="john@company.com"></div>
+          </div>
+          <div class="form-group"><label>Company Name</label><input type="text" placeholder="ABC Construction LLC"></div>
+          <div class="form-group">
+            <label>I Am A...</label>
+            <select>
+              <option value="">Select your role...</option>
+              <option>General Contractor</option>
+              <option>Warehouse / Industrial Owner</option>
+              <option>Real Estate Agent / Broker</option>
+              <option>Property Manager</option>
+              <option>Interior Designer / Home Builder</option>
+              <option>HOA / Community Association</option>
+              <option>Business Owner</option>
+              <option>Other Commercial Professional</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Estimated Project Size</label>
+              <select>
+                <option value="">Select size...</option>
+                <option>Under 1,000 sq ft</option>
+                <option>1,000 – 3,000 sq ft</option>
+                <option>3,000 – 8,000 sq ft</option>
+                <option>8,000 – 20,000 sq ft</option>
+                <option>20,000+ sq ft</option>
+                <option>Multiple Locations</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Timeline</label>
+              <select>
+                <option value="">Select timeline...</option>
+                <option>ASAP / Active Project</option>
+                <option>Within 30 Days</option>
+                <option>1–3 Months Out</option>
+                <option>Planning Phase</option>
+                <option>Ongoing / Recurring Need</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label>Project Location / City</label><input type="text" placeholder="Dallas, TX — or multiple DFW locations"></div>
+          <div class="form-group"><label>Tell Us About Your Project or Partnership Interest</label><textarea placeholder="Describe your project, recurring needs, or how you'd like to partner with Platinum Installs. The more detail, the better we can tailor our response."></textarea></div>
+          <div class="form-group">
+            <label>Interested In Our Referral Program?</label>
+            <select>
+              <option value="">Select...</option>
+              <option>Yes — tell me more about referral fees</option>
+              <option>Yes — I already have a referral to send</option>
+              <option>Not at this time</option>
+            </select>
+          </div>
+          <button class="form-submit" onclick="submitCommForm()">Submit Commercial Inquiry →</button>
+          <div class="form-disclaimer">Commercial inquiries receive same-day response during business hours. All information is kept strictly confidential.</div>
+        </div>
+        <div class="form-success" id="comm-form-success">
+          <div class="success-icon">✓</div>
+          <div class="success-title">Inquiry Received</div>
+          <p class="success-sub">Thank you for reaching out. A member of our commercial team will contact you within a few hours to discuss your project and partnership options.<br><br>For urgent needs, call us directly at <strong style="color:var(--platinum)">(555) 820-4400</strong>.</p>
+          <br><br>
+          <a class="btn-outline" onclick="showPage('home')" style="display:inline-block">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
+    <div class="footer-tagline">Commercial Concrete Coatings · Greater DFW</div>
+  </footer>
+</div>
+</body>
+</html>
