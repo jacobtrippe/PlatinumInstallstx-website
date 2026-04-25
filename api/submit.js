@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
   try {
     // Save to Supabase using REST API
     const supabaseUrl = 'https://lbqouvztogcvtbtmfnkw.supabase.co';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxicW91dnofdG9nY3ZidG1mbmtXIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDY4MDE5MzksImV4cCI6MTkzMjM3Nzk0NjF9.ImpXWgBp3P6RM4Z8F8dz4mKU5U0Q4RUCL4H5z0vF1bqI';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxicW91dnp0b2djdnRidG1mbmt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3MjY3NzcsImV4cCI6MjA5MjMwMjc3N30.m_l-HpeUbZGCYdGQ7k_ZEhN2AAykgclgwAKP9ShZ6dE';
 
     const dbResponse = await fetch(
       `${supabaseUrl}/rest/v1/PlatinumInquiry`,
