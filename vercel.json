@@ -1,5 +1,3 @@
 {
-  "buildCommand": "echo 'Static site'",
-  "outputDirectory": "public",
-  "devCommand": "python -m http.server 3000 --directory public"
+  "outputDirectory": "public"
 }

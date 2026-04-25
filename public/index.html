@@ -969,7 +969,7 @@ async function submitForm(){
   const address=document.querySelector('input[placeholder*="123 Main"]')?.value||'';
 
   try{
-    const res=await fetch('http://localhost:3000/api/inquiries',{
+    const res=await fetch('/api/submit',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({firstName:f,lastName:l,phone:p,projectType,garageSize,coatingSystem,projectDetails,address})
