@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "Platinum Installs concrete coatings website",
   "dependencies": {
-    "twilio": "^4.10.0"
+    "@supabase/supabase-js": "^2.38.0"
   }
 }
