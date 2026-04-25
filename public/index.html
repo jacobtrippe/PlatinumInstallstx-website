@@ -24,7 +24,9 @@
 
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;background:rgba(26,26,27,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(200,195,185,.12);}
-  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;letter-spacing:.08em;cursor:pointer;flex-shrink:0;background:linear-gradient(90deg,var(--platinum-dim) 0%,var(--platinum-bright) 30%,#fff 50%,var(--platinum-bright) 70%,var(--platinum-dim) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 4s linear infinite;}
+  .nav-logo{cursor:pointer;flex-shrink:0;display:flex;align-items:center;height:3rem;transition:opacity .3s;}
+  .nav-logo img{height:100%;width:auto;max-width:180px;object-fit:contain;}
+  .nav-logo:hover{opacity:.85;}
   .nav-links{display:flex;gap:1.6rem;list-style:none;align-items:center;flex-wrap:nowrap;}
   .nav-links a{color:var(--platinum-dim);text-decoration:none;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;cursor:pointer;padding-bottom:2px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;white-space:nowrap;}
   .nav-links a:hover,.nav-links a.active{color:var(--platinum-bright);border-bottom-color:rgba(200,195,185,.4);}
@@ -135,7 +137,8 @@
 
   /* FOOTER */
   footer{padding:3rem 4rem;background:var(--bg-dark);display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(200,195,185,.1);}
-  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;letter-spacing:.08em;background:linear-gradient(90deg,var(--platinum-dim),var(--platinum-bright),var(--platinum-dim));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 4s linear infinite;}
+  .footer-logo{display:flex;align-items:center;height:2.5rem;}
+  .footer-logo img{height:100%;width:auto;max-width:150px;object-fit:contain;}
   .footer-copy{font-size:.75rem;color:var(--text-dim);letter-spacing:.12em;}
   .footer-tagline{font-size:.72rem;color:var(--platinum-dim);letter-spacing:.22em;text-transform:uppercase;}
 
@@ -432,7 +435,7 @@
 <body>
 
 <nav>
-  <div class="nav-logo" onclick="showPage('home')">Platinum Installs</div>
+  <div class="nav-logo" onclick="showPage('home')"><img src="logo.jpg" alt="Platinum Installs"></div>
   <ul class="nav-links">
     <li><a id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
     <li><a id="nav-gallery" onclick="showPage('gallery')">Gallery</a></li>
@@ -557,7 +560,7 @@
   </section>
 
   <footer>
-    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-logo"><img src="logo.jpg" alt="Platinum Installs"></div>
     <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
     <div class="footer-tagline">Concrete Coatings · Residential & Commercial</div>
   </footer>
@@ -627,7 +630,7 @@
   </section>
 
   <footer>
-    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-logo"><img src="logo.jpg" alt="Platinum Installs"></div>
     <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
     <div class="footer-tagline">Concrete Coatings · Residential & Commercial</div>
   </footer>
@@ -677,7 +680,7 @@
   </section>
 
   <footer>
-    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-logo"><img src="logo.jpg" alt="Platinum Installs"></div>
     <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
     <div class="footer-tagline">Concrete Coatings · Residential & Commercial</div>
   </footer>
@@ -793,7 +796,7 @@
   </section>
 
   <footer>
-    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-logo"><img src="logo.jpg" alt="Platinum Installs"></div>
     <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
     <div class="footer-tagline">Concrete Coatings · Greater DFW</div>
   </footer>
@@ -861,7 +864,7 @@
   </div>
 
   <footer>
-    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-logo"><img src="logo.jpg" alt="Platinum Installs"></div>
     <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
     <div class="footer-tagline">Concrete Coatings · Residential & Commercial</div>
   </footer>
@@ -1325,7 +1328,7 @@ window.addEventListener('scroll',()=>{
   </section>
 
   <footer>
-    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-logo"><img src="logo.jpg" alt="Platinum Installs"></div>
     <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
     <div class="footer-tagline">Commercial Concrete Coatings · Greater DFW</div>
   </footer>
