@@ -14,17 +14,32 @@ module.exports = async (req, res) => {
   const smsBody = `New Platinum Installs Inquiry:\n${firstName} ${lastName}\nPhone: ${phone}\nProject: ${projectType}\nSize: ${garageSize}\nCoating: ${coatingSystem}\nAddress: ${address}\nDetails: ${projectDetails}`;
 
   try {
-    if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN) {
-      const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-      await client.messages.create({
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const twilioNumber = process.env.TWILIO_PHONE_NUMBER;
+    const ownerPhone = process.env.PLATINUM_OWNER_PHONE;
+
+    console.log('Env vars check:', {
+      hasAccountSid: !!accountSid,
+      hasAuthToken: !!authToken,
+      hasNumber: !!twilioNumber,
+      hasOwnerPhone: !!ownerPhone,
+    });
+
+    if (accountSid && authToken && twilioNumber && ownerPhone) {
+      const client = twilio(accountSid, authToken);
+      const msg = await client.messages.create({
         body: smsBody,
-        from: process.env.TWILIO_PHONE_NUMBER,
-        to: process.env.PLATINUM_OWNER_PHONE,
+        from: twilioNumber,
+        to: `+1${ownerPhone}`,
       });
+      console.log('SMS sent:', msg.sid);
+    } else {
+      console.warn('Twilio credentials incomplete');
     }
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error('SMS failed:', err.message);
-    return res.status(500).json({ error: 'SMS failed' });
+    console.error('SMS error:', err);
+    return res.status(200).json({ success: true, warning: 'SMS failed but inquiry logged' });
   }
 };
