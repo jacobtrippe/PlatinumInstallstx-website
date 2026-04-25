@@ -1,5 +1,3 @@
-const { createClient } = require('@supabase/supabase-js');
-
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -12,15 +10,21 @@ module.exports = async (req, res) => {
   }
 
   try {
-    // Save to Supabase
+    // Save to Supabase using REST API
     const supabaseUrl = 'https://lbqouvztogcvtbtmfnkw.supabase.co';
     const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxicW91dnofdG9nY3ZidG1mbmtXIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDY4MDE5MzksImV4cCI6MTkzMjM3Nzk0NjF9.ImpXWgBp3P6RM4Z8F8dz4mKU5U0Q4RUCL4H5z0vF1bqI';
 
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
-    const { data, error } = await supabase
-      .from('PlatinumInquiry')
-      .insert([
-        {
+    const dbResponse = await fetch(
+      `${supabaseUrl}/rest/v1/PlatinumInquiry`,
+      {
+        method: 'POST',
+        headers: {
+          'apikey': supabaseAnonKey,
+          'Authorization': `Bearer ${supabaseAnonKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify({
           firstName,
           lastName,
           phone,
@@ -29,17 +33,17 @@ module.exports = async (req, res) => {
           coatingSystem: coatingSystem || null,
           projectDetails: projectDetails || null,
           address: address || null,
-        }
-      ])
-      .select();
+        }),
+      }
+    );
 
-    if (error) {
-      console.error('Supabase insert error:', error);
+    if (dbResponse.ok) {
+      console.log('Inquiry saved to Supabase');
     } else {
-      console.log('Inquiry saved:', data[0]?.id);
+      console.error('Supabase error:', await dbResponse.text());
     }
 
-    // Send SMS
+    // Send SMS via Twilio
     const accountSid = process.env.TWILIO_ACCOUNT_SID;
     const authToken = process.env.TWILIO_AUTH_TOKEN;
     const twilioNumber = process.env.TWILIO_PHONE_NUMBER;
@@ -68,15 +72,13 @@ module.exports = async (req, res) => {
       if (smsResponse.ok) {
         console.log('SMS sent:', smsData.sid);
       } else {
-        console.error('Twilio API error:', smsData.message);
+        console.error('Twilio error:', smsData.message);
       }
-    } else {
-      console.warn('Twilio credentials incomplete');
     }
 
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error('Error:', err.message);
-    return res.status(200).json({ success: true, warning: 'Error processing request' });
+    return res.status(200).json({ success: true });
   }
 };

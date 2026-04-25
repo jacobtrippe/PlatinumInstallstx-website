@@ -1,8 +1,5 @@
 {
   "name": "platinum-installs-website",
   "version": "1.0.0",
-  "description": "Platinum Installs concrete coatings website",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.38.0"
-  }
+  "description": "Platinum Installs concrete coatings website"
 }
