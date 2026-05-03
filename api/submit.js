@@ -3,7 +3,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).end();
 
-  const { firstName, lastName, phone, projectType, garageSize, coatingSystem, projectDetails, address } = req.body;
+  const { firstName, lastName, phone, projectType, garageSize, coatingSystem, projectDetails, address, source, eventID } = req.body;
 
   if (!firstName || !lastName || !phone) {
     return res.status(400).json({ error: 'Missing required fields' });
@@ -74,6 +74,41 @@ module.exports = async (req, res) => {
       } else {
         console.error('Twilio error:', smsData.message);
       }
+    }
+
+    // Meta Conversions API — server-side Lead event
+    const capiToken = process.env.META_CAPI_TOKEN;
+    if (capiToken) {
+      const crypto = require('crypto');
+      const hash = (val) => val
+        ? crypto.createHash('sha256').update(val.toLowerCase().trim()).digest('hex')
+        : undefined;
+
+      const eventPayload = {
+        data: [{
+          event_name: 'Lead',
+          event_time: Math.floor(Date.now() / 1000),
+          event_id: eventID || undefined,
+          event_source_url: 'https://platinuminstallstx.com/landing',
+          action_source: 'website',
+          user_data: {
+            fn: hash(firstName),
+            ln: hash(lastName),
+            ph: hash(phone?.replace(/\D/g, '')),
+            ct: hash(address),
+            country: hash('us'),
+          },
+        }],
+      };
+
+      await fetch(
+        `https://graph.facebook.com/v19.0/808036985388949/events?access_token=${capiToken}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(eventPayload),
+        }
+      ).catch(() => {}); // fire-and-forget, don't block response
     }
 
     return res.status(200).json({ success: true });
