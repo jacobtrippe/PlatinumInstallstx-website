@@ -416,6 +416,9 @@ async function submitForm(event) {
       // Fire browser Pixel Lead event with same eventID for deduplication
       fbq('track', 'Lead', {}, { eventID });
 
+      // Fire CompleteRegistration event for Meta campaign optimization
+      fbq('track', 'CompleteRegistration');
+
       // Show success message
       document.getElementById('form-inner').style.display = 'none';
       document.getElementById('success-phone').textContent = phone;
