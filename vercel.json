@@ -1,4 +1,7 @@
 {
   "outputDirectory": "public",
-  "buildCommand": "echo 'Build complete'"
+  "buildCommand": "echo 'Build complete'",
+  "rewrites": [
+    { "source": "/landing", "destination": "/landing.html" }
+  ]
 }
