@@ -242,7 +242,7 @@ src="https://www.facebook.com/tr?id=808036985388949&ev=PageView&noscript=1"
   <div class="hero-left">
     <div class="hero-eyebrow">DFW'S CONCRETE COATING SPECIALISTS</div>
     <h1>Transform Your Garage — Get a Free Estimate</h1>
-    <div class="urgency-badge">⚡ Limited install slots available this month</div>
+    <div class="urgency-badge"><span id="urgency-text">Only 7 install slots left this month</span></div>
     <p>Professional epoxy & polyaspartic coatings. 15-year warranty available. Serving all of DFW.</p>
   </div>
 
@@ -311,16 +311,16 @@ src="https://www.facebook.com/tr?id=808036985388949&ev=PageView&noscript=1"
 <section class="gallery-strip">
   <div class="gallery-grid">
     <div class="gallery-item">
-      <img src="gallery/IMG_7391.jpeg" alt="Garage floor coating">
+      <img src="gallery/landing-1.jpeg" alt="Garage floor coating before and after">
     </div>
     <div class="gallery-item">
-      <img src="gallery/IMG_8266.jpeg" alt="Epoxy floor installation">
+      <img src="gallery/landing-2.jpeg" alt="Epoxy floor installation application">
     </div>
     <div class="gallery-item">
-      <img src="gallery/IMG_7392.jpeg" alt="Metallic epoxy floor">
+      <img src="gallery/landing-3.jpeg" alt="Finished metallic epoxy floor">
     </div>
     <div class="gallery-item">
-      <img src="gallery/IMG_8267.jpeg" alt="Finished concrete coating">
+      <img src="gallery/landing-4.jpeg" alt="Professional garage floor transformation">
     </div>
   </div>
 </section>
@@ -331,6 +331,39 @@ src="https://www.facebook.com/tr?id=808036985388949&ev=PageView&noscript=1"
 </footer>
 
 <script>
+// Calculate dynamic urgency counter based on days left in month
+function updateUrgencyCounter() {
+  const now = new Date();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
+
+  // Get last day of current month
+  const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const daysLeftInMonth = lastDayOfMonth - now.getDate();
+
+  // Calculate a quarter of days left in month (rounded down)
+  const slotsLeft = Math.floor(daysLeftInMonth / 4);
+
+  // Determine the urgency text
+  let urgencyText = '';
+  if (slotsLeft <= 3) {
+    // Show next month's count
+    const nextMonth = now.getMonth() === 11 ? 'January' : new Date(currentYear, currentMonth + 1).toLocaleString('en-US', { month: 'long' });
+    const nextMonthLastDay = new Date(currentYear, currentMonth === 11 ? currentYear + 1 : currentYear, currentMonth === 11 ? 1 : currentMonth + 2, 0).getDate();
+    const nextMonthSlots = Math.floor(nextMonthLastDay / 4);
+    urgencyText = `Only ${nextMonthSlots} slots available in ${nextMonth}`;
+  } else {
+    const monthName = now.toLocaleString('en-US', { month: 'long' });
+    urgencyText = `Only ${slotsLeft} install slots left this ${monthName}`;
+  }
+
+  document.getElementById('urgency-text').textContent = urgencyText;
+}
+
+// Update counter on page load and every minute
+document.addEventListener('DOMContentLoaded', updateUrgencyCounter);
+setInterval(updateUrgencyCounter, 60000);
+
 async function submitForm(event) {
   event.preventDefault();
 
