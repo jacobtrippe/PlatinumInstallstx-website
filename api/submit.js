@@ -43,37 +43,29 @@ module.exports = async (req, res) => {
       console.error('Supabase error:', await dbResponse.text());
     }
 
-    // Send SMS via Twilio
-    const accountSid = process.env.TWILIO_ACCOUNT_SID;
-    const authToken = process.env.TWILIO_AUTH_TOKEN;
-    const twilioNumber = process.env.TWILIO_PHONE_NUMBER;
-    const ownerPhone = process.env.PLATINUM_OWNER_PHONE;
+    // Send SMS via Gmail → T-Mobile email-to-SMS gateway
+    const gmailUser = process.env.GMAIL_USER;
+    const gmailPass = process.env.GMAIL_APP_PASSWORD;
+    const notifyPhone = process.env.PLATINUM_OWNER_PHONE_GATEWAY;
 
-    if (accountSid && authToken && twilioNumber && ownerPhone) {
-      const smsBody = `New Platinum Installs Inquiry:\n${firstName} ${lastName}\nPhone: ${phone}\nProject: ${projectType}\nSize: ${garageSize}\nCoating: ${coatingSystem}\nAddress: ${address}\nDetails: ${projectDetails}`;
-
-      const url = `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`;
-      const auth = Buffer.from(`${accountSid}:${authToken}`).toString('base64');
-
-      const smsResponse = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Basic ${auth}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          From: twilioNumber,
-          To: `+1${ownerPhone}`,
-          Body: smsBody,
-        }).toString(),
+    if (gmailUser && gmailPass && notifyPhone) {
+      const nodemailer = require('nodemailer');
+      const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,
+        auth: { user: gmailUser, pass: gmailPass },
       });
 
-      const smsData = await smsResponse.json();
-      if (smsResponse.ok) {
-        console.log('SMS sent:', smsData.sid);
-      } else {
-        console.error('Twilio error:', smsData.message);
-      }
+      const msgBody = `New Lead: ${firstName} ${lastName}\nPhone: ${phone}\nProject: ${projectType}\nSize: ${garageSize}\nCoating: ${coatingSystem}\nAddress: ${address}\nDetails: ${projectDetails}`;
+
+      await transporter.sendMail({
+        from: gmailUser,
+        to: notifyPhone,
+        subject: 'New Platinum Installs Lead',
+        text: msgBody,
+      }).then(() => console.log('Lead notification sent'))
+        .catch(e => console.error('Email notify error:', e.message));
     }
 
     // Meta Conversions API — server-side Lead event

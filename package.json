@@ -1,5 +1,8 @@
 {
   "name": "platinum-installs-website",
   "version": "1.0.0",
-  "description": "Platinum Installs concrete coatings website"
+  "description": "Platinum Installs concrete coatings website",
+  "dependencies": {
+    "nodemailer": "^6.9.13"
+  }
 }
