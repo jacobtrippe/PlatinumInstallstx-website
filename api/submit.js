@@ -57,12 +57,13 @@ module.exports = async (req, res) => {
         auth: { user: gmailUser, pass: gmailPass },
       });
 
-      const msgBody = `New Lead: ${firstName} ${lastName}\nPhone: ${phone}\nProject: ${projectType}\nSize: ${garageSize}\nCoating: ${coatingSystem}\nAddress: ${address}\nDetails: ${projectDetails}`;
+      const details = [garageSize, coatingSystem].filter(Boolean).join(' ');
+      const msgBody = `PI Lead: ${firstName} ${lastName} | ${phone}\n${details ? details + ' | ' : ''}${address || ''}${projectDetails ? '\n' + projectDetails : ''}`.trim();
 
       await transporter.sendMail({
         from: gmailUser,
         to: notifyPhone,
-        subject: 'New Platinum Installs Lead',
+        subject: '',
         text: msgBody,
       }).then(() => console.log('Lead notification sent'))
         .catch(e => console.error('Email notify error:', e.message));
