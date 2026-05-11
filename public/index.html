@@ -143,8 +143,8 @@
 
   /* ── HOME ── */
   .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:0 4rem;overflow:hidden;}
-  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 50%,rgba(200,195,185,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(200,195,185,.04) 0%,transparent 60%),linear-gradient(160deg,#1e1e1f 0%,#2f2f30 40%,#252526 100%);}
-  .hero-bg::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 40px,rgba(200,195,185,.018) 40px,rgba(200,195,185,.018) 41px);}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(to right,rgba(18,18,19,.97) 0%,rgba(18,18,19,.90) 35%,rgba(18,18,19,.55) 60%,rgba(18,18,19,.10) 100%),url('gallery/IMG_8275.jpeg') center/cover no-repeat;}
+  .hero-bg::after{content:'';}
   .hero-watermark{position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:38vw;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(200,195,185,.04);line-height:1;pointer-events:none;user-select:none;}
   .hero-content{position:relative;z-index:2;max-width:700px;animation:fadeUp 1s ease both;}
   .hero-eyebrow{font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--platinum-dim);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}
@@ -153,11 +153,23 @@
   h1 .pw{display:block;font-weight:700;background:linear-gradient(90deg,#a8a8a6 0%,#d4d0cb 20%,#f8f7f5 40%,#fff 50%,#f0eeeb 60%,#c9c0b0 80%,#a8a8a6 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 3.5s linear infinite;}
   .hero-sub{font-size:1.05rem;color:var(--platinum-dim);letter-spacing:.06em;margin:2rem 0 3rem;max-width:440px;line-height:1.7;font-weight:300;animation:fadeUp 1s ease .3s both;}
   .hero-ctas{display:flex;gap:1.2rem;flex-wrap:wrap;animation:fadeUp 1s ease .5s both;}
+  .hero-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.8rem;animation:fadeUp 1s ease .2s both;}
+  .hero-pills span{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--platinum-dim);border:1px solid rgba(200,195,185,.22);padding:.28rem .75rem;font-weight:500;white-space:nowrap;}
 
   .stats{display:flex;justify-content:space-around;padding:3.5rem 4rem;background:linear-gradient(to right,var(--bg-dark),#282829,var(--bg-dark));border-top:1px solid rgba(200,195,185,.1);border-bottom:1px solid rgba(200,195,185,.1);}
   .stat{text-align:center;}
   .stat-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;line-height:1;background:linear-gradient(90deg,var(--platinum-dim),var(--platinum-bright),var(--platinum-dim));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 5s linear infinite;}
   .stat-label{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-dim);margin-top:.5rem;}
+
+  .work-preview{padding:4rem;background:var(--bg-dark);border-bottom:1px solid rgba(200,195,185,.1);}
+  .work-preview-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.8rem;}
+  .work-preview-label{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--platinum-dim);}
+  .work-preview-link{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--platinum-dim);text-decoration:none;cursor:pointer;border-bottom:1px solid rgba(200,195,185,.25);padding-bottom:2px;transition:color .25s,border-color .25s;}
+  .work-preview-link:hover{color:var(--platinum-bright);border-color:var(--platinum-bright);}
+  .work-preview-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:3px;height:320px;}
+  .work-preview-grid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease,filter .4s ease;filter:brightness(.88) saturate(.9);}
+  .work-preview-grid img:hover{transform:scale(1.03);filter:brightness(1) saturate(1);}
+  .work-preview-grid div{overflow:hidden;}
 
   .services{padding:7rem 4rem;}
   .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,195,185,.1);}
@@ -285,7 +297,10 @@
     nav{padding:1.2rem 2rem;}
     .nav-links{gap:1.5rem;}
     .nav-links a{font-size:.75rem;}
-    .hero,.services,.process,.cta-section,footer,.page-hero,.gallery-wrap,.ba-section{padding-left:2rem;padding-right:2rem;}
+    .hero,.services,.process,.cta-section,footer,.page-hero,.gallery-wrap,.ba-section,.work-preview{padding-left:2rem;padding-right:2rem;}
+    .hero-bg{background:linear-gradient(to bottom,rgba(18,18,19,.55) 0%,rgba(18,18,19,.92) 55%,rgba(18,18,19,.98) 100%),url('gallery/IMG_8275.jpeg') center/cover no-repeat;}
+    .work-preview-grid{grid-template-columns:1fr 1fr;height:240px;}
+    .work-preview-grid div:last-child{display:none;}
     .services-grid{grid-template-columns:1fr 1fr;}
     .process-steps{grid-template-columns:1fr 1fr;gap:3rem;}
     .process-steps::before{display:none;}
@@ -462,9 +477,15 @@
     <div class="hero-bg"></div>
     <div class="hero-watermark">P</div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Concrete Coating Specialists</div>
-      <h1>Surface<br><span class="pw">Perfected.</span></h1>
-      <p class="hero-sub">Premium concrete coating solutions for residential and commercial spaces. Built to last. Finished to impress.</p>
+      <div class="hero-eyebrow">Garage Floor Coatings &nbsp;·&nbsp; Serving DFW</div>
+      <h1>Your Garage.<br><span class="pw">Perfected.</span></h1>
+      <div class="hero-pills">
+        <span>Epoxy</span>
+        <span>Metallic Flake</span>
+        <span>Polyaspartic</span>
+        <span>Full Flake System</span>
+      </div>
+      <p class="hero-sub">We install epoxy, polyaspartic, and metallic flake floor coatings for homes and businesses across the DFW metroplex. Built to last. Finished to impress.</p>
       <div class="hero-ctas">
         <a class="btn-primary" onclick="showPage('estimate')">Get a Free Quote</a>
         <a class="btn-outline" onclick="showPage('gallery')">View Our Work</a>
@@ -477,6 +498,18 @@
     <div class="stat"><div class="stat-num">15yr</div><div class="stat-label">Warranty Available</div></div>
     <div class="stat"><div class="stat-num">24h</div><div class="stat-label">Avg. Residential Install</div></div>
   </div>
+
+  <section class="work-preview">
+    <div class="work-preview-header">
+      <span class="work-preview-label">Featured Work</span>
+      <a class="work-preview-link" onclick="showPage('gallery')">View Our Work &rarr;</a>
+    </div>
+    <div class="work-preview-grid">
+      <div><img src="gallery/IMG_7391.jpeg" alt="Finished garage floor coating"></div>
+      <div><img src="gallery/IMG_8268.jpeg" alt="Full flake epoxy floor"></div>
+      <div><img src="gallery/IMG_7953.jpeg" alt="Commercial floor coating"></div>
+    </div>
+  </section>
 
   <section class="services">
     <div class="section-header"><span class="section-tag">What We Do</span><div class="section-rule"></div></div>
