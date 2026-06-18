@@ -142,19 +142,34 @@
   .footer-tagline{font-size:.72rem;color:var(--platinum-dim);letter-spacing:.22em;text-transform:uppercase;}
 
   /* ── HOME ── */
-  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:0 4rem;overflow:hidden;}
-  .hero-bg{position:absolute;inset:0;background:linear-gradient(to right,rgba(18,18,19,.97) 0%,rgba(18,18,19,.90) 35%,rgba(18,18,19,.55) 60%,rgba(18,18,19,.10) 100%),url('gallery/IMG_8275.jpeg') center/cover no-repeat;}
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:0 4rem;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:linear-gradient(to right,rgba(18,18,19,.97) 0%,rgba(18,18,19,.90) 35%,rgba(18,18,19,.55) 60%,rgba(18,18,19,.10) 100%),url('gallery/IMG_8273.jpeg') center/cover no-repeat;}
   .hero-bg::after{content:'';}
   .hero-watermark{position:absolute;right:-2rem;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:38vw;font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(200,195,185,.04);line-height:1;pointer-events:none;user-select:none;}
-  .hero-content{position:relative;z-index:2;max-width:700px;animation:fadeUp 1s ease both;}
+  .hero-layout{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:3rem;width:100%;}
+  .hero-content{flex:1;max-width:560px;animation:fadeUp 1s ease both;}
   .hero-eyebrow{font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--platinum-dim);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}
   .hero-eyebrow::before{content:'';display:inline-block;height:1px;background:linear-gradient(to right,var(--platinum-dim),transparent);animation:lineGrow 1.2s ease .5s both;width:80px;}
-  h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:300;line-height:1.0;margin-bottom:.2rem;}
+  h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,5.5rem);font-weight:300;line-height:1.0;margin-bottom:.2rem;}
   h1 .pw{display:block;font-weight:700;background:linear-gradient(90deg,#a8a8a6 0%,#d4d0cb 20%,#f8f7f5 40%,#fff 50%,#f0eeeb 60%,#c9c0b0 80%,#a8a8a6 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 3.5s linear infinite;}
-  .hero-sub{font-size:1.05rem;color:var(--platinum-dim);letter-spacing:.06em;margin:2rem 0 3rem;max-width:440px;line-height:1.7;font-weight:300;animation:fadeUp 1s ease .3s both;}
-  .hero-ctas{display:flex;gap:1.2rem;flex-wrap:wrap;animation:fadeUp 1s ease .5s both;}
+  .hero-sub{font-size:1rem;color:var(--platinum-dim);letter-spacing:.06em;margin:1.5rem 0 0;max-width:440px;line-height:1.7;font-weight:300;animation:fadeUp 1s ease .3s both;}
   .hero-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.8rem;animation:fadeUp 1s ease .2s both;}
   .hero-pills span{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--platinum-dim);border:1px solid rgba(200,195,185,.22);padding:.28rem .75rem;font-weight:500;white-space:nowrap;}
+  .hero-form-card{width:310px;flex-shrink:0;background:rgba(12,12,13,.88);border:1px solid rgba(200,195,185,.18);padding:1.8rem;backdrop-filter:blur(20px);animation:fadeUp 1s ease .2s both;}
+  .hero-form-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--platinum-bright);margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid rgba(200,195,185,.1);}
+  .hero-form-group{margin-bottom:.9rem;}
+  .hero-form-group label{display:block;font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-dim);margin-bottom:.35rem;font-weight:600;}
+  .hero-form-group input{width:100%;background:rgba(200,195,185,.05);border:1px solid rgba(200,195,185,.15);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:.92rem;padding:.65rem .9rem;outline:none;transition:border-color .3s;}
+  .hero-form-group input:focus{border-color:rgba(200,195,185,.45);}
+  .hero-form-group input::placeholder{color:rgba(168,168,166,.4);}
+  .hero-form-submit{width:100%;padding:.9rem 1.5rem;background:linear-gradient(135deg,#c9c0b0,#e5e4e2,#f8f7f5,#e0ddd8,#c0bbb2);color:#1e1e1f;font-family:'Rajdhani',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;border:none;cursor:pointer;margin-top:.5rem;transition:opacity .2s;}
+  .hero-form-submit:hover{opacity:.88;}
+  .hero-form-submit:disabled{opacity:.5;cursor:default;}
+  .hero-form-trust{font-size:.66rem;color:var(--text-dim);letter-spacing:.07em;text-align:center;margin-top:.7rem;line-height:1.6;}
+  .hero-form-success-inner{text-align:center;padding:.5rem 0;}
+  .hero-form-success-check{font-size:2rem;margin-bottom:.6rem;}
+  .hero-form-success-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--platinum-bright);margin-bottom:.5rem;}
+  .hero-form-success-sub{font-size:.82rem;color:var(--text-dim);line-height:1.7;}
 
   .stats{display:flex;justify-content:space-around;padding:3.5rem 4rem;background:linear-gradient(to right,var(--bg-dark),#282829,var(--bg-dark));border-top:1px solid rgba(200,195,185,.1);border-bottom:1px solid rgba(200,195,185,.1);}
   .stat{text-align:center;}
@@ -298,7 +313,9 @@
     .nav-links{gap:1.5rem;}
     .nav-links a{font-size:.75rem;}
     .hero,.services,.process,.cta-section,footer,.page-hero,.gallery-wrap,.ba-section,.work-preview{padding-left:2rem;padding-right:2rem;}
-    .hero-bg{background:linear-gradient(to bottom,rgba(18,18,19,.55) 0%,rgba(18,18,19,.92) 55%,rgba(18,18,19,.98) 100%),url('gallery/IMG_8275.jpeg') center/cover no-repeat;}
+    .hero-bg{background:linear-gradient(to bottom,rgba(18,18,19,.55) 0%,rgba(18,18,19,.92) 55%,rgba(18,18,19,.98) 100%),url('gallery/IMG_8273.jpeg') center/cover no-repeat;}
+    .hero-layout{flex-direction:column;align-items:flex-start;}
+    .hero-form-card{width:100%;max-width:480px;}
     .work-preview-grid{grid-template-columns:1fr 1fr;height:240px;}
     .work-preview-grid div:last-child{display:none;}
     .services-grid{grid-template-columns:1fr 1fr;}
@@ -476,19 +493,43 @@
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-watermark">P</div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Garage Floor Coatings &nbsp;·&nbsp; Serving DFW</div>
-      <h1>Your Garage.<br><span class="pw">Perfected.</span></h1>
-      <div class="hero-pills">
-        <span>Epoxy</span>
-        <span>Metallic Flake</span>
-        <span>Polyaspartic</span>
-        <span>Full Flake System</span>
+    <div class="hero-layout">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Garage Floor Coatings &nbsp;·&nbsp; Serving DFW</div>
+        <h1>Your Garage.<br><span class="pw">Perfected.</span></h1>
+        <div class="hero-pills">
+          <span>Epoxy</span>
+          <span>Metallic Flake</span>
+          <span>Polyaspartic</span>
+          <span>Full Flake System</span>
+        </div>
+        <p class="hero-sub">We install epoxy, polyaspartic, and metallic flake floor coatings for homes and businesses across the DFW metroplex. Built to last. Finished to impress.</p>
       </div>
-      <p class="hero-sub">We install epoxy, polyaspartic, and metallic flake floor coatings for homes and businesses across the DFW metroplex. Built to last. Finished to impress.</p>
-      <div class="hero-ctas">
-        <a class="btn-primary" onclick="showPage('estimate')">Get a Free Quote</a>
-        <a class="btn-outline" onclick="showPage('gallery')">View Our Work</a>
+      <div class="hero-form-card" id="hero-form-card">
+        <div id="hero-form-inner">
+          <div class="hero-form-title">Get Your Free Quote</div>
+          <div class="hero-form-group">
+            <label>Full Name *</label>
+            <input type="text" id="hf-name" placeholder="John Smith" autocomplete="name">
+          </div>
+          <div class="hero-form-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="hf-phone" placeholder="(555) 000-0000" autocomplete="tel">
+          </div>
+          <div class="hero-form-group">
+            <label>City *</label>
+            <input type="text" id="hf-city" placeholder="Frisco, Plano, Dallas..." autocomplete="address-level2">
+          </div>
+          <button class="hero-form-submit" id="hf-submit" onclick="submitHeroForm()">Get My Free Quote →</button>
+          <p class="hero-form-trust">Free, no obligation &nbsp;·&nbsp; Response within 24 hrs</p>
+        </div>
+        <div id="hero-form-success" style="display:none;">
+          <div class="hero-form-success-inner">
+            <div class="hero-form-success-check">✓</div>
+            <div class="hero-form-success-title">We'll be in touch soon.</div>
+            <p class="hero-form-success-sub">Thanks! We'll reach out within 24 hours to schedule your free on-site estimate.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1017,6 +1058,31 @@ async function submitForm(){
   }catch(e){
     console.error('Form submission error:',e);
     alert('Error submitting form. Please try again or call (214) 813-7474.');
+  }
+}
+async function submitHeroForm(){
+  const nameVal=document.getElementById('hf-name').value.trim();
+  const phone=document.getElementById('hf-phone').value.trim();
+  const city=document.getElementById('hf-city').value.trim();
+  if(!nameVal||!phone||!city){alert('Please fill in all three fields.');return;}
+  const parts=nameVal.split(' ');
+  const firstName=parts[0];
+  const lastName=parts.slice(1).join(' ')||'';
+  const btn=document.getElementById('hf-submit');
+  btn.textContent='Sending...';
+  btn.disabled=true;
+  try{
+    await fetch('/api/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({firstName,lastName,phone,address:city,source:'hero-form'})
+    });
+    document.getElementById('hero-form-inner').style.display='none';
+    document.getElementById('hero-form-success').style.display='block';
+  }catch(e){
+    btn.textContent='Get My Free Quote →';
+    btn.disabled=false;
+    alert('Something went wrong. Please call (214) 813-7474.');
   }
 }
 function updateScrollReveal(elId,overlayId,tagId){
