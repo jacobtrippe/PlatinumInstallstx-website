@@ -775,7 +775,7 @@
       <div class="section-header"><span class="section-tag">Our Coverage</span><div class="section-rule"></div></div>
       <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:1.5rem;">All of DFW,<br><em>one call away.</em></h2>
       <p>Platinum Installs serves the entire Dallas-Fort Worth metroplex — one of the largest metro areas in the country. We cover all major cities and suburbs across Tarrant, Dallas, Collin, Denton, and Rockwall counties.</p>
-      <p>No travel fees within our service area. We come to your home or commercial property for a free estimate, typically within 24–24 hours of your request.</p>
+      <p>No travel fees within our service area. We come to your home or commercial property for a free estimate, typically within 24–48 hours of your request.</p>
       <div class="coverage-badges">
         <div class="coverage-badge">Tarrant County</div>
         <div class="coverage-badge">Dallas County</div>
@@ -928,7 +928,8 @@
           <div class="form-group"><label>Project Type</label><select><option value="">Select type...</option><option>Residential Garage</option><option>Basement</option><option>Patio / Outdoor</option><option>Commercial Floor</option><option>Warehouse / Industrial</option><option>Other</option></select></div>
           <div class="form-group"><label>Coating System</label><select id="coating" onchange="calcPrice()"><option value="">Select system...</option><option>Epoxy Solid Color</option><option>Decorative Flake</option><option>Metallic Epoxy</option><option>Polyaspartic</option><option>Not Sure</option></select></div>
         </div>
-        <div class="form-group"><label>Size of Garage</label><select id="garage-size"><option value="">Select size...</option><option value="300">1 Car</option><option value="600">2 Car</option><option value="900">3 Car</option><option value="1200">4 Car</option><option value="1500">5+ Car</option><option value="3000">Commercial Site</option></select></div>
+        <div class="form-group"><label>Size of Garage</label><select id="garage-size" onchange="calcPrice()"><option value="">Select size...</option><option value="300">1 Car</option><option value="600">2 Car</option><option value="900">3 Car</option><option value="1200">4 Car</option><option value="1500">5+ Car</option><option value="3000">Commercial Site</option></select></div>
+        <div class="price-block" id="price-block"><div><div class="price-label">Estimated Range</div><div class="price-note">Final price confirmed at on-site visit</div></div><div class="price-range" id="price-range"></div></div>
         <div class="form-group"><label>Additional Details <span style="color:var(--text-dim);">(Optional)</span></label><textarea placeholder="Tell us about your space — cracks, stains, current condition, or any questions..."></textarea></div>
         <div class="form-group"><label>How did you hear about us?</label><select><option value="">Select...</option><option>Google Search</option><option>Referral</option><option>Facebook / Instagram</option><option>Yard Sign / Vehicle</option><option>Other</option></select></div>
         <button class="form-submit" onclick="submitForm()">Submit Estimate Request →</button>
@@ -1010,12 +1011,22 @@ function calcPrice(){
   document.getElementById('price-range').textContent='$'+min.toLocaleString()+' – $'+max.toLocaleString();
   block.style.display='flex';
 }
-function submitCommForm(){
+async function submitCommForm(){
   const f=document.getElementById('cfname').value.trim();
   const l=document.getElementById('clname').value.trim();
   const p=document.getElementById('cphone').value.trim();
   const e=document.getElementById('cemail').value.trim();
   if(!f||!l||!p||!e){alert('Please fill in your name, phone, and email to continue.');return;}
+  const btn=document.querySelector('#comm-form-inner .form-submit');
+  btn.textContent='Sending...';
+  btn.disabled=true;
+  try{
+    await fetch('/api/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({firstName:f,lastName:l,phone:p,projectType:'Commercial',projectDetails:`Email: ${e}`,source:'commercial-form'})
+    });
+  }catch(e){console.error('Commercial form error:',e);}
   document.getElementById('comm-form-inner').style.display='none';
   const s=document.getElementById('comm-form-success');
   s.style.display='block';
@@ -1419,7 +1430,7 @@ window.addEventListener('scroll',()=>{
         <div class="form-success" id="comm-form-success">
           <div class="success-icon">✓</div>
           <div class="success-title">Inquiry Received</div>
-          <p class="success-sub">Thank you for reaching out. A member of our commercial team will contact you within a few hours to discuss your project and partnership options.<br><br>For urgent needs, call us directly at <strong style="color:var(--platinum)">(555) 820-4400</strong>.</p>
+          <p class="success-sub">Thank you for reaching out. A member of our commercial team will contact you within a few hours to discuss your project and partnership options.<br><br>For urgent needs, call or text <strong style="color:var(--platinum)">(214) 813-7474</strong>.</p>
           <br><br>
           <a class="btn-outline" onclick="showPage('home')" style="display:inline-block">Back to Home</a>
         </div>
