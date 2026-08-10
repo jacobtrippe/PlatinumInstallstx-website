@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>$200 Off Garage Floor Coating | Platinum Installs</title>
+<meta name="description" content="Claim $200 off your garage floor coating install — epoxy, polyaspartic, and flake systems. No minimum job size. Expires September 30.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ──────────────────────────────────────────────────────────── */
+:root {
+  --bg:           #161617;
+  --bg-surface:   #1e1e1f;
+  --bg-card:      #242425;
+  --gold:         #c8933a;
+  --gold-bright:  #e8b04a;
+  --gold-dim:     #7a5820;
+  --gold-muted:   #9a6e2a;
+  --platinum:     #e2e1df;
+  --platinum-dim: #9a9a98;
+  --text:         #d8d7d5;
+  --text-muted:   #636361;
+  --border:       rgba(200,175,100,.11);
+  --border-gold:  rgba(200,147,58,.28);
+}
+
+/* ─── RESET ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TOP BAR ────────────────────────────────────────────────────────── */
+.top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 64px;
+  background: rgba(16, 16, 17, .97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.logo-wrap { display: flex; align-items: center; gap: .7rem; }
+.logo-p {
+  width: 30px; height: 30px; border-radius: 2px;
+  background: linear-gradient(135deg, #9a9a98 0%, #e5e4e2 45%, #f8f7f5 58%, #bbb7b0 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1rem; color: #101011; letter-spacing: -.01em;
+  flex-shrink: 0;
+}
+.logo-text {
+  font-size: .8rem; letter-spacing: .18em; font-weight: 600;
+  color: var(--platinum-dim); text-transform: uppercase;
+}
+.top-phone { text-align: right; }
+.top-phone-label {
+  font-size: .57rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: .1rem; line-height: 1;
+}
+.top-phone a {
+  color: var(--platinum); text-decoration: none; font-size: .82rem;
+  font-weight: 600; letter-spacing: .08em; transition: color .2s;
+}
+.top-phone a:hover { color: #fff; }
+
+/* ─── HERO GRID ──────────────────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 3rem 5rem;
+  align-items: center;
+}
+
+/* ─── OFFER SIDE ─────────────────────────────────────────────────────── */
+.hero-left { display: flex; flex-direction: column; gap: 2rem; }
+
+.event-eyebrow {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: .66rem; letter-spacing: .32em; text-transform: uppercase;
+  color: var(--gold);
+}
+.event-eyebrow::before {
+  content: '';
+  display: inline-block; width: 40px; height: 1px;
+  background: linear-gradient(to right, var(--gold-dim), transparent);
+}
+.event-expire {
+  margin-left: auto;
+  background: rgba(200, 147, 58, .1);
+  border: 1px solid var(--border-gold);
+  padding: .25rem .75rem; border-radius: 2px;
+  font-size: .63rem; letter-spacing: .22em; color: var(--gold);
+  white-space: nowrap;
+}
+
+.offer-block { display: flex; flex-direction: column; }
+
+.offer-pretitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+  font-weight: 300; letter-spacing: .04em;
+  color: var(--platinum-dim); line-height: 1.25;
+  margin-bottom: .4rem;
+  text-wrap: balance;
+}
+
+.offer-amount {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(5.5rem, 13vw, 9.5rem);
+  font-weight: 700;
+  line-height: .88; letter-spacing: -.02em;
+  background: linear-gradient(
+    135deg,
+    var(--gold-dim)   0%,
+    var(--gold-muted) 18%,
+    var(--gold)       38%,
+    var(--gold-bright)55%,
+    var(--gold)       72%,
+    var(--gold-muted) 88%,
+    var(--gold-dim)   100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gold-sheen 5s linear infinite;
+}
+@keyframes gold-sheen {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.offer-off {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.6rem);
+  font-weight: 600; letter-spacing: .22em;
+  color: var(--platinum-dim); text-transform: uppercase;
+  margin-top: -.25rem;
+}
+
+.offer-specs {
+  margin-top: 1.1rem;
+  font-size: .8rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--text-muted); line-height: 2;
+}
+.offer-specs strong { color: var(--platinum-dim); font-weight: 600; }
+
+/* ─── COUNTDOWN ──────────────────────────────────────────────────────── */
+.countdown { display: flex; align-items: flex-start; gap: 1.2rem; }
+.cd-unit { display: flex; flex-direction: column; align-items: center; min-width: 56px; }
+.cd-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+  font-weight: 700; line-height: 1;
+  color: var(--gold); letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+}
+.cd-label {
+  font-size: .56rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--text-muted); margin-top: .3rem;
+}
+.cd-sep {
+  font-size: 2.2rem; font-weight: 300;
+  color: var(--gold-dim); line-height: 1; padding-top: .05rem;
+  animation: cd-blink 1.2s step-end infinite;
+}
+@keyframes cd-blink { 50% { opacity: 0; } }
+
+/* ─── FORM CARD ──────────────────────────────────────────────────────── */
+.form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2.5rem;
+  position: relative;
+  align-self: start;
+  top: 0;
+}
+.form-card::before {
+  content: '';
+  position: absolute; top: 0; left: 1.5rem; right: 1.5rem; height: 1.5px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--gold-dim),
+    var(--gold),
+    var(--gold-bright),
+    var(--gold),
+    var(--gold-dim),
+    transparent
+  );
+}
+
+.form-offer-tag {
+  display: inline-block;
+  background: rgba(200, 147, 58, .12);
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
+  font-size: .66rem; letter-spacing: .22em; text-transform: uppercase;
+  padding: .3rem .85rem; border-radius: 2px; margin-bottom: 1.2rem;
+}
+
+.form-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 300;
+  color: var(--platinum); margin-bottom: .35rem;
+  line-height: 1.2;
+}
+
+.form-sub {
+  font-size: .78rem; color: var(--text-muted);
+  letter-spacing: .06em; line-height: 1.65; margin-bottom: 1.6rem;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+
+.form-group { margin-bottom: .85rem; }
+.form-group label {
+  display: block; font-size: .63rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: .38rem; font-weight: 600;
+}
+.form-group input {
+  width: 100%; background: rgba(200, 195, 185, .04);
+  border: 1px solid rgba(200, 195, 185, .13);
+  color: var(--text); font-family: 'Rajdhani', sans-serif;
+  font-size: .92rem; padding: .78rem 1rem; outline: none;
+  transition: border-color .22s, background .22s; letter-spacing: .03em;
+  border-radius: 2px; -webkit-appearance: none;
+}
+.form-group input:focus {
+  border-color: rgba(200, 147, 58, .5);
+  background: rgba(200, 147, 58, .03);
+}
+.form-group input::placeholder { color: rgba(168, 168, 166, .28); }
+
+.form-submit {
+  width: 100%; margin-top: .7rem;
+  padding: 1.1rem 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--gold-dim)   0%,
+    var(--gold)       30%,
+    var(--gold-bright)55%,
+    var(--gold)       75%,
+    var(--gold-dim)   100%
+  );
+  background-size: 200% auto;
+  color: #0d0d0e;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: .8rem; font-weight: 700; letter-spacing: .28em;
+  text-transform: uppercase; border: none; cursor: pointer;
+  transition: background-position .5s, transform .15s;
+  border-radius: 2px;
+}
+.form-submit:hover { background-position: right center; transform: translateY(-1px); }
+.form-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+.form-fine {
+  font-size: .66rem; color: var(--text-muted); text-align: center;
+  margin-top: .8rem; letter-spacing: .06em; line-height: 1.55;
+}
+
+#form-inner { display: block; }
+#form-success {
+  display: none; text-align: center; padding: 1rem;
+}
+.success-ring {
+  width: 58px; height: 58px; border-radius: 50%;
+  border: 1px solid var(--border-gold);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem; font-size: 1.5rem; color: var(--gold);
+  background: rgba(200, 147, 58, .06);
+}
+.success-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 300;
+  color: var(--platinum); margin-bottom: .7rem;
+}
+.success-body {
+  font-size: .82rem; color: var(--text-muted);
+  letter-spacing: .05em; line-height: 1.75;
+}
+.success-phone {
+  display: block; margin-top: 1.2rem;
+  color: var(--gold); font-weight: 600; font-size: 1rem;
+  letter-spacing: .1em; text-decoration: none;
+}
+
+/* ─── TRUST SECTION ──────────────────────────────────────────────────── */
+.section-wrap {
+  max-width: 1100px; margin: 0 auto; padding: 0 3rem;
+}
+
+.section-header {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: .63rem; letter-spacing: .35em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 2rem;
+}
+.section-header::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, var(--border), transparent);
+}
+
+.trust-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  border: 1px solid var(--border); border-radius: 3px; overflow: hidden;
+  margin-bottom: 5rem;
+}
+.trust-item {
+  padding: 1.7rem 1rem 1.5rem;
+  background: var(--bg-surface);
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.trust-item:last-child { border-right: none; }
+.trust-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.55rem; font-weight: 700;
+  color: var(--platinum);
+  letter-spacing: -.01em; line-height: 1;
+  margin-bottom: .25rem;
+  font-variant-numeric: tabular-nums;
+}
+.trust-desc {
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-muted); line-height: 1.5;
+}
+
+/* ─── GALLERY ────────────────────────────────────────────────────────── */
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: .6rem; margin-bottom: 5rem;
+}
+.gallery-item {
+  overflow: hidden; border-radius: 3px;
+  aspect-ratio: 4 / 3; background: var(--bg-surface);
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .4s ease;
+}
+.gallery-item:hover img { transform: scale(1.04); }
+
+/* ─── FINE PRINT / FOOTER ────────────────────────────────────────────── */
+.fine-print {
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  max-width: 1100px; margin: 0 auto;
+}
+.fine-print p {
+  font-size: .68rem; color: var(--text-muted);
+  letter-spacing: .07em; line-height: 1.85; text-align: center;
+}
+.fine-print a { color: var(--platinum-dim); text-decoration: none; }
+.fine-print a:hover { color: var(--platinum); }
+.fine-print .legal { margin-bottom: .5rem; }
+
+/* ─── MOBILE ─────────────────────────────────────────────────────────── */
+@media (max-width: 940px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2.8rem;
+    padding: 96px 1.75rem 3rem;
+  }
+  .event-expire { display: none; }
+  .trust-grid { grid-template-columns: repeat(3, 1fr); }
+  .trust-item { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .trust-item:nth-child(3) { border-right: none; }
+  .trust-item:nth-child(4) { border-bottom: none; }
+  .trust-item:nth-child(5) { border-right: none; border-bottom: none; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item:last-child { display: none; }
+  .section-wrap { padding: 0 1.75rem; }
+  .fine-print { padding: 2rem 1.75rem; }
+}
+@media (max-width: 600px) {
+  .hero { padding-top: 88px; gap: 2.2rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+  .form-card { padding: 2rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .top-bar { padding: 0 1.25rem; }
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+  .trust-item:nth-child(2) { border-right: none; }
+  .trust-item:nth-child(3) { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .trust-item:nth-child(4) { border-right: none; border-bottom: 1px solid var(--border); }
+  .trust-item:nth-child(5) { border-right: none; border-bottom: none; grid-column: 1 / -1; }
+  .section-wrap { padding: 0 1.25rem; }
+  .fine-print { padding: 1.8rem 1.25rem; }
+  .gallery-grid { gap: .4rem; }
+  .cd-num { font-size: 2.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offer-amount { animation: none; }
+  .cd-sep { animation: none; }
+  .gallery-item img { transition: none; }
+  .form-submit { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="logo-wrap">
+    <div class="logo-p">P</div>
+    <div class="logo-text">Platinum Installs</div>
+  </div>
+  <div class="top-phone">
+    <div class="top-phone-label">Text or Call &nbsp;·&nbsp; 8am – 8pm daily</div>
+    <a href="tel:2148137474">(214) 813-7474</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- LEFT: The offer -->
+  <div class="hero-left">
+    <div class="event-eyebrow">
+      Back to School Savings Event
+      <span class="event-expire">Expires Sept 30</span>
+    </div>
+
+    <div class="offer-block">
+      <div class="offer-pretitle">Save on a garage floor you'll actually brag about</div>
+      <div class="offer-amount">$200</div>
+      <div class="offer-off">Off Your Install</div>
+      <div class="offer-specs">
+        <strong>Epoxy &nbsp;·&nbsp; Polyaspartic &nbsp;·&nbsp; Flake</strong><br>
+        No minimum job size &nbsp;·&nbsp; Residential &amp; Commercial
+      </div>
+    </div>
+
+    <!-- Live countdown to September 30 -->
+    <div class="countdown" aria-label="Time remaining until offer expires">
+      <div class="cd-unit">
+        <div class="cd-num" id="cd-days">--</div>
+        <div class="cd-label">Days</div>
+      </div>
+      <div class="cd-sep" aria-hidden="true">:</div>
+      <div class="cd-unit">
+        <div class="cd-num" id="cd-hrs">--</div>
+        <div class="cd-label">Hours</div>
+      </div>
+      <div class="cd-sep" aria-hidden="true">:</div>
+      <div class="cd-unit">
+        <div class="cd-num" id="cd-min">--</div>
+        <div class="cd-label">Min</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Lead form -->
+  <div class="form-card">
+    <div id="form-inner">
+      <div class="form-offer-tag">$200 Off &nbsp;·&nbsp; Claim Your Spot</div>
+      <div class="form-headline">Get Your Free Estimate</div>
+      <div class="form-sub">We'll call you same or next business day to walk through pricing and schedule your install.</div>
+
+      <form onsubmit="submitForm(event)" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name *</label>
+            <input type="text" id="fname" autocomplete="given-name" placeholder="First" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name *</label>
+            <input type="text" id="lname" autocomplete="family-name" placeholder="Last" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone *</label>
+          <input type="tel" id="phone" autocomplete="tel" placeholder="(214) 555-0100" required>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City *</label>
+          <input type="text" id="city" autocomplete="address-level2" placeholder="Dallas, Frisco, Plano…" required>
+        </div>
+
+        <button type="submit" class="form-submit" id="submit-btn">Claim My $200 Off &rarr;</button>
+      </form>
+
+      <div class="form-fine">One redemption per household &nbsp;·&nbsp; Cannot combine &nbsp;·&nbsp; Expires 9/30/2026</div>
+    </div>
+
+    <div id="form-success">
+      <div class="success-ring">✓</div>
+      <div class="success-title">You're All Set</div>
+      <div class="success-body">
+        We got your request and will call you back shortly to lock in your $200 off estimate.<br><br>
+        Questions right now? Reach us anytime:
+      </div>
+      <a href="tel:2148137474" class="success-phone">(214) 813-7474</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="section-wrap">
+  <div class="section-header">Why DFW Trusts Platinum</div>
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-num">5.0 ★</div>
+      <div class="trust-desc">37 Google<br>Reviews</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">15-Yr</div>
+      <div class="trust-desc">Warranty<br>Available</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">24 Hr</div>
+      <div class="trust-desc">Avg. Residential<br>Install</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">Insured</div>
+      <div class="trust-desc">Certified<br>Crew</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-num">Res. &amp; Comm.</div>
+      <div class="trust-desc">Both<br>Accepted</div>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="section-header">Full Flake System &nbsp;·&nbsp; DFW Installs</div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="gallery/IMG_8292.jpeg" alt="Full flake garage floor coating">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/IMG_8273.jpeg" alt="Polyaspartic floor coating DFW">
+    </div>
+    <div class="gallery-item">
+      <img src="gallery/IMG_8295.jpeg" alt="Finished epoxy garage floor">
+    </div>
+  </div>
+</div>
+
+<!-- FINE PRINT + FOOTER -->
+<div class="fine-print">
+  <p class="legal">$200 off any garage floor coating install. No minimum job size. One redemption per household. Cannot combine with other offers. Offer expires 9/30/2026.</p>
+  <p>
+    © 2026 Platinum Installs &nbsp;·&nbsp; Dallas–Fort Worth, TX &nbsp;·&nbsp;
+    <a href="tel:2148137474">(214) 813-7474</a> &nbsp;·&nbsp;
+    <a href="/">platinuminstallstx.com</a> &nbsp;·&nbsp;
+    Honest &nbsp;·&nbsp; Reliable &nbsp;·&nbsp; Admirable
+  </p>
+</div>
+
+<script>
+/* ── Countdown to September 30, 2026 11:59 PM CT ── */
+function updateCountdown() {
+  const target = new Date('2026-09-30T23:59:59-05:00');
+  const now = new Date();
+  const diff = target - now;
+
+  if (diff <= 0) {
+    ['cd-days','cd-hrs','cd-min'].forEach(id =>
+      document.getElementById(id).textContent = '00'
+    );
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hrs  = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const min  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+  document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+  document.getElementById('cd-hrs').textContent  = String(hrs).padStart(2, '0');
+  document.getElementById('cd-min').textContent  = String(min).padStart(2, '0');
+}
+
+updateCountdown();
+setInterval(updateCountdown, 30000);
+
+/* ── Form submission ── */
+async function submitForm(e) {
+  e.preventDefault();
+
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const city  = document.getElementById('city').value.trim();
+
+  if (!fname || !lname || !phone || !city) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName:   fname,
+        lastName:    lname,
+        phone,
+        address:     city,
+        projectType: 'Residential Garage',
+        source:      'door-hanger',
+      }),
+    });
+
+    if (res.ok) {
+      document.getElementById('form-inner').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      btn.textContent = 'Claim My $200 Off →';
+      btn.disabled = false;
+      alert('Something went wrong. Please call us at (214) 813-7474');
+    }
+  } catch (err) {
+    console.error(err);
+    btn.textContent = 'Claim My $200 Off →';
+    btn.disabled = false;
+    alert('Something went wrong. Please call us at (214) 813-7474');
+  }
+}
+</script>
+
+</body>
+</html>
