@@ -313,6 +313,7 @@
     .nav-links{gap:1.5rem;}
     .nav-links a{font-size:.75rem;}
     .hero,.services,.process,.cta-section,footer,.page-hero,.gallery-wrap,.ba-section,.work-preview{padding-left:2rem;padding-right:2rem;}
+    .hero{padding-top:5rem;}
     .hero-bg{background:linear-gradient(to bottom,rgba(18,18,19,.55) 0%,rgba(18,18,19,.92) 55%,rgba(18,18,19,.98) 100%),url('gallery/IMG_8273.jpeg') center/cover no-repeat;}
     .hero-layout{flex-direction:column;align-items:flex-start;}
     .hero-form-card{width:100%;max-width:480px;}
@@ -468,9 +469,9 @@
 <nav>
   <div class="nav-logo" onclick="showPage('home')"><img src="logo-icon.png" alt="Platinum Installs"><span class="nav-logo-text">Platinum Installs</span></div>
   <ul class="nav-links">
-    <li><a id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
-    <li><a id="nav-gallery" onclick="showPage('gallery')">Gallery</a></li>
-    <li><a id="nav-reviews" onclick="showPage('reviews')">Reviews</a></li><li><a id="nav-area" onclick="showPage('area')">Service Area</a></li><li><a id="nav-commercial" onclick="showPage('commercial')">Commercial</a></li><li><a id="nav-estimate" onclick="showPage('estimate')">Free Estimate</a></li>
+    <li><a href="javascript:void(0)" id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
+    <li><a href="javascript:void(0)" id="nav-gallery" onclick="showPage('gallery')">Gallery</a></li>
+    <li><a href="javascript:void(0)" id="nav-reviews" onclick="showPage('reviews')">Reviews</a></li><li><a href="javascript:void(0)" id="nav-area" onclick="showPage('area')">Service Area</a></li><li><a href="javascript:void(0)" id="nav-commercial" onclick="showPage('commercial')">Commercial</a></li><li><a href="javascript:void(0)" id="nav-estimate" onclick="showPage('estimate')">Free Estimate</a></li>
   </ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleDrawer()">
     <span></span>
@@ -480,12 +481,12 @@
 </nav>
 
 <div class="nav-drawer" id="nav-drawer">
-  <a onclick="showPage('home');toggleDrawer()">Home</a>
-  <a onclick="showPage('gallery');toggleDrawer()">Gallery</a>
-  <a onclick="showPage('reviews');toggleDrawer()">Reviews</a>
-  <a onclick="showPage('area');toggleDrawer()">Service Area</a>
-  <a onclick="showPage('commercial');toggleDrawer()">Commercial</a>
-  <a onclick="showPage('estimate');toggleDrawer()">Free Estimate</a>
+  <a href="javascript:void(0)" onclick="showPage('home');toggleDrawer()">Home</a>
+  <a href="javascript:void(0)" onclick="showPage('gallery');toggleDrawer()">Gallery</a>
+  <a href="javascript:void(0)" onclick="showPage('reviews');toggleDrawer()">Reviews</a>
+  <a href="javascript:void(0)" onclick="showPage('area');toggleDrawer()">Service Area</a>
+  <a href="javascript:void(0)" onclick="showPage('commercial');toggleDrawer()">Commercial</a>
+  <a href="javascript:void(0)" onclick="showPage('estimate');toggleDrawer()">Free Estimate</a>
 </div>
 
 <!-- HOME -->
@@ -543,7 +544,7 @@
   <section class="work-preview">
     <div class="work-preview-header">
       <span class="work-preview-label">Featured Work</span>
-      <a class="work-preview-link" onclick="showPage('gallery')">View Our Work &rarr;</a>
+      <a href="javascript:void(0)" class="work-preview-link" onclick="showPage('gallery')">View Our Work &rarr;</a>
     </div>
     <div class="work-preview-grid">
       <div><img src="gallery/IMG_7391.jpeg" alt="Finished garage floor coating"></div>
@@ -627,8 +628,8 @@
     <h2>Transform your<br><em>space today</em></h2>
     <p class="cta-sub">Serving residential and commercial clients. Free estimates. No obligation.</p>
     <div class="hero-ctas" style="justify-content:center;">
-      <a class="btn-primary" onclick="showPage('estimate')">Book a Free Estimate</a>
-      <a class="btn-outline" onclick="showPage('gallery')">See Our Work</a>
+      <a href="javascript:void(0)" class="btn-primary" onclick="showPage('estimate')">Book a Free Estimate</a>
+      <a href="javascript:void(0)" class="btn-outline" onclick="showPage('gallery')">See Our Work</a>
     </div>
   </section>
 
@@ -699,7 +700,7 @@
     <div class="section-header" style="justify-content:center;margin-bottom:2rem;"><span class="section-tag">Your Project Next</span></div>
     <h2>Ready to see your<br><em>floor transformed?</em></h2>
     <p class="cta-sub">Get a free, no-obligation estimate — we'll come to you.</p>
-    <div class="hero-ctas" style="justify-content:center;"><a class="btn-primary" onclick="showPage('estimate')">Get a Free Estimate</a></div>
+    <div class="hero-ctas" style="justify-content:center;"><a href="javascript:void(0)" class="btn-primary" onclick="showPage('estimate')">Get a Free Estimate</a></div>
   </section>
 
   <footer>
@@ -749,7 +750,7 @@
     <div class="section-header" style="justify-content:center;margin-bottom:2rem;"><span class="section-tag">Join Our Happy Customers</span></div>
     <h2>Ready for your<br><em>transformation?</em></h2>
     <p class="cta-sub">Get a free estimate and see why DFW trusts Platinum Installs.</p>
-    <div class="hero-ctas" style="justify-content:center;"><a class="btn-primary" onclick="showPage('estimate')">Get a Free Estimate</a></div>
+    <div class="hero-ctas" style="justify-content:center;"><a href="javascript:void(0)" class="btn-primary" onclick="showPage('estimate')">Get a Free Estimate</a></div>
   </section>
 
   <footer>
@@ -786,7 +787,7 @@
         <div class="coverage-badge">Johnson County</div>
       </div>
       <br>
-      <a class="btn-primary" onclick="showPage('estimate')" style="display:inline-block;margin-top:1rem;">Get a Free Estimate</a>
+      <a href="javascript:void(0)" class="btn-primary" onclick="showPage('estimate')" style="display:inline-block;margin-top:1rem;">Get a Free Estimate</a>
     </div>
     <div id="service-area-map" style="width:100%;height:400px;border:1px solid rgba(200,195,185,.12);"></div>
   </div>
@@ -855,7 +856,7 @@
         </ul>
       </div>
     </div>
-    <p style="margin-top:2.5rem;font-size:.82rem;color:var(--text-dim);letter-spacing:.08em;">Don't see your city? <a onclick="showPage('estimate')" style="color:var(--platinum);cursor:pointer;text-decoration:underline;">Contact us</a> — we likely cover your area and can confirm within minutes.</p>
+    <p style="margin-top:2.5rem;font-size:.82rem;color:var(--text-dim);letter-spacing:.08em;">Don't see your city? <a href="javascript:void(0)" onclick="showPage('estimate')" style="color:var(--platinum);cursor:pointer;text-decoration:underline;">Contact us</a> — we likely cover your area and can confirm within minutes.</p>
   </div>
 
   <section class="cta-section">
@@ -863,8 +864,8 @@
     <h2>Get a free estimate<br><em>at your location.</em></h2>
     <p class="cta-sub">We come to you — no travel fees anywhere in greater DFW.</p>
     <div class="hero-ctas" style="justify-content:center;">
-      <a class="btn-primary" onclick="showPage('estimate')">Book My Free Estimate</a>
-      <a class="btn-outline" onclick="showPage('gallery')">View Our Work</a>
+      <a href="javascript:void(0)" class="btn-primary" onclick="showPage('estimate')">Book My Free Estimate</a>
+      <a href="javascript:void(0)" class="btn-outline" onclick="showPage('gallery')">View Our Work</a>
     </div>
   </section>
 
@@ -891,7 +892,7 @@
     <div class="success-title">Request Received</div>
     <p class="success-sub">Thank you! We'll reach out within 24 hours to schedule your free on-site estimate.<br><br>Questions? Text or chat with us at <strong style="color:var(--platinum)">(214) 813-7474</strong></p>
     <br><br>
-    <a class="btn-outline" onclick="showPage('gallery')" style="display:inline-block">View Our Gallery</a>
+    <a href="javascript:void(0)" class="btn-outline" onclick="showPage('gallery')" style="display:inline-block">View Our Gallery</a>
   </div>
 
   <div class="estimate-wrap">
@@ -1184,7 +1185,7 @@ window.addEventListener('scroll',()=>{
         <div class="comm-stat-cell"><div class="n">24h</div><div class="l">Avg. Residential Install</div></div>
         <div class="comm-stat-cell"><div class="n">100%</div><div class="l">On-Time Completion</div></div>
         </div>
-      <a class="btn-primary" onclick="showPage('estimate')" style="display:inline-block;">Get a Commercial Quote</a>
+      <a href="javascript:void(0)" class="btn-primary" onclick="showPage('estimate')" style="display:inline-block;">Get a Commercial Quote</a>
     </div>
     <div class="comm-hero-visual">
       <div class="comm-visual-label">
@@ -1214,7 +1215,7 @@ window.addEventListener('scroll',()=>{
           <li>Rapid mobilization for time-sensitive builds</li>
           <li>Experience with retail, office, industrial & multi-family</li>
         </ul>
-        <a class="segment-cta" onclick="showPage('estimate')">Start a Partnership</a>
+        <a href="javascript:void(0)" class="segment-cta" onclick="showPage('estimate')">Start a Partnership</a>
       </div>
 
       <!-- Warehouse & Industrial -->
@@ -1230,7 +1231,7 @@ window.addEventListener('scroll',()=>{
           <li>Large-format installs — 10,000+ sq ft capacity</li>
           <li>Chemical and moisture barrier coatings available</li>
         </ul>
-        <a class="segment-cta" onclick="showPage('estimate')">Request Industrial Quote</a>
+        <a href="javascript:void(0)" class="segment-cta" onclick="showPage('estimate')">Request Industrial Quote</a>
       </div>
 
       <!-- Real Estate Agents -->
@@ -1246,7 +1247,7 @@ window.addEventListener('scroll',()=>{
           <li>We coordinate directly with homeowners on your behalf</li>
           <li>Buyer incentive: coating warranty transfers with the home</li>
         </ul>
-        <a class="segment-cta" onclick="showPage('estimate')">Partner With Us</a>
+        <a href="javascript:void(0)" class="segment-cta" onclick="showPage('estimate')">Partner With Us</a>
       </div>
 
       <!-- Property Managers -->
@@ -1262,7 +1263,7 @@ window.addEventListener('scroll',()=>{
           <li>Consistent results across every location</li>
           <li>Single point of contact for all your properties</li>
         </ul>
-        <a class="segment-cta" onclick="showPage('estimate')">Manage Your Portfolio</a>
+        <a href="javascript:void(0)" class="segment-cta" onclick="showPage('estimate')">Manage Your Portfolio</a>
       </div>
 
       <!-- Interior Designers & Builders -->
@@ -1278,7 +1279,7 @@ window.addEventListener('scroll',()=>{
           <li>Samples and mock-ups available on request</li>
           <li>White-glove installation with zero mess left behind</li>
         </ul>
-        <a class="segment-cta" onclick="showPage('estimate')">Explore Design Options</a>
+        <a href="javascript:void(0)" class="segment-cta" onclick="showPage('estimate')">Explore Design Options</a>
       </div>
 
       <!-- HOA & Community -->
@@ -1294,7 +1295,7 @@ window.addEventListener('scroll',()=>{
           <li>Phased installs to keep common areas accessible</li>
           <li>Long-term maintenance agreements available</li>
         </ul>
-        <a class="segment-cta" onclick="showPage('estimate')">Get Community Pricing</a>
+        <a href="javascript:void(0)" class="segment-cta" onclick="showPage('estimate')">Get Community Pricing</a>
       </div>
 
     </div>
@@ -1432,7 +1433,7 @@ window.addEventListener('scroll',()=>{
           <div class="success-title">Inquiry Received</div>
           <p class="success-sub">Thank you for reaching out. A member of our commercial team will contact you within a few hours to discuss your project and partnership options.<br><br>For urgent needs, call or text <strong style="color:var(--platinum)">(214) 813-7474</strong>.</p>
           <br><br>
-          <a class="btn-outline" onclick="showPage('home')" style="display:inline-block">Back to Home</a>
+          <a href="javascript:void(0)" class="btn-outline" onclick="showPage('home')" style="display:inline-block">Back to Home</a>
         </div>
       </div>
     </div>
