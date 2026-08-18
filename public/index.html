@@ -360,7 +360,7 @@
   .review-name{font-size:.85rem;font-weight:600;letter-spacing:.08em;color:var(--platinum);margin-bottom:.15rem;}
   .review-meta{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);}
   .review-stars{font-size:.8rem;color:#f0c040;margin-left:auto;}
-  .review-placeholder-note{text-align:center;margin-top:2.5rem;padding:1rem;border:1px dashed rgba(200,195,185,.15);font-size:.75rem;color:var(--text-dim);letter-spacing:.1em;line-height:1.7;}
+  .reviews-loading{grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-dim);letter-spacing:.12em;font-size:.78rem;text-transform:uppercase;}
 
   /* SERVICE AREA */
   .area-intro{padding:4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
@@ -592,37 +592,8 @@
         <div class="google-badge"><span>G</span> Google Business Profile</div>
       </div>
     </div>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-quote">"</div>
-        <p class="review-text">Platinum Installs completely transformed our garage. The team was professional, clean, and finished ahead of schedule. The floor looks absolutely incredible — our neighbors keep asking who did it.</p>
-        <div class="review-author">
-          <div class="review-avatar">MR</div>
-          <div><div class="review-name">Marcus R.</div><div class="review-meta">Southlake, TX · Garage Epoxy</div></div>
-          <div class="review-stars">★★★★★</div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-quote">"</div>
-        <p class="review-text">We had our commercial warehouse done — over 6,000 sq ft. They handled it in two days with zero disruption to our operations. The polyaspartic coating is holding up perfectly six months later.</p>
-        <div class="review-author">
-          <div class="review-avatar">JT</div>
-          <div><div class="review-name">Jennifer T.</div><div class="review-meta">Irving, TX · Commercial Warehouse</div></div>
-          <div class="review-stars">★★★★★</div>
-        </div>
-      </div>
-      <div class="review-card">
-        <div class="review-quote">"</div>
-        <p class="review-text">Got the metallic epoxy system for our living room and entryway. It's one of a kind — every person who walks in stops and stares. Worth every penny. Platinum Installs earned a customer for life.</p>
-        <div class="review-author">
-          <div class="review-avatar">DL</div>
-          <div><div class="review-name">David L.</div><div class="review-meta">Frisco, TX · Metallic Epoxy</div></div>
-          <div class="review-stars">★★★★★</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-placeholder-note">
-      ⚙ These are placeholder reviews. Once our Google Business Profile is verified, real reviews will be connected here automatically.
+    <div class="reviews-grid" id="home-reviews-grid">
+      <div class="reviews-loading">Loading reviews…</div>
     </div>
   </section>
   <section class="cta-section">
@@ -720,7 +691,7 @@
     <div class="page-hero-content">
       <div class="hero-eyebrow">Google Reviews</div>
       <h1>What our customers<br><span class="pw">are saying.</span></h1>
-      <p>Real feedback from real DFW homeowners and businesses. Placeholder reviews shown below — your live Google reviews connect here once your Business Profile is verified.</p>
+      <p>Real feedback from real DFW homeowners and businesses — pulled live from our Google Business Profile.</p>
     </div>
   </div>
 
@@ -734,17 +705,8 @@
       </div>
     </div>
 
-    <div class="reviews-grid">
-      <div class="review-card"><div class="review-quote">"</div><p class="review-text">Platinum Installs completely transformed our garage. The team was professional, clean, and finished ahead of schedule. The floor looks absolutely incredible.</p><div class="review-author"><div class="review-avatar">MR</div><div><div class="review-name">Marcus R.</div><div class="review-meta">Southlake, TX · Garage Epoxy</div></div><div class="review-stars">★★★★★</div></div></div>
-      <div class="review-card"><div class="review-quote">"</div><p class="review-text">Had our commercial warehouse done — over 6,000 sq ft. Two days, zero disruption. The polyaspartic coating is holding up perfectly six months later.</p><div class="review-author"><div class="review-avatar">JT</div><div><div class="review-name">Jennifer T.</div><div class="review-meta">Irving, TX · Commercial</div></div><div class="review-stars">★★★★★</div></div></div>
-      <div class="review-card"><div class="review-quote">"</div><p class="review-text">Got the metallic epoxy for our entryway. Every person who walks in stops and stares. Worth every penny. Platinum Installs earned a customer for life.</p><div class="review-author"><div class="review-avatar">DL</div><div><div class="review-name">David L.</div><div class="review-meta">Frisco, TX · Metallic Epoxy</div></div><div class="review-stars">★★★★★</div></div></div>
-      <div class="review-card"><div class="review-quote">"</div><p class="review-text">My outdoor concrete was cracked and faded. They resurfaced it in one day and it looks brand new. Slip-resistant coating is a huge plus with kids running around.</p><div class="review-author"><div class="review-avatar">AL</div><div><div class="review-name">Amanda L.</div><div class="review-meta">Plano, TX · Outdoor Concrete</div></div><div class="review-stars">★★★★★</div></div></div>
-      <div class="review-card"><div class="review-quote">"</div><p class="review-text">I got three quotes. Platinum Installs wasn't the cheapest but they were the most thorough — explained everything, no surprises. The finished product is stunning.</p><div class="review-author"><div class="review-avatar">RK</div><div><div class="review-name">Robert K.</div><div class="review-meta">McKinney, TX · Full Flake</div></div><div class="review-stars">★★★★★</div></div></div>
-      <div class="review-card"><div class="review-quote">"</div><p class="review-text">Hired them for our restaurant floor. They worked overnight to avoid closing during business hours. Professionalism was top-tier. Highly recommend for any commercial job.</p><div class="review-author"><div class="review-avatar">SP</div><div><div class="review-name">Sandra P.</div><div class="review-meta">Dallas, TX · Restaurant Floor</div></div><div class="review-stars">★★★★★</div></div></div>
-    </div>
-
-    <div class="review-placeholder-note" style="margin-top:3rem;">
-      ⚙ <strong style="color:var(--platinum-dim);">These are sample reviews.</strong> Once our Google Business Profile is verified and connected via the Google Places API, this page will automatically display our real, live reviews in real time.
+    <div class="reviews-grid" id="page-reviews-grid">
+      <div class="reviews-loading">Loading reviews…</div>
     </div>
   </section>
 
@@ -991,6 +953,7 @@ function showPage(id){
   document.getElementById('page-'+id).classList.add('active');
   document.getElementById('nav-'+id).classList.add('active');
   if(id==='area'&&typeof google!=='undefined')initServiceMap();
+  if((id==='reviews'||id==='home')&&_reviewsLoaded)_applyReviews();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function filterGallery(type,btn){
@@ -1162,6 +1125,74 @@ window.addEventListener('scroll',()=>{
   updateScrollReveal('ba-interactive-2','ba-overlay-2','ba-tag-2');
 });
 
+// ── LIVE GOOGLE REVIEWS ──────────────────────────────────────────────────────
+let _reviewsData    = null;
+let _reviewsLoaded  = false;
+let _reviewsFetching = false;
+
+function _escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function _reviewCard(r) {
+  const initials = r.authorName.split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase();
+  const stars    = '★'.repeat(Math.min(Math.round(r.rating),5));
+  return `<div class="review-card">
+    <div class="review-quote">"</div>
+    <p class="review-text">${_escHtml(r.text)}</p>
+    <div class="review-author">
+      <div class="review-avatar">${initials}</div>
+      <div><div class="review-name">${_escHtml(r.authorName)}</div><div class="review-meta">${_escHtml(r.relativeTimeDescription)} · Google Review</div></div>
+      <div class="review-stars">${stars}</div>
+    </div>
+  </div>`;
+}
+
+function _applyReviews() {
+  if (!_reviewsData) return;
+  const d = _reviewsData;
+
+  ['home','reviews'].forEach((pageId) => {
+    const page = document.getElementById('page-' + pageId);
+    if (!page) return;
+    const grid   = page.querySelector('.reviews-grid');
+    const bigRat = page.querySelector('.rating-big');
+    const ratCnt = page.querySelector('.rating-count');
+    if (!grid) return;
+
+    const max    = (pageId === 'home') ? 3 : 5;
+    const slice  = d.reviews.slice(0, max);
+    grid.innerHTML = slice.length
+      ? slice.map(_reviewCard).join('')
+      : '<div class="reviews-loading">No reviews found.</div>';
+
+    if (bigRat) bigRat.textContent = Number(d.rating).toFixed(1);
+    if (ratCnt) ratCnt.textContent =
+      `${d.userRatingsTotal} Google Reviews · Perfect ${Number(d.rating).toFixed(1)} Rating`;
+  });
+}
+
+async function loadReviews() {
+  if (_reviewsFetching) return;
+  _reviewsFetching = true;
+  try {
+    const res  = await fetch('/api/reviews');
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    _reviewsData   = data;
+    _reviewsLoaded = true;
+  } catch(e) {
+    console.warn('Reviews fetch failed:', e.message);
+  } finally {
+    _reviewsFetching = false;
+    _applyReviews();
+  }
+}
+
+// Kick off fetch immediately on page load
+loadReviews();
 </script>
 
 <!-- COMMERCIAL PAGE -->
