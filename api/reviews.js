@@ -1,71 +1,99 @@
 // api/reviews.js
-// Vercel serverless function — fetches live Google reviews for Platinum Installs
-// Uses Google Places API (findplacefromtext + place details)
+// Fetches live Google reviews via the Google Business Profile API (OAuth)
 
-let cachedPlaceId = null;   // persists across warm invocations
-let cachedData    = null;
-let cacheExpiry   = 0;
+// Module-level cache (survives warm Vercel invocations)
+let cachedData        = null;
+let cacheExpiry       = 0;
+let cachedAccessToken = null;
+let tokenExpiry       = 0;
+let cachedLocationName = null;
+
+const STAR_MAP = { ONE: 1, TWO: 2, THREE: 3, FOUR: 4, FIVE: 5 };
+
+// ── Token helpers ─────────────────────────────────────────────────────────────
+
+async function getAccessToken() {
+  if (cachedAccessToken && Date.now() < tokenExpiry - 60_000) {
+    return cachedAccessToken;
+  }
+  const res = await fetch('https://oauth2.googleapis.com/token', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id:     process.env.GOOGLE_OAUTH_CLIENT_ID,
+      client_secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+      refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
+      grant_type:    'refresh_token',
+    }),
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(`Token refresh: ${data.error} – ${data.error_description || ''}`);
+  cachedAccessToken = data.access_token;
+  tokenExpiry       = Date.now() + (data.expires_in * 1000);
+  return cachedAccessToken;
+}
+
+// ── GBP location discovery (cached after first call) ─────────────────────────
+
+async function getLocationName(token) {
+  if (cachedLocationName) return cachedLocationName;
+
+  const headers = { Authorization: `Bearer ${token}` };
+
+  // 1. List accounts
+  const acctRes  = await fetch('https://mybusiness.googleapis.com/v4/accounts', { headers });
+  const acctData = await acctRes.json();
+  if (acctData.error) throw new Error(`Accounts: ${acctData.error.message}`);
+  const account  = acctData.accounts?.[0];
+  if (!account)   throw new Error('No GBP accounts found for this Google login');
+
+  // 2. List locations under the account
+  const locRes  = await fetch(`https://mybusiness.googleapis.com/v4/${account.name}/locations`, { headers });
+  const locData = await locRes.json();
+  if (locData.error) throw new Error(`Locations: ${locData.error.message}`);
+  const location = locData.locations?.[0];
+  if (!location)  throw new Error('No GBP locations found under this account');
+
+  cachedLocationName = location.name;
+  return cachedLocationName;
+}
+
+// ── Main handler ──────────────────────────────────────────────────────────────
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
 
-  const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-  if (!API_KEY) {
-    return res.status(500).json({ error: 'GOOGLE_MAPS_API_KEY not set' });
-  }
-
-  // Return in-process cache if still fresh (5 min; CDN handles the rest)
   const now = Date.now();
   if (cachedData && now < cacheExpiry) {
     return res.status(200).json(cachedData);
   }
 
   try {
-    // ── Step 1: resolve Place ID if we don't have it yet ──────────────────
-    if (!cachedPlaceId) {
-      const findUrl =
-        `https://maps.googleapis.com/maps/api/place/findplacefromtext/json` +
-        `?input=%28214%29%20813-7474&inputtype=phonenumber&fields=place_id&key=${API_KEY}`;
+    const token       = await getAccessToken();
+    const locationName = await getLocationName(token);
 
-      const findRes  = await fetch(findUrl);
-      const findData = await findRes.json();
+    // Fetch up to 10 most-recent reviews
+    const revRes  = await fetch(
+      `https://mybusiness.googleapis.com/v4/${locationName}/reviews?pageSize=10&orderBy=updateTime%20desc`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    const revData = await revRes.json();
+    if (revData.error) throw new Error(`Reviews: ${revData.error.message}`);
 
-      if (findData.candidates && findData.candidates.length > 0) {
-        cachedPlaceId = findData.candidates[0].place_id;
-      } else {
-        throw new Error(`findplacefromtext failed: ${findData.status}`);
-      }
-    }
-
-    // ── Step 2: fetch reviews + aggregate rating ──────────────────────────
-    const detailsUrl =
-      `https://maps.googleapis.com/maps/api/place/details/json` +
-      `?place_id=${cachedPlaceId}` +
-      `&fields=reviews,rating,user_ratings_total` +
-      `&key=${API_KEY}`;
-
-    const detailsRes  = await fetch(detailsUrl);
-    const detailsData = await detailsRes.json();
-
-    if (detailsData.status !== 'OK') {
-      throw new Error(`place/details failed: ${detailsData.status}`);
-    }
-
-    const result = detailsData.result || {};
     const data = {
-      rating:           result.rating            || 5.0,
-      userRatingsTotal: result.user_ratings_total || 0,
-      reviews: (result.reviews || []).map(r => ({
-        authorName:              r.author_name,
-        rating:                  r.rating,
-        text:                    r.text,
-        relativeTimeDescription: r.relative_time_description,
-        time:                    r.time,
+      rating:           revData.averageRating        || 5.0,
+      userRatingsTotal: revData.totalReviewCount     || 0,
+      reviews: (revData.reviews || []).map(r => ({
+        authorName:              r.reviewer?.displayName || 'Google Reviewer',
+        rating:                  STAR_MAP[r.starRating]  || 5,
+        text:                    r.comment              || '',
+        relativeTimeDescription: new Date(r.createTime).toLocaleDateString('en-US', {
+          month: 'long', year: 'numeric',
+        }),
       })),
     };
 
-    // Cache in process memory for 5 min
     cachedData   = data;
     cacheExpiry  = now + 5 * 60 * 1000;
 
