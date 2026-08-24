@@ -27,7 +27,7 @@ async function getAccessToken() {
     }),
   });
   const data = await res.json();
-  if (data.error) throw new Error(`Token refresh: ${data.error} – ${data.error_description || ''}`);
+  if (data.error) throw new Error(`Token refresh: ${data.error} – ${data.error_description || ''} [id=${(process.env.GOOGLE_OAUTH_CLIENT_ID||'').slice(0,12)}... secret=${(process.env.GOOGLE_OAUTH_CLIENT_SECRET||'').slice(0,8)}...]`);
   cachedAccessToken = data.access_token;
   tokenExpiry       = Date.now() + (data.expires_in * 1000);
   return cachedAccessToken;
@@ -62,7 +62,7 @@ async function getLocationName(token) {
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
+  // Cache-Control set on success only; errors must not be cached
 
   const now = Date.now();
   if (cachedData && now < cacheExpiry) {
@@ -97,6 +97,7 @@ module.exports = async (req, res) => {
     cachedData   = data;
     cacheExpiry  = now + 5 * 60 * 1000;
 
+    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
     return res.status(200).json(data);
 
   } catch (err) {
