@@ -588,7 +588,7 @@
       <div class="rating-big">5.0</div>
       <div class="rating-details">
         <div class="stars">★★★★★</div>
-        <div class="rating-count">37 Google Reviews · 5 Stars across all reviews</div>
+        <div class="rating-count">Google Reviews · 5 Stars across all reviews</div>
         <div class="google-badge"><span>G</span> Google Business Profile</div>
       </div>
     </div>
@@ -700,7 +700,7 @@
       <div class="rating-big">5.0</div>
       <div class="rating-details">
         <div class="stars">★★★★★</div>
-        <div class="rating-count">37 Verified Google Reviews · Perfect 5.0 Rating</div>
+        <div class="rating-count">Verified Google Reviews · Perfect 5.0 Rating</div>
         <div class="google-badge"><span>G</span> Verified Google Reviews</div>
       </div>
     </div>
@@ -1178,7 +1178,7 @@ async function loadReviews() {
   if (_reviewsFetching) return;
   _reviewsFetching = true;
   try {
-    const res  = await fetch('/api/reviews');
+    const res  = await fetch('/reviews-data.json');
     const data = await res.json();
     if (data.error) throw new Error(data.error);
     _reviewsData   = data;
