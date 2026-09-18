@@ -940,6 +940,9 @@ function initServiceMap(){
     map:map,
     editable:false
   });
+  const bounds=new google.maps.LatLngBounds();
+  serviceBoundary.getPath().forEach(pt=>bounds.extend(pt));
+  map.fitBounds(bounds,32);
 }
 function toggleDrawer(){
   const drawer=document.getElementById('nav-drawer');
