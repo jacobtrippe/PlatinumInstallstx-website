@@ -1135,13 +1135,13 @@ let _reviewsData    = {
   "rating": 5.0,
   "userRatingsTotal": 40,
   "reviews": [
+    {"authorName":"Andretta Ojo","rating":5,"text":"I would recommend the services of this team to my friends and family, even my neighbors! I am beyond impressed with the results of my epoxy floor in the garage. They made sure we were satisfied and took care of everything from start to finish. I have had epoxy done before which is no comparison. If you are looking for epoxy flooring, please do not hesitate to contact Jacob. They are well advanced in their products. There is nothing like receiving professional quality and service.","relativeTimeDescription":"April 2026"},
     {"authorName":"Armando Gallegos","rating":5,"text":"If I could give them more stars, I would. Great communication, great pricing, on time and my floor looks better than I had imagined! Very glad I went with Platinum Installs. Highly recommend.","relativeTimeDescription":"March 2026"},
     {"authorName":"Katrina V","rating":5,"text":"Jacob and his team were wonderful to work with. He explained the process to us and asked clarifying questions for details I didn't even think of.","relativeTimeDescription":"September 2026"},
     {"authorName":"Daniel Litton","rating":5,"text":"Reasonable price. Very professional. Excellent customer service.","relativeTimeDescription":"September 2026"},
     {"authorName":"Fredrick Davis","rating":5,"text":"They did an Awesome job & was very professional throughout the entire process. The communication was good and the price was reasonable. I would recommend them any day!","relativeTimeDescription":"June 2026"},
     {"authorName":"Bret Adkins","rating":5,"text":"Said what they would do and did it. Easy clear communication, on time, got it done!","relativeTimeDescription":"February 2026"},
-    {"authorName":"Sherry or Tom","rating":5,"text":"Excellent. Notified day before scheduled date, set appointment time, arrived on time. Very professional, answered all our questions. We were completely satisfied with the work and would definitely recommend.","relativeTimeDescription":"January 2026"},
-    {"authorName":"Andretta Ojo","rating":5,"text":"I would recommend the services of this team to my friends and family, even my neighbors! I am beyond impressed with the results of my epoxy floor in the garage. They made sure we were satisfied and took care of everything from start to finish. I have had epoxy done before which is no comparison. If you are looking for epoxy flooring, please do not hesitate to contact Jacob. They are well advanced in their products. There is nothing like receiving professional quality and service.","relativeTimeDescription":"April 2026"}
+    {"authorName":"Sherry or Tom","rating":5,"text":"Excellent. Notified day before scheduled date, set appointment time, arrived on time. Very professional, answered all our questions. We were completely satisfied with the work and would definitely recommend.","relativeTimeDescription":"January 2026"}
   ]
 };
 
@@ -1177,8 +1177,8 @@ function _applyReviews() {
     const ratCnt = page.querySelector('.rating-count');
     if (!grid) return;
 
-    const max    = (pageId === 'home') ? 3 : d.reviews.length;
-    const slice  = d.reviews.slice(0, max);
+    const max    = (pageId === 'home') ? 4 : d.reviews.length;
+    const slice  = (pageId === 'home') ? d.reviews.slice(1, max) : d.reviews.slice(0, max);
     grid.innerHTML = slice.length
       ? slice.map(_reviewCard).join('')
       : '<div class="reviews-loading">No reviews found.</div>';
