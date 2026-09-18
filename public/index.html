@@ -417,6 +417,9 @@
   .segments{padding:6rem 4rem;background:var(--bg-dark);position:relative;}
   .segments::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(200,195,185,.2) 50%,transparent);}
   .segments-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(200,195,185,.08);}
+  .segments-nav{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;padding:2rem 4rem 0;border-top:1px solid rgba(200,195,185,.1);margin:0 -4rem 2.5rem;}
+  .segments-nav a{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--platinum-dim);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s;}
+  .segments-nav a:hover{color:var(--platinum-bright);border-bottom-color:var(--platinum-bright);}
   .segment-card{background:var(--bg-dark);padding:3rem;position:relative;transition:background .35s;overflow:hidden;}
   .segment-card:hover{background:#222224;}
   .segment-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(200,195,185,.25),transparent);opacity:0;transition:opacity .35s;}
@@ -1233,10 +1236,19 @@ _applyReviews();
     <div class="section-header"><span class="section-tag">Who We Partner With</span><div class="section-rule"></div></div>
     <h2>Built for every<br><em>commercial professional</em></h2>
 
+    <nav class="segments-nav">
+      <a href="#seg-realestate">Real Estate Agents</a>
+      <a href="#seg-warehouse">Warehouse & Industrial</a>
+      <a href="#seg-gc">General Contractors</a>
+      <a href="#seg-property">Property Managers</a>
+      <a href="#seg-designers">Interior Designers & Builders</a>
+      <a href="#seg-hoa">HOA & Associations</a>
+    </nav>
+
     <div class="segments-grid">
 
       <!-- Real Estate Agents -->
-      <div class="segment-card">
+      <div class="segment-card" id="seg-realestate">
         <div class="segment-title">Real Estate Agents</div>
         <div class="segment-sub">Pre-Listing & Property Value</div>
         <p class="segment-desc">A freshly coated garage floor can add thousands to a home's perceived value and help listings sell faster. We work directly with agents and sellers to prep properties before they hit the market.</p>
@@ -1251,7 +1263,7 @@ _applyReviews();
       </div>
 
       <!-- Warehouse & Industrial -->
-      <div class="segment-card">
+      <div class="segment-card" id="seg-warehouse">
         <div class="segment-title">Warehouse & Industrial Owners</div>
         <div class="segment-sub">High-Traffic & Heavy-Duty Spaces</div>
         <p class="segment-desc">Industrial floors take a beating. We install chemical-resistant, heavy-load epoxy and polyaspartic systems designed to handle forklifts, pallet jacks, and daily foot traffic for years without degrading.</p>
@@ -1266,7 +1278,7 @@ _applyReviews();
       </div>
 
       <!-- General Contractors -->
-      <div class="segment-card">
+      <div class="segment-card" id="seg-gc">
         <div class="segment-title">General Contractors</div>
         <div class="segment-sub">New Construction & Renovation</div>
         <p class="segment-desc">We integrate smoothly into your project schedule as a reliable flooring subcontractor. Our crews work alongside other trades, hit deadlines, and produce work that passes inspection the first time.</p>
@@ -1281,7 +1293,7 @@ _applyReviews();
       </div>
 
       <!-- Property Managers -->
-      <div class="segment-card">
+      <div class="segment-card" id="seg-property">
         <div class="segment-title">Property Managers</div>
         <div class="segment-sub">Multi-Unit & Commercial Properties</div>
         <p class="segment-desc">From apartment garage common areas to retail strip centers, we help property managers maintain attractive, durable concrete surfaces across their portfolio with minimal disruption to tenants.</p>
@@ -1296,7 +1308,7 @@ _applyReviews();
       </div>
 
       <!-- Interior Designers & Builders -->
-      <div class="segment-card">
+      <div class="segment-card" id="seg-designers">
         <div class="segment-title">Interior Designers & Home Builders</div>
         <div class="segment-sub">Custom & Luxury Finishes</div>
         <p class="segment-desc">For designers and custom builders who want flooring that makes a statement, our metallic epoxy and decorative flake systems deliver one-of-a-kind finishes that complement high-end interiors.</p>
@@ -1311,7 +1323,7 @@ _applyReviews();
       </div>
 
       <!-- HOA & Community -->
-      <div class="segment-card">
+      <div class="segment-card" id="seg-hoa">
         <div class="segment-title">HOA & Community Associations</div>
         <div class="segment-sub">Common Areas & Shared Spaces</div>
         <p class="segment-desc">We help HOAs and community associations maintain clean, attractive common area floors — clubhouses, fitness centers, parking structures, and entryways — with coatings built for high-traffic durability.</p>
