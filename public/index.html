@@ -1162,7 +1162,7 @@ function _applyReviews() {
     const ratCnt = page.querySelector('.rating-count');
     if (!grid) return;
 
-    const max    = (pageId === 'home') ? 3 : 5;
+    const max    = (pageId === 'home') ? 3 : d.reviews.length;
     const slice  = d.reviews.slice(0, max);
     grid.innerHTML = slice.length
       ? slice.map(_reviewCard).join('')
@@ -1170,7 +1170,9 @@ function _applyReviews() {
 
     if (bigRat) bigRat.textContent = Number(d.rating).toFixed(1);
     if (ratCnt) ratCnt.textContent =
-      `${d.userRatingsTotal} Google Reviews · Perfect ${Number(d.rating).toFixed(1)} Rating`;
+      (pageId === 'home')
+        ? 'Google Reviews · 5 Stars across all reviews'
+        : `Verified Google Reviews · Perfect ${Number(d.rating).toFixed(1)} Rating`;
   });
 }
 
