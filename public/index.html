@@ -470,6 +470,41 @@
     .comm-why-grid{grid-template-columns:1fr;}
     .comm-stat-row{grid-template-columns:1fr;}
   }
+
+  /* COLORS PAGE */
+  .colors-section{padding:8rem 2.5rem 4rem;max-width:1400px;margin:0 auto;}
+  .colors-header{text-align:center;margin-bottom:3rem;}
+  .colors-intro{color:var(--text-dim);font-size:1rem;margin-top:.75rem;letter-spacing:.03em;}
+  .colors-filters{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem;align-items:center;}
+  .filter-row{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;}
+  .color-filter-btn{background:transparent;border:1px solid rgba(200,195,185,.2);color:var(--platinum-dim);padding:.45rem 1.1rem;font-family:'Rajdhani',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .25s;}
+  .color-filter-btn:hover{border-color:rgba(200,195,185,.5);color:var(--platinum-bright);}
+  .color-filter-btn.active{border-color:var(--platinum-dim);color:var(--platinum-bright);background:rgba(200,195,185,.08);}
+  .color-filter-popular{background:transparent;border:1px solid rgba(200,195,185,.15);color:var(--platinum-dim);padding:.45rem 1.3rem;font-family:'Rajdhani',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .25s;display:inline-flex;align-items:center;gap:.4rem;}
+  .color-filter-popular:hover{border-color:rgba(200,168,50,.5);color:#c8a832;}
+  .color-filter-popular.active{border-color:#c8a832;color:#c8a832;background:rgba(200,168,50,.08);}
+  .colors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:4rem;}
+  .color-card{position:relative;cursor:pointer;border:1px solid rgba(200,195,185,.1);border-radius:2px;overflow:hidden;transition:border-color .25s,transform .25s;background:var(--bg-light);}
+  .color-card:hover{border-color:rgba(200,195,185,.35);transform:translateY(-2px);}
+  .color-img-wrap{aspect-ratio:4/3;overflow:hidden;}
+  .color-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;}
+  .color-card:hover .color-img-wrap img{transform:scale(1.03);}
+  .color-name{padding:.65rem .8rem;font-family:'Rajdhani',sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--platinum-dim);text-align:center;}
+  .color-star{position:absolute;top:.5rem;right:.5rem;background:#c8a832;color:#1e1e1f;font-size:.7rem;width:1.6rem;height:1.6rem;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.4);}
+  .colors-empty{grid-column:1/-1;text-align:center;color:var(--text-dim);padding:3rem;font-size:.9rem;letter-spacing:.05em;}
+  .colors-cta{text-align:center;padding:3rem 0;border-top:1px solid rgba(200,195,185,.1);}
+  .colors-cta p{color:var(--text-dim);margin-bottom:1.5rem;font-size:.95rem;letter-spacing:.03em;}
+  .colors-btn{display:inline-block;padding:.75rem 2rem;background:linear-gradient(135deg,#c9c0b0,#e5e4e2,#f8f7f5);color:#1e1e1f;font-family:'Rajdhani',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;border-radius:2px;transition:opacity .25s;}
+  .colors-btn:hover{opacity:.88;}
+  .color-lightbox{position:fixed;inset:0;background:rgba(10,10,10,.93);z-index:999;display:none;align-items:center;justify-content:center;padding:2rem;cursor:pointer;}
+  .color-lightbox.open{display:flex;animation:fadeIn .2s ease;}
+  .lightbox-inner{position:relative;max-width:680px;width:100%;cursor:default;}
+  .lightbox-inner img{width:100%;display:block;border-radius:2px;}
+  .lightbox-color-name{text-align:center;font-family:'Rajdhani',sans-serif;font-size:1.1rem;letter-spacing:.22em;text-transform:uppercase;color:var(--platinum);margin-top:1.1rem;}
+  .lightbox-close{position:absolute;top:-.9rem;right:-.9rem;background:rgba(200,195,185,.15);color:var(--platinum);border:1px solid rgba(200,195,185,.35);width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.3rem;line-height:1;transition:background .2s;}
+  .lightbox-close:hover{background:rgba(200,195,185,.3);}
+  @media(max-width:960px){.colors-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:600px){.colors-section{padding:7rem 1rem 3rem;}.colors-grid{grid-template-columns:repeat(2,1fr);gap:.8rem;}.color-name{font-size:.75rem;}}
 </style>
 </head>
 <body>
@@ -480,7 +515,7 @@
     <li><a href="javascript:void(0)" id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
     <li><a href="javascript:void(0)" id="nav-gallery" onclick="showPage('gallery')">Gallery</a></li>
     <li><a href="javascript:void(0)" id="nav-reviews" onclick="showPage('reviews')">Reviews</a></li><li><a href="javascript:void(0)" id="nav-area" onclick="showPage('area')">Service Area</a></li><li><a href="javascript:void(0)" id="nav-commercial" onclick="showPage('commercial')">Commercial</a></li><li><a href="javascript:void(0)" id="nav-estimate" onclick="showPage('estimate')">Free Estimate</a></li>
-  </ul>
+    <li><a href="javascript:void(0)" id="nav-colors" onclick="showPage('colors')">Colors</a></li></ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleDrawer()">
     <span></span>
     <span></span>
@@ -494,6 +529,7 @@
   <a href="javascript:void(0)" onclick="showPage('reviews');toggleDrawer()">Reviews</a>
   <a href="javascript:void(0)" onclick="showPage('area');toggleDrawer()">Service Area</a>
   <a href="javascript:void(0)" onclick="showPage('commercial');toggleDrawer()">Commercial</a>
+  <a href="javascript:void(0)" onclick="showPage('colors');toggleDrawer()">Colors</a>
   <a href="javascript:void(0)" onclick="showPage('estimate');toggleDrawer()">Free Estimate</a>
 </div>
 
@@ -956,7 +992,7 @@ function toggleDrawer(){
   btn.classList.toggle('open');
 }
 function showPage(id){
-  const pages=['home','gallery','reviews','area','commercial','estimate'];
+  const pages=['home','gallery','reviews','area','commercial','estimate','colors'];
   pages.forEach(p=>{const el=document.getElementById('page-'+p);if(el)el.classList.remove('active');const nav=document.getElementById('nav-'+p);if(nav)nav.classList.remove('active');});
 
   document.getElementById('page-'+id).classList.add('active');
@@ -1486,5 +1522,131 @@ _applyReviews();
     <div class="footer-tagline">Commercial Concrete Coatings · Greater DFW</div>
   </footer>
 </div>
+
+<!-- COLORS -->
+<div class="page" id="page-colors">
+  <section class="colors-section">
+    <div class="colors-header">
+      <div class="hero-eyebrow">Epoxy Flake Collection</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:300;letter-spacing:.06em;margin-top:1rem;">Choose Your Color</h2>
+      <p class="colors-intro">Browse our full palette. Filter by color family or view our most requested choices.</p>
+    </div>
+
+    <div class="colors-filters">
+      <div class="filter-row">
+        <button class="color-filter-btn active" onclick="filterColors('all',this)">All</button>
+        <button class="color-filter-btn" onclick="filterColors('grey',this)">Grey</button>
+        <button class="color-filter-btn" onclick="filterColors('brown',this)">Brown / Tan</button>
+        <button class="color-filter-btn" onclick="filterColors('blue',this)">Blue</button>
+        <button class="color-filter-btn" onclick="filterColors('green',this)">Green</button>
+      </div>
+      <div class="filter-row">
+        <button class="color-filter-popular" id="popular-toggle" onclick="togglePopularFilter()">&#9733; Popular Picks</button>
+      </div>
+    </div>
+
+    <div class="colors-grid" id="colors-grid"></div>
+
+    <div class="colors-cta">
+      <p>Not sure which color is right for you? We'll bring samples to your home.</p>
+      <button class="colors-btn" onclick="showPage('estimate')">Get a Free Quote &rarr;</button>
+    </div>
+  </section>
+
+  <div class="color-lightbox" id="color-lightbox" onclick="closeLightbox()">
+    <div class="lightbox-inner" onclick="event.stopPropagation()">
+      <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-color-name" id="lightbox-color-name"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
+    <div class="footer-tagline">Commercial Concrete Coatings &middot; Greater DFW</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const COLOR_DATA=[
+    {name:'Graphite',     file:'Graphite.png',     family:'grey',  popular:false},
+    {name:'Night Fall',   file:'NightFall.png',    family:'grey',  popular:false},
+    {name:'Raven',        file:'Raven.png',        family:'grey',  popular:false},
+    {name:'Smoke',        file:'Smoke.png',        family:'grey',  popular:false},
+    {name:'Gravel',       file:'Gravel.png',       family:'grey',  popular:false},
+    {name:'Granite',      file:'Granite.png',      family:'grey',  popular:false},
+    {name:'Dakota Grey',  file:'DakotaGrey.png',   family:'grey',  popular:false},
+    {name:'Feather Gray', file:'FeatherGray.png',  family:'grey',  popular:false},
+    {name:'Light Grey',   file:'LightGrey.png',    family:'grey',  popular:true},
+    {name:'Tuxedo',       file:'Tuxedo.png',       family:'grey',  popular:true},
+    {name:'Snow Fall',    file:'SnowFall.png',     family:'grey',  popular:false},
+    {name:'Mushroom',     file:'Mushroom.png',     family:'grey',  popular:false},
+    {name:'Cabin Fever',  file:'CabinFever.png',   family:'grey',  popular:false},
+    {name:'Dolphin',      file:'Dolphine.png',     family:'grey',  popular:false},
+    {name:'Comet',        file:'Comet.png',        family:'grey',  popular:false},
+    {name:'Lunar',        file:'Lunar.png',        family:'grey',  popular:false},
+    {name:'Opal',         file:'Opal.png',         family:'grey',  popular:false},
+    {name:'Stonehenge',   file:'StoneHendge.png',  family:'grey',  popular:false},
+    {name:'Stoney Creek', file:'StoneyCreek.png',  family:'grey',  popular:false},
+    {name:'Cappuccino',   file:'Cappuccino.png',   family:'brown', popular:false},
+    {name:'Robin',        file:'Robin.png',        family:'brown', popular:false},
+    {name:'Camel',        file:'Camel.png',        family:'brown', popular:true},
+    {name:'Medium Tan',   file:'MediumTan.png',    family:'brown', popular:false},
+    {name:'Saddle Tan',   file:'SaddleTan.png',    family:'brown', popular:false},
+    {name:'Maui Sand',    file:'MauiSand.png',     family:'brown', popular:false},
+    {name:'Tan & Bone',   file:'TanandBone.png',   family:'brown', popular:false},
+    {name:'Cookie',       file:'Cookie.png',       family:'brown', popular:false},
+    {name:'Creek Bed',    file:'CreekBed.png',     family:'brown', popular:false},
+    {name:'Madras',       file:'Madras.png',       family:'brown', popular:false},
+    {name:'Wombat',       file:'Wombat.png',       family:'brown', popular:false},
+    {name:'Wax Wing',     file:'WaxWing.png',      family:'brown', popular:false},
+    {name:'Loon',         file:'Loon.png',         family:'brown', popular:false},
+    {name:'Tidal Wave',   file:'TidalWave.png',    family:'blue',  popular:false},
+    {name:'Coastal Blue', file:'CoastalBlue.png',  family:'blue',  popular:false},
+    {name:'Touch of Blue',file:'TouchofBlue.png',  family:'blue',  popular:false},
+    {name:'Sea Mist',     file:'SeaMist.png',      family:'blue',  popular:false},
+    {name:'Orbit',        file:'Orbit.png',        family:'blue',  popular:false},
+    {name:'Thyme',        file:'Thyme.png',        family:'green', popular:false},
+    {name:'Hunter',       file:'Hunter.png',       family:'green', popular:false},
+  ];
+  let _family='all', _popular=false;
+  function render(){
+    const grid=document.getElementById('colors-grid');
+    if(!grid)return;
+    const list=COLOR_DATA.filter(c=>(_family==='all'||c.family===_family)&&(!_popular||c.popular));
+    if(!list.length){grid.innerHTML='<div class="colors-empty">No colors match this filter.</div>';return;}
+    grid.innerHTML=list.map(c=>`<div class="color-card" onclick="openColorLightbox('colors/${c.file}','${c.name}')">${c.popular?'<div class="color-star">&#9733;</div>':''}<div class="color-img-wrap"><img src="colors/${c.file}" alt="${c.name}" loading="lazy"></div><div class="color-name">${c.name}</div></div>`).join('');
+  }
+  window.filterColors=function(fam,btn){
+    _family=fam;
+    document.querySelectorAll('.color-filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  };
+  window.togglePopularFilter=function(){
+    _popular=!_popular;
+    document.getElementById('popular-toggle').classList.toggle('active',_popular);
+    render();
+  };
+  window.openColorLightbox=function(src,name){
+    document.getElementById('lightbox-img').src=src;
+    document.getElementById('lightbox-color-name').textContent=name;
+    document.getElementById('color-lightbox').classList.add('open');
+    document.body.style.overflow='hidden';
+  };
+  window.closeLightbox=function(){
+    document.getElementById('color-lightbox').classList.remove('open');
+    document.body.style.overflow='';
+  };
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.getElementById('color-lightbox').classList.remove('open');document.body.style.overflow='';}});
+  const origShowPage=window.showPage;
+  window.showPage=function(id){
+    origShowPage(id);
+    if(id==='colors')render();
+  };
+})();
+</script>
 </body>
 </html>
