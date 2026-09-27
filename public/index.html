@@ -1616,7 +1616,7 @@ _applyReviews();
     const grid=document.getElementById('colors-grid');
     if(!grid)return;
     const list=COLOR_DATA.filter(c=>(_family==='all'||c.family.includes(_family))&&(!_popular||c.popular));
-    if(_family==='all')list.sort((a,b)=>a.name.localeCompare(b.name));
+    if(_family==='all'||_popular)list.sort((a,b)=>a.name.localeCompare(b.name));
     if(!list.length){grid.innerHTML='<div class="colors-empty">No colors match this filter.</div>';return;}
     grid.innerHTML=list.map(c=>`<div class="color-card" onclick="openColorLightbox('colors/${c.file}','${c.name}')">${c.popular?'<div class="color-star">&#9733;</div>':''}<div class="color-img-wrap"><img src="colors/${c.file}" alt="${c.name}" loading="lazy"></div><div class="color-name">${c.name}</div></div>`).join('');
   }
