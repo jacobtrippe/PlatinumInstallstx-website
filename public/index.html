@@ -480,9 +480,6 @@
   .color-filter-btn{background:transparent;border:1px solid rgba(200,195,185,.2);color:var(--platinum-dim);padding:.45rem 1.1rem;font-family:'Rajdhani',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .25s;}
   .color-filter-btn:hover{border-color:rgba(200,195,185,.5);color:var(--platinum-bright);}
   .color-filter-btn.active{border-color:var(--platinum-dim);color:var(--platinum-bright);background:rgba(200,195,185,.08);}
-  .color-filter-popular{background:transparent;border:1px solid rgba(200,195,185,.15);color:var(--platinum-dim);padding:.45rem 1.3rem;font-family:'Rajdhani',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .25s;display:inline-flex;align-items:center;gap:.4rem;}
-  .color-filter-popular:hover{border-color:rgba(200,168,50,.5);color:#c8a832;}
-  .color-filter-popular.active{border-color:#c8a832;color:#c8a832;background:rgba(200,168,50,.08);}
   .colors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:4rem;}
   .color-card{position:relative;cursor:pointer;border:1px solid rgba(200,195,185,.1);border-radius:2px;overflow:hidden;transition:border-color .25s,transform .25s;background:var(--bg-light);}
   .color-card:hover{border-color:rgba(200,195,185,.35);transform:translateY(-2px);}
@@ -1539,9 +1536,7 @@ _applyReviews();
         <button class="color-filter-btn" onclick="filterColors('brown',this)">Brown / Tan</button>
         <button class="color-filter-btn" onclick="filterColors('blue',this)">Blue</button>
         <button class="color-filter-btn" onclick="filterColors('green',this)">Green</button>
-      </div>
-      <div class="filter-row">
-        <button class="color-filter-popular" id="popular-toggle" onclick="togglePopularFilter()">&#9733; Popular Picks</button>
+        <button class="color-filter-btn" onclick="filterColors('popular',this)">&#9733; Popular</button>
       </div>
     </div>
 
@@ -1612,12 +1607,12 @@ _applyReviews();
     {name:'Thyme',        file:'Thyme.png',        family:['green'],              popular:false},
     {name:'Hunter',       file:'Hunter.png',       family:['green','brown'],      popular:false},
   ];
-  let _family='all', _popular=false;
+  let _family='all';
   function render(){
     const grid=document.getElementById('colors-grid');
     if(!grid)return;
-    const list=COLOR_DATA.filter(c=>_popular?c.popular:(_family==='all'||c.family.includes(_family)));
-    if(_family==='all'||_popular)list.sort((a,b)=>a.name.localeCompare(b.name));
+    const list=COLOR_DATA.filter(c=>_family==='popular'?c.popular:(_family==='all'||c.family.includes(_family)));
+    list.sort((a,b)=>a.name.localeCompare(b.name));
     if(!list.length){grid.innerHTML='<div class="colors-empty">No colors match this filter.</div>';return;}
     grid.innerHTML=list.map(c=>`<div class="color-card" onclick="openColorLightbox('colors/${c.file}','${c.name}')">${c.popular?'<div class="color-star">&#9733;</div>':''}<div class="color-img-wrap"><img src="colors/${c.file}" alt="${c.name}" loading="lazy"></div><div class="color-name">${c.name}</div></div>`).join('');
   }
@@ -1625,11 +1620,6 @@ _applyReviews();
     _family=fam;
     document.querySelectorAll('.color-filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    render();
-  };
-  window.togglePopularFilter=function(){
-    _popular=!_popular;
-    document.getElementById('popular-toggle').classList.toggle('active',_popular);
     render();
   };
   window.openColorLightbox=function(src,name){
