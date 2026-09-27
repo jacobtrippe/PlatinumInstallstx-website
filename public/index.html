@@ -996,6 +996,7 @@ function showPage(id){
   document.getElementById('nav-'+id).classList.add('active');
   if(id==='area'&&typeof google!=='undefined')initServiceMap();
   if((id==='reviews'||id==='home')&&_reviewsLoaded)_applyReviews();
+  history.replaceState(null,'','#'+id);
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function filterGallery(type,btn){
@@ -1638,6 +1639,9 @@ _applyReviews();
     origShowPage(id);
     if(id==='colors')render();
   };
+  const _initHash=location.hash.slice(1);
+  const _validPages=['home','gallery','reviews','area','commercial','estimate','colors'];
+  if(_initHash&&_validPages.includes(_initHash))window.showPage(_initHash);
 })();
 </script>
 </body>
