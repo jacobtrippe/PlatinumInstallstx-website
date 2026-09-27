@@ -1586,7 +1586,7 @@ _applyReviews();
     {name:'Mushroom',     file:'Mushroom.png',     family:['grey','brown'],       popular:false},
     {name:'Cabin Fever',  file:'CabinFever.png',   family:['grey','brown'],       popular:false},
     {name:'Dolphin',      file:'Dolphine.png',     family:['grey','brown'],       popular:false},
-    {name:'Comet',        file:'Comet.png',        family:['grey'],               popular:true},
+    {name:'Comet',        file:'Comet.png',        family:['grey','blue'],        popular:true},
     {name:'Lunar',        file:'Lunar.png',        family:['grey'],               popular:true},
     {name:'Opal',         file:'Opal.png',         family:['grey'],               popular:false},
     {name:'Stonehenge',   file:'StoneHendge.png',  family:['grey'],               popular:false},
@@ -1601,7 +1601,7 @@ _applyReviews();
     {name:'Cookie',       file:'Cookie.png',       family:['brown'],              popular:true},
     {name:'Creek Bed',    file:'CreekBed.png',     family:['brown'],              popular:false},
     {name:'Madras',       file:'Madras.png',       family:['brown','grey'],       popular:false},
-    {name:'Wombat',       file:'Wombat.png',       family:['brown','grey'],       popular:false},
+    {name:'Wombat',       file:'Wombat.png',       family:['grey'],               popular:false},
     {name:'Wax Wing',     file:'WaxWing.png',      family:['brown'],              popular:false},
     {name:'Loon',         file:'Loon.png',         family:['brown','grey'],       popular:false},
     {name:'Tidal Wave',   file:'TidalWave.png',    family:['blue','grey'],        popular:false},
@@ -1616,7 +1616,7 @@ _applyReviews();
   function render(){
     const grid=document.getElementById('colors-grid');
     if(!grid)return;
-    const list=COLOR_DATA.filter(c=>(_family==='all'||c.family.includes(_family))&&(!_popular||c.popular));
+    const list=COLOR_DATA.filter(c=>_popular?c.popular:(_family==='all'||c.family.includes(_family)));
     if(_family==='all'||_popular)list.sort((a,b)=>a.name.localeCompare(b.name));
     if(!list.length){grid.innerHTML='<div class="colors-empty">No colors match this filter.</div>';return;}
     grid.innerHTML=list.map(c=>`<div class="color-card" onclick="openColorLightbox('colors/${c.file}','${c.name}')">${c.popular?'<div class="color-star">&#9733;</div>':''}<div class="color-img-wrap"><img src="colors/${c.file}" alt="${c.name}" loading="lazy"></div><div class="color-name">${c.name}</div></div>`).join('');
