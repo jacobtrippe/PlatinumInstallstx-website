@@ -3,36 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>$200 Off Garage Floor Coating | Platinum Installs</title>
-<meta name="description" content="Claim $200 off your garage floor coating install — epoxy, polyaspartic, and flake systems. No minimum job size. Expires September 30.">
+<title>$250 Off Garage Floor Coating | The Fall Flooring Event | Platinum Installs</title>
+<meta name="description" content="Save $250 on a garage floor coating install this fall — epoxy, polyaspartic, and flake systems. No minimum job size. Expires November 30.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ─── TOKENS ──────────────────────────────────────────────────────────── */
 :root {
-  --bg:           #161617;
-  --bg-surface:   #1e1e1f;
-  --bg-card:      #242425;
-  --gold:         #c8933a;
-  --gold-bright:  #e8b04a;
-  --gold-dim:     #7a5820;
-  --gold-muted:   #9a6e2a;
+  --bg:           #0e0d0c;
+  --bg-surface:   #1a1410;
+  --bg-card:      #211a14;
+  --gold:         #d4842a;
+  --gold-bright:  #f0a040;
+  --gold-dim:     #7a3e10;
+  --gold-muted:   #a05820;
   --platinum:     #e2e1df;
   --platinum-dim: #9a9a98;
   --text:         #d8d7d5;
   --text-muted:   #636361;
-  --border:       rgba(200,175,100,.11);
-  --border-gold:  rgba(200,147,58,.28);
+  --border:       rgba(200,150,80,.11);
+  --border-gold:  rgba(212,132,42,.28);
 }
 
 /* ─── RESET ──────────────────────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse at 65% 0%, #3d1a00 0%, #1a0d00 35%, #0e0d0c 70%),
+    #0e0d0c;
   color: var(--text);
   font-family: 'Rajdhani', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+}
+
+/* ─── FALLING LEAVES ─────────────────────────────────────────────────── */
+.leaves-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.leaf {
+  position: absolute;
+  top: -60px;
+  animation: leaf-fall linear infinite;
+  will-change: transform;
+}
+@keyframes leaf-fall {
+  0%   { transform: translateY(-60px) translateX(0) rotate(0deg); opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 0.8; }
+  100% { transform: translateY(110vh) translateX(var(--drift, 40px)) rotate(var(--spin, 360deg)); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .leaves-canvas { display: none; }
 }
 
 /* ─── TOP BAR ────────────────────────────────────────────────────────── */
@@ -40,18 +66,13 @@ body {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 2rem; height: 64px;
-  background: rgba(16, 16, 17, .97);
+  background: rgba(14, 10, 6, .97);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
 .logo-wrap { display: flex; align-items: center; gap: .7rem; }
-.logo-p {
-  width: 36px; height: 36px;
-  flex-shrink: 0;
-}
-.logo-p img {
-  width: 100%; height: 100%; object-fit: contain; display: block;
-}
+.logo-p { width: 36px; height: 36px; flex-shrink: 0; }
+.logo-p img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .logo-text {
   font-size: .8rem; letter-spacing: .18em; font-weight: 600;
   color: var(--platinum-dim); text-transform: uppercase;
@@ -75,7 +96,8 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding: 120px 3rem 5rem;
-  align-items: center;
+  align-items: start;
+  position: relative; z-index: 10;
 }
 
 /* ─── OFFER SIDE ─────────────────────────────────────────────────────── */
@@ -93,7 +115,7 @@ body {
 }
 .event-expire {
   margin-left: auto;
-  background: rgba(200, 147, 58, .1);
+  background: rgba(212, 132, 42, .1);
   border: 1px solid var(--border-gold);
   padding: .25rem .75rem; border-radius: 2px;
   font-size: .63rem; letter-spacing: .22em; color: var(--gold);
@@ -116,16 +138,7 @@ body {
   font-size: clamp(5.5rem, 13vw, 9.5rem);
   font-weight: 700;
   line-height: .88; letter-spacing: -.02em;
-  background: linear-gradient(
-    135deg,
-    var(--gold-dim)   0%,
-    var(--gold-muted) 18%,
-    var(--gold)       38%,
-    var(--gold-bright)55%,
-    var(--gold)       72%,
-    var(--gold-muted) 88%,
-    var(--gold-dim)   100%
-  );
+  background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold-muted) 18%, var(--gold) 38%, var(--gold-bright) 55%, var(--gold) 72%, var(--gold-muted) 88%, var(--gold-dim) 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -181,25 +194,16 @@ body {
   padding: 2.5rem;
   position: relative;
   align-self: start;
-  top: 0;
 }
 .form-card::before {
   content: '';
   position: absolute; top: 0; left: 1.5rem; right: 1.5rem; height: 1.5px;
-  background: linear-gradient(90deg,
-    transparent,
-    var(--gold-dim),
-    var(--gold),
-    var(--gold-bright),
-    var(--gold),
-    var(--gold-dim),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-bright), var(--gold), var(--gold-dim), transparent);
 }
 
 .form-offer-tag {
   display: inline-block;
-  background: rgba(200, 147, 58, .12);
+  background: rgba(212, 132, 42, .12);
   border: 1px solid var(--border-gold);
   color: var(--gold);
   font-size: .66rem; letter-spacing: .22em; text-transform: uppercase;
@@ -227,30 +231,23 @@ body {
   margin-bottom: .38rem; font-weight: 600;
 }
 .form-group input {
-  width: 100%; background: rgba(200, 195, 185, .04);
-  border: 1px solid rgba(200, 195, 185, .13);
+  width: 100%; background: rgba(200, 175, 130, .04);
+  border: 1px solid rgba(200, 175, 130, .13);
   color: var(--text); font-family: 'Rajdhani', sans-serif;
   font-size: .92rem; padding: .78rem 1rem; outline: none;
   transition: border-color .22s, background .22s; letter-spacing: .03em;
   border-radius: 2px; -webkit-appearance: none;
 }
 .form-group input:focus {
-  border-color: rgba(200, 147, 58, .5);
-  background: rgba(200, 147, 58, .03);
+  border-color: rgba(212, 132, 42, .5);
+  background: rgba(212, 132, 42, .03);
 }
 .form-group input::placeholder { color: rgba(168, 168, 166, .28); }
 
 .form-submit {
   width: 100%; margin-top: .7rem;
   padding: 1.1rem 2rem;
-  background: linear-gradient(
-    135deg,
-    var(--gold-dim)   0%,
-    var(--gold)       30%,
-    var(--gold-bright)55%,
-    var(--gold)       75%,
-    var(--gold-dim)   100%
-  );
+  background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 30%, var(--gold-bright) 55%, var(--gold) 75%, var(--gold-dim) 100%);
   background-size: 200% auto;
   color: #0d0d0e;
   font-family: 'Rajdhani', sans-serif;
@@ -268,15 +265,13 @@ body {
 }
 
 #form-inner { display: block; }
-#form-success {
-  display: none; text-align: center; padding: 1rem;
-}
+#form-success { display: none; text-align: center; padding: 1rem; }
 .success-ring {
   width: 58px; height: 58px; border-radius: 50%;
   border: 1px solid var(--border-gold);
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 1.5rem; font-size: 1.5rem; color: var(--gold);
-  background: rgba(200, 147, 58, .06);
+  background: rgba(212, 132, 42, .06);
 }
 .success-title {
   font-family: 'Cormorant Garamond', serif;
@@ -293,11 +288,11 @@ body {
   letter-spacing: .1em; text-decoration: none;
 }
 
-/* ─── TRUST SECTION ──────────────────────────────────────────────────── */
+/* ─── SECTIONS ───────────────────────────────────────────────────────── */
 .section-wrap {
   max-width: 1100px; margin: 0 auto; padding: 0 3rem;
+  position: relative; z-index: 10;
 }
-
 .section-header {
   display: flex; align-items: center; gap: 1rem;
   font-size: .63rem; letter-spacing: .35em; text-transform: uppercase;
@@ -316,25 +311,21 @@ body {
 }
 .trust-item {
   padding: 1.7rem 1rem 1.5rem;
-  background: var(--bg-surface);
-  text-align: center;
+  background: var(--bg-surface); text-align: center;
   border-right: 1px solid var(--border);
 }
 .trust-item:last-child { border-right: none; }
 .trust-num {
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.55rem; font-weight: 700;
-  color: var(--platinum);
-  letter-spacing: -.01em; line-height: 1;
-  margin-bottom: .25rem;
-  font-variant-numeric: tabular-nums;
+  color: var(--platinum); letter-spacing: -.01em; line-height: 1;
+  margin-bottom: .25rem; font-variant-numeric: tabular-nums;
 }
 .trust-desc {
   font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
   color: var(--text-muted); line-height: 1.5;
 }
 
-/* ─── GALLERY ────────────────────────────────────────────────────────── */
 .gallery-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: .6rem; margin-bottom: 5rem;
@@ -354,6 +345,7 @@ body {
   border-top: 1px solid var(--border);
   padding: 2rem 3rem;
   max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 10;
 }
 .fine-print p {
   font-size: .68rem; color: var(--text-muted);
@@ -365,11 +357,8 @@ body {
 
 /* ─── MOBILE ─────────────────────────────────────────────────────────── */
 @media (max-width: 940px) {
-  .hero {
-    grid-template-columns: 1fr;
-    gap: 2.8rem;
-    padding: 96px 1.75rem 3rem;
-  }
+  .hero { grid-template-columns: 1fr; gap: 2.8rem; padding: 96px 1.75rem 3rem; }
+  .form-card { order: -1; }
   .event-expire { display: none; }
   .trust-grid { grid-template-columns: repeat(3, 1fr); }
   .trust-item { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -406,6 +395,24 @@ body {
 </head>
 <body>
 
+<!-- Falling leaves -->
+<div class="leaves-canvas" aria-hidden="true">
+  <svg class="leaf" style="left:8%;width:18px;animation-duration:16s;animation-delay:0s;--drift:50px;--spin:320deg;opacity:.22" viewBox="0 0 100 100"><path fill="#c87010" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:22%;width:24px;animation-duration:20s;animation-delay:3s;--drift:-35px;--spin:270deg;opacity:.18" viewBox="0 0 100 100"><path fill="#e07808" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:38%;width:20px;animation-duration:14s;animation-delay:6s;--drift:60px;--spin:400deg;opacity:.20" viewBox="0 0 100 100"><path fill="#a04800" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:55%;width:16px;animation-duration:18s;animation-delay:1.5s;--drift:-45px;--spin:290deg;opacity:.15" viewBox="0 0 100 100"><path fill="#d06010" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:72%;width:22px;animation-duration:22s;animation-delay:9s;--drift:30px;--spin:450deg;opacity:.18" viewBox="0 0 100 100"><path fill="#b85008" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:88%;width:14px;animation-duration:15s;animation-delay:12s;--drift:-55px;--spin:380deg;opacity:.22" viewBox="0 0 100 100"><path fill="#e09020" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:15%;width:26px;animation-duration:19s;animation-delay:4.5s;--drift:70px;--spin:300deg;opacity:.14" viewBox="0 0 100 100"><path fill="#c05800" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:45%;width:19px;animation-duration:21s;animation-delay:7s;--drift:-40px;--spin:260deg;opacity:.17" viewBox="0 0 100 100"><path fill="#d07010" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:65%;width:28px;animation-duration:17s;animation-delay:10s;--drift:55px;--spin:340deg;opacity:.16" viewBox="0 0 100 100"><path fill="#a84000" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:82%;width:15px;animation-duration:13s;animation-delay:2s;--drift:-30px;--spin:420deg;opacity:.20" viewBox="0 0 100 100"><path fill="#e8a020" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:3%;width:21px;animation-duration:24s;animation-delay:15s;--drift:65px;--spin:280deg;opacity:.13" viewBox="0 0 100 100"><path fill="#c87010" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:30%;width:17px;animation-duration:20s;animation-delay:17s;--drift:-60px;--spin:310deg;opacity:.19" viewBox="0 0 100 100"><path fill="#d87820" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:93%;width:23px;animation-duration:16s;animation-delay:8s;--drift:-50px;--spin:360deg;opacity:.16" viewBox="0 0 100 100"><path fill="#b06020" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+  <svg class="leaf" style="left:50%;width:20px;animation-duration:18s;animation-delay:5s;--drift:45px;--spin:430deg;opacity:.14" viewBox="0 0 100 100"><path fill="#e06010" d="M50 5 C52 14 58 18 68 16 C74 12 80 18 76 26 C82 22 90 24 90 30 C88 36 80 35 75 32 C78 40 82 48 78 54 C72 48 66 47 62 52 C66 58 70 66 66 72 C60 66 56 60 54 56 C54 62 52 70 50 76 C48 70 46 62 46 56 C44 60 40 66 34 72 C30 66 34 58 38 52 C34 47 28 48 22 54 C18 48 22 40 25 32 C20 35 12 36 10 30 C10 24 18 22 24 26 C20 18 26 12 32 16 C42 18 48 14 50 5 Z"/></svg>
+</div>
+
 <!-- TOP BAR -->
 <div class="top-bar">
   <div class="logo-wrap">
@@ -413,7 +420,7 @@ body {
     <div class="logo-text">Platinum Installs</div>
   </div>
   <div class="top-phone">
-    <div class="top-phone-label">Text or Call &nbsp;·&nbsp; 8am – 8pm daily</div>
+    <div class="top-phone-label">Text or Call · 8am – 8pm daily</div>
     <a href="tel:2148137474">(214) 813-7474</a>
   </div>
 </div>
@@ -424,22 +431,27 @@ body {
   <!-- LEFT: The offer -->
   <div class="hero-left">
     <div class="event-eyebrow">
-      Back to School Savings Event
-      <span class="event-expire">Expires Sept 30</span>
+      The Fall Flooring Event
+      <span class="event-expire">Expires Nov 30</span>
     </div>
 
     <div class="offer-block">
-      <h1 class="offer-pretitle">Save $200 on Your Garage Floor Coating — DFW</h1>
-      <div class="offer-amount">$200</div>
+      <div class="offer-pretitle">Save on your garage floor before winter hits</div>
+      <div class="offer-amount">$250</div>
       <div class="offer-off">Off Your Install</div>
       <div class="offer-specs">
-        <strong>Epoxy &nbsp;·&nbsp; Polyaspartic &nbsp;·&nbsp; Flake</strong><br>
-        No minimum job size &nbsp;·&nbsp; Residential &amp; Commercial
+        <strong>Epoxy · Polyaspartic · Flake</strong><br>
+        No minimum job size · Residential &amp; Commercial
       </div>
     </div>
 
-    <!-- Live countdown to September 30 -->
+    <!-- Countdown to November 30 -->
     <div class="countdown" aria-label="Time remaining until offer expires">
+      <div class="cd-unit">
+        <div class="cd-num" id="cd-weeks">--</div>
+        <div class="cd-label">Weeks</div>
+      </div>
+      <div class="cd-sep" aria-hidden="true">:</div>
       <div class="cd-unit">
         <div class="cd-num" id="cd-days">--</div>
         <div class="cd-label">Days</div>
@@ -449,18 +461,13 @@ body {
         <div class="cd-num" id="cd-hrs">--</div>
         <div class="cd-label">Hours</div>
       </div>
-      <div class="cd-sep" aria-hidden="true">:</div>
-      <div class="cd-unit">
-        <div class="cd-num" id="cd-min">--</div>
-        <div class="cd-label">Min</div>
-      </div>
     </div>
   </div>
 
   <!-- RIGHT: Lead form -->
   <div class="form-card">
     <div id="form-inner">
-      <div class="form-offer-tag">$200 Off &nbsp;·&nbsp; Claim Your Spot</div>
+      <div class="form-offer-tag">$250 Off</div>
       <div class="form-headline">Get Your Free Estimate</div>
       <div class="form-sub">We'll call you same or next business day to walk through pricing and schedule your install.</div>
 
@@ -486,17 +493,17 @@ body {
           <input type="text" id="city" autocomplete="address-level2" placeholder="Dallas, Frisco, Plano…" required>
         </div>
 
-        <button type="submit" class="form-submit" id="submit-btn">Claim My $200 Off &rarr;</button>
+        <button type="submit" class="form-submit" id="submit-btn">Claim My $250 Off &rarr;</button>
       </form>
 
-      <div class="form-fine">One redemption per household &nbsp;·&nbsp; Cannot combine &nbsp;·&nbsp; Expires 9/30/2026</div>
+      <div class="form-fine">One redemption per household · Cannot combine · Expires 11/30/2026</div>
     </div>
 
     <div id="form-success">
-      <div class="success-ring">✓</div>
+      <div class="success-ring">&#10003;</div>
       <div class="success-title">You're All Set</div>
       <div class="success-body">
-        We got your request and will call you back shortly to lock in your $200 off estimate.<br><br>
+        We got your request and will call you back shortly to lock in your $250 off estimate.<br><br>
         Questions right now? Reach us anytime:
       </div>
       <a href="tel:2148137474" class="success-phone">(214) 813-7474</a>
@@ -508,81 +515,52 @@ body {
 <div class="section-wrap">
   <div class="section-header">Why DFW Trusts Platinum</div>
   <div class="trust-grid">
-    <div class="trust-item">
-      <div class="trust-num">5.0 ★</div>
-      <div class="trust-desc">Google<br>Reviews</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-num">15-Yr</div>
-      <div class="trust-desc">Warranty<br>Available</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-num">24 Hr</div>
-      <div class="trust-desc">Avg. Residential<br>Install</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-num">Insured</div>
-      <div class="trust-desc">Certified<br>Crew</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-num">Res. &amp; Comm.</div>
-      <div class="trust-desc">Both<br>Accepted</div>
-    </div>
+    <div class="trust-item"><div class="trust-num">5.0 ★</div><div class="trust-desc">Google<br>Reviews</div></div>
+    <div class="trust-item"><div class="trust-num">15-Yr</div><div class="trust-desc">Warranty<br>Available</div></div>
+    <div class="trust-item"><div class="trust-num">24 Hr</div><div class="trust-desc">Avg. Residential<br>Install</div></div>
+    <div class="trust-item"><div class="trust-num">Insured</div><div class="trust-desc">Certified<br>Crew</div></div>
+    <div class="trust-item"><div class="trust-num">Res. &amp; Comm.</div><div class="trust-desc">Both<br>Accepted</div></div>
   </div>
 
   <!-- GALLERY -->
-  <div class="section-header">Full Flake System &nbsp;·&nbsp; DFW Installs</div>
+  <div class="section-header">Full Flake System · DFW Installs</div>
   <div class="gallery-grid">
-    <div class="gallery-item">
-      <img src="gallery/IMG_8292.jpeg" alt="Full flake garage floor coating">
-    </div>
-    <div class="gallery-item">
-      <img src="gallery/IMG_8273.jpeg" alt="Polyaspartic floor coating DFW">
-    </div>
-    <div class="gallery-item">
-      <img src="gallery/IMG_8295.jpeg" alt="Finished epoxy garage floor">
-    </div>
-    <div class="gallery-item">
-      <img src="gallery/IMG_7291.jpeg" alt="Blue full-flake epoxy garage floor DFW">
-    </div>
-    <div class="gallery-item">
-      <img src="gallery/IMG_7469.jpeg" alt="White polyaspartic flake garage floor coating">
-    </div>
+    <div class="gallery-item"><img src="gallery/IMG_8292.jpeg" alt="Full flake garage floor coating"></div>
+    <div class="gallery-item"><img src="gallery/IMG_8273.jpeg" alt="Polyaspartic floor coating DFW"></div>
+    <div class="gallery-item"><img src="gallery/IMG_8295.jpeg" alt="Finished epoxy garage floor"></div>
+    <div class="gallery-item"><img src="gallery/IMG_7291.jpeg" alt="Blue full-flake epoxy garage floor DFW"></div>
+    <div class="gallery-item"><img src="gallery/IMG_7469.jpeg" alt="White polyaspartic flake garage floor coating"></div>
   </div>
 </div>
 
 <!-- FINE PRINT + FOOTER -->
 <div class="fine-print">
-  <p class="legal">$200 off any garage floor coating install. No minimum job size. One redemption per household. Cannot combine with other offers. Offer expires 9/30/2026.</p>
-  <p>
-    © 2026 Platinum Installs &nbsp;·&nbsp; Dallas–Fort Worth, TX &nbsp;·&nbsp;
-    <a href="tel:2148137474">(214) 813-7474</a> &nbsp;·&nbsp;
-    <a href="/">platinuminstallstx.com</a> &nbsp;·&nbsp;
-    Honest &nbsp;·&nbsp; Reliable &nbsp;·&nbsp; Admirable
-  </p>
+  <p class="legal">$250 off any garage floor coating install. No minimum job size. One redemption per household. Cannot combine with other offers. Offer expires 11/30/2026.</p>
+  <p>&copy; 2026 Platinum Installs · Dallas&ndash;Fort Worth, TX · <a href="tel:2148137474">(214) 813-7474</a> · <a href="/">platinuminstallstx.com</a> · Honest · Reliable · Admirable</p>
 </div>
 
 <script>
-/* ── Countdown to September 30, 2026 11:59 PM CT ── */
+/* ── Countdown to November 30, 2026 11:59 PM CT ── */
 function updateCountdown() {
-  const target = new Date('2026-09-30T23:59:59-05:00');
+  const target = new Date('2026-11-30T23:59:59-06:00');
   const now = new Date();
   const diff = target - now;
 
   if (diff <= 0) {
-    ['cd-days','cd-hrs','cd-min'].forEach(id =>
+    ['cd-weeks','cd-days','cd-hrs'].forEach(id =>
       document.getElementById(id).textContent = '00'
     );
     return;
   }
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hrs  = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const min  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const weeks = Math.floor(totalDays / 7);
+  const days  = totalDays % 7;
+  const hrs   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-  document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
-  document.getElementById('cd-hrs').textContent  = String(hrs).padStart(2, '0');
-  document.getElementById('cd-min').textContent  = String(min).padStart(2, '0');
+  document.getElementById('cd-weeks').textContent = String(weeks).padStart(2, '0');
+  document.getElementById('cd-days').textContent  = String(days).padStart(2, '0');
+  document.getElementById('cd-hrs').textContent   = String(hrs).padStart(2, '0');
 }
 
 updateCountdown();
@@ -616,7 +594,7 @@ async function submitForm(e) {
         phone,
         address:     city,
         projectType: 'Residential Garage',
-        source:      'door-hanger',
+        source:      'fall-event',
       }),
     });
 
@@ -624,13 +602,13 @@ async function submitForm(e) {
       document.getElementById('form-inner').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     } else {
-      btn.textContent = 'Claim My $200 Off →';
+      btn.textContent = 'Claim My $250 Off →';
       btn.disabled = false;
       alert('Something went wrong. Please call us at (214) 813-7474');
     }
   } catch (err) {
     console.error(err);
-    btn.textContent = 'Claim My $200 Off →';
+    btn.textContent = 'Claim My $250 Off →';
     btn.disabled = false;
     alert('Something went wrong. Please call us at (214) 813-7474');
   }

@@ -3,6 +3,14 @@
   "buildCommand": "echo 'Build complete'",
   "rewrites": [
     { "source": "/landing", "destination": "/landing.html" },
-    { "source": "/savings", "destination": "/savings.html" }
+    { "source": "/savings", "destination": "/savings.html" },
+    { "source": "/fall", "destination": "/fall.html" },
+    { "source": "/gallery", "destination": "/index.html" },
+    { "source": "/reviews", "destination": "/index.html" },
+    { "source": "/service-area", "destination": "/index.html" },
+    { "source": "/commercial", "destination": "/index.html" },
+    { "source": "/estimate", "destination": "/index.html" },
+    { "source": "/colors", "destination": "/index.html" },
+    { "source": "/referral", "destination": "/index.html" }
   ]
 }

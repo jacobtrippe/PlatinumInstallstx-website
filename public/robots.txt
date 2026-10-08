@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /door-hanger.html
+Disallow: /door-hanger-print.html
+Sitemap: https://platinuminstallstx.com/sitemap.xml

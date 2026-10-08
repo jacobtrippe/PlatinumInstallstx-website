@@ -5,8 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
 <title>Platinum Installs | Garage Floor Coatings – DFW</title>
+<meta name="google-site-verification" content="OdpMEe5bdkjcWVzn2wwTPCTB3rIup666J8Vpl0dU3fY">
+<meta name="description" content="Epoxy and full-flake garage floor coatings across Dallas-Fort Worth. Decorative flake systems, polyaspartic topcoats, and solid color designs. 5.0 Google rating. Free on-site estimates.">
+<link rel="canonical" href="https://platinuminstallstx.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://platinuminstallstx.com/">
+<meta property="og:title" content="Platinum Installs | Garage Floor Coatings – DFW">
+<meta property="og:description" content="Epoxy and full-flake garage floor coatings across Dallas-Fort Worth. Decorative flake systems, polyaspartic topcoats, and solid color designs. 5.0 Google rating. Free on-site estimates.">
+<meta property="og:image" content="https://platinuminstallstx.com/gallery/IMG_8273.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Platinum Installs | Garage Floor Coatings – DFW">
+<meta name="twitter:description" content="Epoxy and full-flake garage floor coatings across Dallas-Fort Worth. Decorative flake systems, polyaspartic topcoats, and solid color designs.">
+<meta name="twitter:image" content="https://platinuminstallstx.com/gallery/IMG_8273.jpeg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Platinum Installs",
+  "url": "https://platinuminstallstx.com",
+  "telephone": "+12148137474",
+  "priceRange": "$$",
+  "image": "https://platinuminstallstx.com/gallery/IMG_8273.jpeg",
+  "address": { "@type": "PostalAddress", "addressLocality": "Frisco", "addressRegion": "TX", "postalCode": "75033", "addressCountry": "US" },
+  "areaServed": ["Dallas","Fort Worth","Frisco","Plano","McKinney","Allen","Prosper","Celina","Denton","Lewisville","Flower Mound","Southlake","Keller","Colleyville","Grapevine","Irving","Carrollton","Richardson","Garland","Mesquite","Arlington","Grand Prairie","Mansfield","Burleson","Midlothian","Waxahachie","Rockwall","Rowlett","Wylie","Sachse","Murphy","Forney","Coppell","Euless","Bedford"],
+  "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Concrete Coating Services", "itemListElement": [
+    { "@type": "Offer", "name": "Epoxy Floor Coating" },
+    { "@type": "Offer", "name": "Polyaspartic Floor Coating" },
+    { "@type": "Offer", "name": "Decorative Flake Floor System" },
+    { "@type": "Offer", "name": "Outdoor Concrete Coating" },
+    { "@type": "Offer", "name": "Commercial Concrete Coating" }
+  ]},
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "bestRating": "5", "worstRating": "1" }
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6ITeUBLsEGE2r22JEUnKyR8LS6toFIsI"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6ITeUBLsEGE2r22JEUnKyR8LS6toFIsI&libraries=places"></script>
 <style>
   :root {
     --bg:#2f2f30;--bg-light:#3a3a3b;--bg-dark:#1e1e1f;
@@ -189,7 +222,9 @@
   .work-preview-grid div{overflow:hidden;}
 
   .services{padding:7rem 4rem;}
-  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,195,185,.1);}
+  .services-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(200,195,185,.1);}
+  .services-grid .service-card{grid-column:span 2;}
+  .services-grid .service-card:nth-child(4),.services-grid .service-card:nth-child(5){grid-column:span 3;}
   .service-card{background:var(--bg);padding:3rem 2.5rem;position:relative;transition:background .4s;}
   .service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(to right,transparent,var(--platinum-dim),transparent);opacity:0;transition:opacity .4s;}
   .service-card:hover{background:var(--bg-light);}
@@ -322,6 +357,7 @@
     .work-preview-grid{grid-template-columns:1fr 1fr;height:240px;}
     .work-preview-grid div:last-child{display:none;}
     .services-grid{grid-template-columns:1fr 1fr;}
+    .services-grid .service-card,.services-grid .service-card:nth-child(4),.services-grid .service-card:nth-child(5){grid-column:span 1;}
     .process-steps{grid-template-columns:1fr 1fr;gap:3rem;}
     .process-steps::before{display:none;}
     .stats{flex-wrap:wrap;gap:2rem;}
@@ -502,6 +538,12 @@
   .lightbox-close:hover{background:rgba(200,195,185,.3);}
   @media(max-width:960px){.colors-grid{grid-template-columns:repeat(3,1fr);}}
   @media(max-width:600px){.colors-section{padding:7rem 1rem 3rem;}.colors-grid{grid-template-columns:repeat(2,1fr);gap:.8rem;}.color-name{font-size:.75rem;}}
+  .ref-audience-grid{grid-template-columns:repeat(3,1fr);}
+  @media(max-width:900px){.ref-audience-grid{grid-template-columns:1fr!important;}}
+  @media(max-width:580px){.ref-faq-grid{grid-template-columns:1fr!important;}}
+  .ba-pairs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(200,195,185,.1);margin-top:3rem;}
+  @media(max-width:1100px){.ba-pairs-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:680px){.ba-pairs-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -512,7 +554,8 @@
     <li><a href="javascript:void(0)" id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
     <li><a href="javascript:void(0)" id="nav-gallery" onclick="showPage('gallery')">Gallery</a></li>
     <li><a href="javascript:void(0)" id="nav-reviews" onclick="showPage('reviews')">Reviews</a></li><li><a href="javascript:void(0)" id="nav-area" onclick="showPage('area')">Service Area</a></li><li><a href="javascript:void(0)" id="nav-commercial" onclick="showPage('commercial')">Commercial</a></li><li><a href="javascript:void(0)" id="nav-estimate" onclick="showPage('estimate')">Free Estimate</a></li>
-    <li><a href="javascript:void(0)" id="nav-colors" onclick="showPage('colors')">Colors</a></li></ul>
+    <li><a href="javascript:void(0)" id="nav-colors" onclick="showPage('colors')">Colors</a></li>
+    <li><a href="javascript:void(0)" id="nav-referral" onclick="showPage('referral')">Refer &amp; Earn</a></li></ul>
   <button class="nav-hamburger" id="nav-hamburger" onclick="toggleDrawer()">
     <span></span>
     <span></span>
@@ -527,6 +570,7 @@
   <a href="javascript:void(0)" onclick="showPage('area');toggleDrawer()">Service Area</a>
   <a href="javascript:void(0)" onclick="showPage('commercial');toggleDrawer()">Commercial</a>
   <a href="javascript:void(0)" onclick="showPage('colors');toggleDrawer()">Colors</a>
+  <a href="javascript:void(0)" onclick="showPage('referral');toggleDrawer()">Refer &amp; Earn</a>
   <a href="javascript:void(0)" onclick="showPage('estimate');toggleDrawer()">Free Estimate</a>
 </div>
 
@@ -541,11 +585,11 @@
         <h1>Your Garage.<br><span class="pw">Perfected.</span></h1>
         <div class="hero-pills">
           <span>Epoxy</span>
-          <span>Metallic Flake</span>
+          <span>Decorative Flake</span>
           <span>Polyaspartic</span>
           <span>Full Flake System</span>
         </div>
-        <p class="hero-sub">We install epoxy, polyaspartic, and metallic flake floor coatings for homes and businesses across the DFW metroplex. Built to last. Finished to impress.</p>
+        <p class="hero-sub">We install epoxy, polyaspartic, and decorative flake floor coatings for homes and businesses across the DFW metroplex. Built to last. Finished to impress.</p>
       </div>
       <div class="hero-form-card" id="hero-form-card">
         <div id="hero-form-inner">
@@ -601,9 +645,8 @@
       <div class="service-card"><div class="service-num">01</div><div class="service-title">Epoxy Floors</div><p class="service-desc">High-performance epoxy systems for garages, warehouses, and commercial floors. Chemical resistant, seamless, and stunning.</p></div>
       <div class="service-card"><div class="service-num">02</div><div class="service-title">Polyaspartic</div><p class="service-desc">Fast-cure, UV-stable topcoats ideal for same-day installs. Superior hardness and flexibility in a single-day application.</p></div>
       <div class="service-card"><div class="service-num">03</div><div class="service-title">Decorative Flake</div><p class="service-desc">Full-broadcast vinyl flake systems offering texture, slip resistance, and a sharp, clean finish for any space.</p></div>
-      <div class="service-card"><div class="service-num">04</div><div class="service-title">Metallic Systems</div><p class="service-desc">Flowing, one-of-a-kind metallic pigment floors that create a luxurious, custom look unique to every install.</p></div>
-      <div class="service-card"><div class="service-num">05</div><div class="service-title">Outdoor Concrete</div><p class="service-desc">Slip-resistant, UV-stable coatings for patios, driveways, and outdoor spaces built to handle the elements.</p></div>
-      <div class="service-card"><div class="service-num">06</div><div class="service-title">Commercial</div><p class="service-desc">Large-scale coating systems for retail, hospitality, healthcare, and industrial facilities. On-schedule, on-spec.</p></div>
+      <div class="service-card"><div class="service-num">04</div><div class="service-title">Outdoor Concrete</div><p class="service-desc">Slip-resistant, UV-stable coatings for patios, driveways, and outdoor spaces built to handle the elements.</p></div>
+      <div class="service-card"><div class="service-num">05</div><div class="service-title">Commercial</div><p class="service-desc">Large-scale coating systems for retail, hospitality, healthcare, and industrial facilities. On-schedule, on-spec.</p></div>
     </div>
   </section>
 
@@ -665,17 +708,24 @@
 
   <div class="gallery-wrap">
     <div class="gallery-grid">
-      <div class="gallery-item active" data-type="metallic"><img src="gallery/IMG_7391.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Copper Metallic</div><div class="g-sub">Luxe Shimmer</div></div></div>
-      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_8266.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Pearl Flake</div><div class="g-sub">Speckled Elegance</div></div></div>
-      <div class="gallery-item" data-type="metallic"><img src="gallery/IMG_7396.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Silver Metallic</div><div class="g-sub">Modern Polish</div></div></div>
-      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_8269.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Polished Aggregate</div><div class="g-sub">Exposed Elegance</div></div></div>
-      <div class="gallery-item" data-type="commercial"><img src="gallery/IMG_7450.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Premium Gold Metallic</div><div class="g-sub">Showroom Finish</div></div></div>
-      <div class="gallery-item" data-type="metallic"><img src="gallery/IMG_7439.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Bronze Shimmer</div><div class="g-sub">Warm Radiance</div></div></div>
-      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_7468.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Industrial Concrete</div><div class="g-sub">Polished Aggregate</div></div></div>
-      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_8277.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">White Quartz Flake</div><div class="g-sub">Bright & Clean</div></div></div>
-      <div class="gallery-item" data-type="commercial"><img src="gallery/IMG_7286.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Natural Concrete</div><div class="g-sub">Aggregate Polish</div></div></div>
-      <div class="gallery-item" data-type="metallic"><img src="gallery/IMG_8259.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Gold Metallic Blend</div><div class="g-sub">Luxury Depth</div></div></div>
-      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_8295.jpeg" class="gallery-swatch"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Signature Speckle</div><div class="g-sub">Premium Showroom Finish</div></div></div>
+      <div class="gallery-item active" data-type="epoxy"><img src="gallery/IMG_7391.jpeg" class="gallery-swatch" alt="Copper shimmer epoxy garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Copper Shimmer</div><div class="g-sub">Luxe Finish</div></div></div>
+      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_8266.jpeg" class="gallery-swatch" alt="Pearl flake garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Pearl Flake</div><div class="g-sub">Speckled Elegance</div></div></div>
+      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_1484.jpeg" class="gallery-swatch" alt="Full-flake epoxy garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Full-Flake Finish</div><div class="g-sub">Premium System</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_7396.jpeg" class="gallery-swatch" alt="Silver flake epoxy garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Silver Flake</div><div class="g-sub">Modern Polish</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_8269.jpeg" class="gallery-swatch" alt="Polished aggregate epoxy floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Polished Aggregate</div><div class="g-sub">Exposed Elegance</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_0922.jpeg" class="gallery-swatch" alt="Epoxy garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Platinum Finish</div><div class="g-sub">Showroom Ready</div></div></div>
+      <div class="gallery-item" data-type="commercial"><img src="gallery/IMG_7450.jpeg" class="gallery-swatch" alt="Premium gold epoxy floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Premium Gold</div><div class="g-sub">Showroom Finish</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_7439.jpeg" class="gallery-swatch" alt="Bronze decorative epoxy floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Bronze Shimmer</div><div class="g-sub">Warm Radiance</div></div></div>
+      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_1510.jpeg" class="gallery-swatch" alt="Decorative flake epoxy garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Decorative Flake</div><div class="g-sub">Custom Blend</div></div></div>
+      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_0927.jpeg" class="gallery-swatch" alt="Full-flake garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Classic Flake</div><div class="g-sub">Timeless Finish</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_7468.jpeg" class="gallery-swatch" alt="Industrial polished concrete floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Industrial Concrete</div><div class="g-sub">Polished Aggregate</div></div></div>
+      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_8277.jpeg" class="gallery-swatch" alt="White quartz full-flake garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">White Quartz Flake</div><div class="g-sub">Bright & Clean</div></div></div>
+      <div class="gallery-item" data-type="commercial"><img src="gallery/IMG_7286.jpeg" class="gallery-swatch" alt="Natural concrete polished floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Natural Concrete</div><div class="g-sub">Aggregate Polish</div></div></div>
+      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_1512.jpeg" class="gallery-swatch" alt="Speckled flake epoxy garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Speckled Quartz</div><div class="g-sub">Bright Finish</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_0929.jpeg" class="gallery-swatch" alt="Epoxy garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Silver Coat</div><div class="g-sub">Clean Edge</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_8259.jpeg" class="gallery-swatch" alt="Gold blend decorative epoxy floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Gold Blend</div><div class="g-sub">Luxury Depth</div></div></div>
+      <div class="gallery-item" data-type="epoxy"><img src="gallery/IMG_8295.jpeg" class="gallery-swatch" alt="Signature speckle epoxy floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Signature Speckle</div><div class="g-sub">Premium Showroom Finish</div></div></div>
+      <div class="gallery-item" data-type="flake"><img src="gallery/IMG_1524.jpeg" class="gallery-swatch" alt="Granite blend flake epoxy garage floor coating – DFW"><div class="g-corner"></div><div class="gallery-overlay"><div class="g-label">Granite Blend</div><div class="g-sub">Modern Texture</div></div></div>
       <div class="carousel-controls"><button class="carousel-btn" id="prev-btn">‹</button><button class="carousel-btn" id="next-btn">›</button></div>
       <div class="carousel-dots" id="carousel-dots"></div>
     </div>
@@ -684,7 +734,7 @@
   <section class="ba-section">
     <div class="section-header"><span class="section-tag">Transformations</span><div class="section-rule"></div></div>
     <h2>Before &amp; <em>after</em></h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(200,195,185,.1);margin-top:3rem;">
+    <div class="ba-pairs-grid">
       <div>
         <div class="ba-interactive-wrap" id="ba-interactive">
           <img src="gallery/IMG_7434.jpeg" class="ba-interactive-img" alt="Before">
@@ -697,13 +747,33 @@
       </div>
       <div>
         <div class="ba-interactive-wrap" id="ba-interactive-2">
-          <img src="gallery/after-3.jpeg" class="ba-interactive-img" alt="Before">
+          <img src="gallery/after-3.jpeg" class="ba-interactive-img" alt="After: decorative flake epoxy garage floor coating DFW">
           <div class="ba-before-overlay" id="ba-overlay-2">
-            <img src="gallery/before-3.jpeg" alt="After">
+            <img src="gallery/before-3.jpeg" alt="Before: bare concrete garage floor prior to coating">
           </div>
           <span class="ba-tag before" id="ba-tag-2" style="opacity:1;">Before</span>
         </div>
         <div class="ba-caption"><strong>Decorative Flake System</strong>A custom flake pattern and lasting protection that looks great for years.</div>
+      </div>
+      <div>
+        <div class="ba-interactive-wrap" id="ba-interactive-3">
+          <img src="gallery/before-4.jpeg" class="ba-interactive-img" alt="Before: garage floor prior to coating">
+          <div class="ba-before-overlay" id="ba-overlay-3">
+            <img src="gallery/after-4.jpeg" alt="After: full-flake epoxy garage floor coating DFW">
+          </div>
+          <span class="ba-tag before" id="ba-tag-3" style="opacity:1;">Before</span>
+        </div>
+        <div class="ba-caption"><strong>Full-Flake System</strong>Bare concrete brought to life with a full-broadcast flake and polyaspartic topcoat.</div>
+      </div>
+      <div>
+        <div class="ba-interactive-wrap" id="ba-interactive-4">
+          <img src="gallery/before-5.jpeg" class="ba-interactive-img" alt="Before: garage floor prior to coating">
+          <div class="ba-before-overlay" id="ba-overlay-4">
+            <img src="gallery/after-5.jpeg" alt="After: full-flake epoxy garage floor coating DFW">
+          </div>
+          <span class="ba-tag before" id="ba-tag-4" style="opacity:1;">Before</span>
+        </div>
+        <div class="ba-caption"><strong>Full-Flake System</strong>Bare concrete transformed with a full-broadcast flake and durable polyaspartic finish.</div>
       </div>
     </div>
   </section>
@@ -902,9 +972,9 @@
     <div class="estimate-sidebar">
       <h3>Let's talk about your project</h3>
       <div style="margin-bottom:2.5rem;">
-        <div class="contact-item"><div class="c-icon">💬</div><div><div class="c-label">Text or Call</div><div class="c-val"><a href="tel:+12148137474">(214) 813-7474</a></div></div></div>
-        <div class="contact-item"><div class="c-icon">🕐</div><div><div class="c-label">Hours</div><div class="c-val">Every day, 8am – 8pm</div></div></div>
-        <div class="contact-item"><div class="c-icon">📍</div><div><div class="c-label">Service Area</div><div class="c-val" onclick="showPage('area')" style="cursor:pointer;color:var(--platinum);text-decoration:underline;">The Greater DFW Metro Area</div></div></div>
+        <div class="contact-item"><div class="c-icon">✆</div><div><div class="c-label">Text or Call</div><div class="c-val"><a href="tel:+12148137474">(214) 813-7474</a></div></div></div>
+        <div class="contact-item"><div class="c-icon">◷</div><div><div class="c-label">Hours</div><div class="c-val">Every day, 8am – 8pm</div></div></div>
+        <div class="contact-item"><div class="c-icon">◎</div><div><div class="c-label">Service Area</div><div class="c-val" onclick="showPage('area')" style="cursor:pointer;color:var(--platinum);text-decoration:underline;">The Greater DFW Metro Area</div></div></div>
       </div>
       <div class="trust-items">
         <div class="trust-item">Free on-site estimate, no pressure</div>
@@ -930,7 +1000,7 @@
         <div class="form-group"><label>Project Address / City</label><input type="text" placeholder="123 Main St, Your City"></div>
         <div class="form-row">
           <div class="form-group"><label>Project Type</label><select><option value="">Select type...</option><option>Residential Garage</option><option>Basement</option><option>Patio / Outdoor</option><option>Commercial Floor</option><option>Warehouse / Industrial</option><option>Other</option></select></div>
-          <div class="form-group"><label>Coating System</label><select id="coating" onchange="calcPrice()"><option value="">Select system...</option><option>Epoxy Solid Color</option><option>Decorative Flake</option><option>Metallic Epoxy</option><option>Polyaspartic</option><option>Not Sure</option></select></div>
+          <div class="form-group"><label>Coating System</label><select id="coating" onchange="calcPrice()"><option value="">Select system...</option><option>Epoxy Solid Color</option><option>Decorative Flake</option><option>Polyaspartic</option><option>Not Sure</option></select></div>
         </div>
         <div class="form-group"><label>Size of Garage</label><select id="garage-size" onchange="calcPrice()"><option value="">Select size...</option><option value="300">1 Car</option><option value="600">2 Car</option><option value="900">3 Car</option><option value="1200">4 Car</option><option value="1500">5+ Car</option><option value="3000">Commercial Site</option></select></div>
         <div class="price-block" id="price-block"><div><div class="price-label">Estimated Range</div><div class="price-note">Final price confirmed at on-site visit</div></div><div class="price-range" id="price-range"></div></div>
@@ -988,17 +1058,36 @@ function toggleDrawer(){
   drawer.classList.toggle('open');
   btn.classList.toggle('open');
 }
-function showPage(id){
-  const pages=['home','gallery','reviews','area','commercial','estimate','colors'];
+const PAGE_URLS={home:'/',gallery:'/gallery',reviews:'/reviews',area:'/service-area',commercial:'/commercial',estimate:'/estimate',colors:'/colors',referral:'/referral'};
+const PAGE_TITLES={home:'Platinum Installs | Garage Floor Coatings – DFW',gallery:'Gallery | Epoxy & Flake Floor Coatings – Platinum Installs',reviews:'Customer Reviews | 5.0 Google Rating – Platinum Installs',area:'Service Area | DFW Garage Floor Coatings – Platinum Installs',commercial:'Commercial Coatings | Platinum Installs DFW',estimate:'Free Estimate | Garage Floor Coatings – Platinum Installs',colors:'Color Catalog | Garage Floor Coatings – Platinum Installs',referral:'Refer & Earn | Platinum Installs DFW'};
+const PAGE_DESCS={home:'Epoxy and full-flake garage floor coatings across Dallas-Fort Worth. Decorative flake systems, polyaspartic topcoats, and solid color designs. 5.0 Google rating. Free on-site estimates.',gallery:'Browse epoxy and decorative flake garage floor projects across Dallas-Fort Worth by Platinum Installs.',reviews:'5.0 Google rating from DFW homeowners. Read verified customer reviews for Platinum Installs garage floor coatings.',area:'Platinum Installs serves Dallas, Plano, Frisco, McKinney, Arlington, and 34+ DFW cities. Free on-site estimates.',commercial:'Commercial concrete coating services in DFW — general contractors, property managers, warehouses, and more.',estimate:'Get a free garage floor coating estimate. Serving all of Dallas-Fort Worth. Call or text (214) 813-7474.',colors:'Browse 40 garage floor coating colors and finishes available in DFW from Platinum Installs.',referral:'Earn 10% of every job you refer to Platinum Installs. No limit on referrals — refer homeowners, neighbors, or clients.'};
+function showPage(id,push){
+  if(push===undefined)push=true;
+  const pages=['home','gallery','reviews','area','commercial','estimate','colors','referral'];
   pages.forEach(p=>{const el=document.getElementById('page-'+p);if(el)el.classList.remove('active');const nav=document.getElementById('nav-'+p);if(nav)nav.classList.remove('active');});
 
   document.getElementById('page-'+id).classList.add('active');
   document.getElementById('nav-'+id).classList.add('active');
   if(id==='area'&&typeof google!=='undefined')initServiceMap();
   if((id==='reviews'||id==='home')&&_reviewsLoaded)_applyReviews();
-  history.replaceState(null,'','#'+id);
+  if(push)history.pushState({page:id},'',PAGE_URLS[id]||'/');
+  else history.replaceState({page:id},'',PAGE_URLS[id]||'/');
+  document.title=PAGE_TITLES[id]||document.title;
+  const descEl=document.querySelector('meta[name="description"]');
+  if(descEl&&PAGE_DESCS[id])descEl.setAttribute('content',PAGE_DESCS[id]);
+  const canonEl=document.querySelector('link[rel="canonical"]');
+  if(canonEl)canonEl.setAttribute('href','https://platinuminstallstx.com'+(PAGE_URLS[id]||'/'));
   window.scrollTo({top:0,behavior:'smooth'});
 }
+window.addEventListener('popstate',function(e){if(e.state&&e.state.page)showPage(e.state.page,false);});
+(function(){
+  const _initShowPage=showPage;
+  document.addEventListener('DOMContentLoaded',function(){
+    const urlToPage={'/gallery':'gallery','/reviews':'reviews','/service-area':'area','/commercial':'commercial','/estimate':'estimate','/colors':'colors','/referral':'referral'};
+    const pg=urlToPage[location.pathname]||'home';
+    _initShowPage(pg,false);
+  });
+})();
 function filterGallery(type,btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -1008,7 +1097,7 @@ function filterGallery(type,btn){
     item.style.transform=match?'scale(1)':'scale(0.97)';
   });
 }
-const rates={'Epoxy Solid Color':[2.5,4],'Decorative Flake':[3,5],'Metallic Epoxy':[5,9],'Polyaspartic':[4,7],'Not Sure':[3,6]};
+const rates={'Epoxy Solid Color':[2.5,4],'Decorative Flake':[3,5],'Polyaspartic':[4,7],'Not Sure':[3,6]};
 function calcPrice(){
   const sqft=parseInt(document.getElementById('garage-size').value)||0;
   const coating=document.getElementById('coating').value;
@@ -1019,6 +1108,31 @@ function calcPrice(){
   const max=Math.round(sqft*hi/100)*100;
   document.getElementById('price-range').textContent='$'+min.toLocaleString()+' – $'+max.toLocaleString();
   block.style.display='flex';
+}
+async function submitReferralForm(){
+  const f=document.getElementById('reffname').value.trim();
+  const l=document.getElementById('reflname').value.trim();
+  const p=document.getElementById('refphone').value.trim();
+  const cn=document.getElementById('refcontactname').value.trim();
+  const cp=document.getElementById('refcontactphone').value.trim();
+  if(!f||!l||!p||!cn||!cp){alert('Please fill in your name, phone, and your referral\'s name and phone to continue.');return;}
+  const role=document.getElementById('refrole').value;
+  const notes=document.getElementById('refnotes').value.trim();
+  const btn=document.querySelector('#ref-form-inner .form-submit');
+  btn.textContent='Sending...';
+  btn.disabled=true;
+  try{
+    await fetch('/api/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({firstName:f,lastName:l,phone:p,projectType:'Referral',projectDetails:`Referred contact: ${cn}, ${cp}. Role: ${role||'Not specified'}. Notes: ${notes||'None'}`,source:'referral-form'})
+    });
+  }catch(e){console.error('Referral form error:',e);}
+  document.getElementById('ref-form-inner').style.display='none';
+  const s=document.getElementById('ref-form-success');
+  s.style.display='block';
+  s.style.animation='fadeIn .6s ease both';
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 async function submitCommForm(){
   const f=document.getElementById('cfname').value.trim();
@@ -1166,6 +1280,8 @@ initCarousel();
 window.addEventListener('scroll',()=>{
   updateScrollReveal('ba-interactive','ba-overlay','ba-tag');
   updateScrollReveal('ba-interactive-2','ba-overlay-2','ba-tag-2');
+  updateScrollReveal('ba-interactive-3','ba-overlay-3','ba-tag-3');
+  updateScrollReveal('ba-interactive-4','ba-overlay-4','ba-tag-4');
 });
 
 // ── REVIEWS ──────────────────────────────────────────────────────────────────
@@ -1347,10 +1463,10 @@ _applyReviews();
       <div class="segment-card" id="seg-designers">
         <div class="segment-title">Interior Designers & Home Builders</div>
         <div class="segment-sub">Custom & Luxury Finishes</div>
-        <p class="segment-desc">For designers and custom builders who want flooring that makes a statement, our metallic epoxy and decorative flake systems deliver one-of-a-kind finishes that complement high-end interiors.</p>
+        <p class="segment-desc">For designers and custom builders who want flooring that makes a statement, our decorative flake and epoxy systems deliver one-of-a-kind finishes that complement high-end interiors.</p>
         <ul class="segment-bullets">
           <li>Custom color matching to design specs</li>
-          <li>Metallic, flake, and solid color systems available</li>
+          <li>Flake, solid color, and polyaspartic systems available</li>
           <li>Referral program for design professionals</li>
           <li>Samples and mock-ups available on request</li>
           <li>White-glove installation with zero mess left behind</li>
@@ -1521,6 +1637,177 @@ _applyReviews();
   </footer>
 </div>
 
+<!-- REFERRAL PROGRAM PAGE -->
+<div class="page" id="page-referral">
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="hero-eyebrow">Referral Program</div>
+      <h1>Refer a friend.<br><span class="pw">Earn 10% of the job.</span></h1>
+      <p>Every time someone you refer gets their garage coated, you earn 10% of the invoice — paid after the job is complete. No minimums. Just a quick introduction.</p>
+    </div>
+  </div>
+
+  <!-- AUDIENCE CARDS -->
+  <section class="segments">
+    <div class="section-header"><span class="section-tag">Who It's For</span><div class="section-rule"></div></div>
+    <h2>There's a fit for<br><em>everyone who knows us.</em></h2>
+
+    <div class="segments-grid ref-audience-grid">
+
+      <div class="segment-card">
+        <div class="segment-sub">For Real Estate Agents</div>
+        <div class="segment-title">Add value to every listing. Get paid for it.</div>
+        <p class="segment-desc">Every new home buyer is getting their garage floor professionally finished. A freshly coated garage floor elevates listing appeal and helps homes sell faster. Introduce your buyers and sellers to Platinum Installs — we handle everything — and earn 10% of the completed job.</p>
+        <ul class="segment-bullets">
+          <li>Fast 1–2 day installs before listing photos</li>
+          <li>We coordinate directly with homeowners</li>
+          <li>Warranty transfers to the buyer</li>
+          <li>Introduce buyers too — we can finish before move-in day</li>
+          <li>No awkward sales pitch — we do it for you</li>
+        </ul>
+        <a href="javascript:void(0)" class="segment-cta" onclick="document.getElementById('ref-form-section').scrollIntoView({behavior:'smooth'})">Refer a Client</a>
+      </div>
+
+      <div class="segment-card">
+        <div class="segment-sub">For Homeowners</div>
+        <div class="segment-title">Love your floor? Pass it on.</div>
+        <p class="segment-desc">If a neighbor, family member, or friend has been eyeing your garage floor, send them our way. When their job is complete, you get 10% of the invoice as a thank-you.</p>
+        <ul class="segment-bullets">
+          <li>No limit on referrals</li>
+          <li>Works for friends, family, and neighbors</li>
+          <li>We'll mention you personally when we reach out</li>
+          <li>Paid after job completion</li>
+        </ul>
+        <a href="javascript:void(0)" class="segment-cta" onclick="document.getElementById('ref-form-section').scrollIntoView({behavior:'smooth'})">Send a Referral</a>
+      </div>
+
+      <div class="segment-card">
+        <div class="segment-sub">For Business Owners</div>
+        <div class="segment-title">Know someone who needs a better floor?</div>
+        <p class="segment-desc">If you run a business or know other business owners with commercial or industrial spaces, a single introduction can mean a significant payday. Warehouses, retail, restaurants — if they have concrete, they're a candidate.</p>
+        <ul class="segment-bullets">
+          <li>Works for any commercial or residential referral</li>
+          <li>Higher commercial job values = bigger 10% payout</li>
+          <li>Great for networking groups and chambers of commerce</li>
+          <li>No sales experience needed</li>
+        </ul>
+        <a href="javascript:void(0)" class="segment-cta" onclick="document.getElementById('ref-form-section').scrollIntoView({behavior:'smooth'})">Refer a Business</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="comm-why">
+    <div class="section-header"><span class="section-tag">How It Works</span><div class="section-rule"></div></div>
+    <h2>Three steps to<br><em>your first check.</em></h2>
+    <div class="comm-why-grid">
+      <div class="comm-why-card">
+        <div class="comm-why-num">01</div>
+        <div class="comm-why-title">Make the Introduction</div>
+        <p class="comm-why-desc">Give us your referral's name and contact info using the form below — or just have them mention your name when they call. That's it.</p>
+      </div>
+      <div class="comm-why-card">
+        <div class="comm-why-num">02</div>
+        <div class="comm-why-title">We Handle Everything</div>
+        <p class="comm-why-desc">We reach out, schedule a free estimate, and complete the job. You don't lift a finger after the introduction.</p>
+      </div>
+      <div class="comm-why-card">
+        <div class="comm-why-num">03</div>
+        <div class="comm-why-title">Collect 10%</div>
+        <p class="comm-why-desc">Once the job is paid and complete, we send you 10% of the invoice. No paperwork, no waiting months.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ STRIP -->
+  <section class="comm-why" style="background:var(--bg-dark);border-top:1px solid rgba(200,195,185,.1);">
+    <div class="section-header"><span class="section-tag">Common Questions</span><div class="section-rule"></div></div>
+    <div class="comm-why-grid ref-faq-grid">
+      <div class="comm-why-card">
+        <div class="comm-why-title">What counts as a completed job?</div>
+        <p class="comm-why-desc">Any residential or commercial coating job we complete and invoice for your referral. The job must be paid in full.</p>
+      </div>
+      <div class="comm-why-card">
+        <div class="comm-why-title">When do I get paid?</div>
+        <p class="comm-why-desc">Within 5 business days of the completed job invoice being paid in full. We'll reach out with the amount and your preferred payment method.</p>
+      </div>
+      <div class="comm-why-card">
+        <div class="comm-why-title">Is there a limit?</div>
+        <p class="comm-why-desc">No. Refer as many people as you want. Every completed job earns you 10% — there's no cap and no expiration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERRAL FORM -->
+  <section class="comm-contact" id="ref-form-section">
+    <div class="section-header"><span class="section-tag">Make a Referral</span><div class="section-rule"></div></div>
+    <div class="comm-contact-wrap">
+      <div class="comm-contact-sidebar">
+        <h3>Ready to make an introduction?</h3>
+        <p>Fill out the form and we'll take it from there. We'll reach out to your referral, handle the free estimate, and keep you in the loop — and pay you 10% when the job is done.</p>
+        <ul class="comm-perks">
+          <li>We contact your referral within one business day</li>
+          <li>You earn 10% of the completed job invoice</li>
+          <li>No limit on how many referrals you send</li>
+          <li>Paid within 5 business days of job completion</li>
+          <li>Your referral gets the same great service and pricing</li>
+        </ul>
+        <div style="margin-top:2rem;">
+          <div class="contact-item"><div><div class="c-label">Text or Call</div><div class="c-val"><a href="tel:+12148137474">(214) 813-7474</a></div></div></div>
+          <div class="contact-item"><div><div class="c-label">Hours</div><div class="c-val">Every day, 8am – 8pm</div></div></div>
+          <div class="contact-item"><div><div class="c-label">Email</div><div class="c-val">platinuminstallsdfw@gmail.com</div></div></div>
+        </div>
+      </div>
+
+      <div class="form-wrap">
+        <div id="ref-form-inner">
+          <div class="form-title">Referral Submission</div>
+          <div class="form-subtitle">Tell us about yourself and who you'd like to refer. We'll handle everything from here.</div>
+
+          <div class="form-row">
+            <div class="form-group"><label>Your First Name</label><input type="text" id="reffname" placeholder="Jane"></div>
+            <div class="form-group"><label>Your Last Name</label><input type="text" id="reflname" placeholder="Smith"></div>
+          </div>
+          <div class="form-group"><label>Your Phone</label><input type="tel" id="refphone" placeholder="(555) 000-0000"></div>
+          <div class="form-group">
+            <label>I Am A...</label>
+            <select id="refrole">
+              <option value="">Select your role...</option>
+              <option>Real Estate Agent</option>
+              <option>Homeowner</option>
+              <option>Business Owner</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Referral Contact Name</label><input type="text" id="refcontactname" placeholder="John Doe"></div>
+            <div class="form-group"><label>Referral Contact Phone</label><input type="tel" id="refcontactphone" placeholder="(555) 000-0000"></div>
+          </div>
+          <div class="form-group"><label>Notes (optional)</label><textarea id="refnotes" placeholder="How do you know them? Any details that would help us — their address, project type, timeline, etc."></textarea></div>
+          <button class="form-submit" onclick="submitReferralForm()">Submit Referral →</button>
+          <div class="form-disclaimer">We'll reach out to your referral within one business day. All information is kept confidential.</div>
+        </div>
+        <div class="form-success" id="ref-form-success">
+          <div class="success-icon">✓</div>
+          <div class="success-title">Referral Received</div>
+          <p class="success-sub">Thank you for the introduction. We'll reach out to your referral within one business day and keep you posted on how it goes.<br><br>For questions, call or text <strong style="color:var(--platinum)"><a href="tel:+12148137474">(214) 813-7474</a></strong>.</p>
+          <br><br>
+          <a href="javascript:void(0)" class="btn-outline" onclick="showPage('home')" style="display:inline-block">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Platinum Installs</div>
+    <div class="footer-copy" style="font-style:italic;letter-spacing:.18em;">Honest. Reliable. Admirable.</div>
+    <div class="footer-tagline">Referral Program · Greater DFW</div>
+  </footer>
+</div>
+
 <!-- COLORS -->
 <div class="page" id="page-colors">
   <section class="colors-section">
@@ -1640,7 +1927,7 @@ _applyReviews();
     if(id==='colors')render();
   };
   const _initHash=location.hash.slice(1);
-  const _validPages=['home','gallery','reviews','area','commercial','estimate','colors'];
+  const _validPages=['home','gallery','reviews','area','commercial','estimate','colors','referral'];
   if(_initHash&&_validPages.includes(_initHash))window.showPage(_initHash);
 })();
 </script>
