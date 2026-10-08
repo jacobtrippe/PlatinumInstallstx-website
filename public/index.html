@@ -257,6 +257,28 @@
   .page-hero p{font-size:1rem;color:var(--text-dim);font-weight:300;letter-spacing:.06em;max-width:500px;line-height:1.7;}
   .page-hero .pw{font-weight:700;background:linear-gradient(90deg,#a8a8a6 0%,#d4d0cb 20%,#f8f7f5 40%,#fff 50%,#f0eeeb 60%,#c9c0b0 80%,#a8a8a6 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:sheen 3.5s linear infinite;}
 
+  /* REFERRAL HERO SPLIT */
+  .ref-hero .page-hero-content{display:flex;gap:3.5rem;align-items:flex-start;}
+  .ref-hero-left{flex:1;min-width:0;}
+  .ref-hero-right{flex:0 0 320px;min-width:0;padding-top:.25rem;}
+  .rq-card{background:rgba(28,28,29,.92);border:1px solid rgba(200,195,185,.13);border-radius:10px;padding:1.4rem 1.5rem;backdrop-filter:blur(10px);}
+  .rq-group{margin-bottom:.7rem;}
+  .rq-label{display:block;font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(200,195,185,.5);margin-bottom:.3rem;}
+  .rq-input,.rq-select{width:100%;background:rgba(38,38,39,.95);border:1px solid rgba(200,195,185,.14);border-radius:5px;padding:.5rem .7rem;font-size:.82rem;color:#dedad4;font-family:inherit;outline:none;box-sizing:border-box;transition:border-color .18s;}
+  .rq-input:focus,.rq-select:focus{border-color:rgba(200,195,185,.38);}
+  .rq-input::placeholder{color:rgba(200,195,185,.28);}
+  .rq-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(200,195,185,.4)'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .7rem center;padding-right:2rem;}
+  .rq-select option{background:#262627;color:#dedad4;}
+  .rq-row{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;}
+  .rq-btn{width:100%;margin-top:.9rem;background:linear-gradient(135deg,#b8a880,#d4c89a,#b8a880);color:#1a1a1b;border:none;border-radius:5px;padding:.6rem 1rem;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:inherit;transition:opacity .15s;}
+  .rq-btn:hover{opacity:.88;}
+  .rq-btn:disabled{opacity:.5;cursor:default;}
+  .rq-success{text-align:center;padding:1.5rem .5rem;}
+  .rq-success-check{font-size:1.6rem;color:#b8a880;margin-bottom:.5rem;}
+  .rq-success-title{font-size:.9rem;font-weight:600;color:#dedad4;margin-bottom:.35rem;letter-spacing:.04em;}
+  .rq-success-sub{font-size:.78rem;color:rgba(200,195,185,.5);line-height:1.5;}
+  @media(max-width:860px){.ref-hero .page-hero-content{flex-direction:column;}.ref-hero-right{flex:none;width:100%;max-width:420px;}}
+
   /* GALLERY */
   .gallery-wrap{padding:4rem;}
   .gallery-filters{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:3rem;}
@@ -1134,6 +1156,27 @@ async function submitReferralForm(){
   s.style.animation='fadeIn .6s ease both';
   window.scrollTo({top:0,behavior:'smooth'});
 }
+async function submitQuickReferralForm(){
+  const f=document.getElementById('qreffname').value.trim();
+  const l=document.getElementById('qreflname').value.trim();
+  const p=document.getElementById('qrefphone').value.trim();
+  const cn=document.getElementById('qrefcontactname').value.trim();
+  const cp=document.getElementById('qrefcontactphone').value.trim();
+  if(!f||!l||!p||!cn||!cp){alert('Please fill in your name, phone, and your referral\'s name and phone to continue.');return;}
+  const role=document.getElementById('qrefrole').value;
+  const btn=document.querySelector('#rq-form .rq-btn');
+  btn.textContent='Sending...';
+  btn.disabled=true;
+  try{
+    await fetch('/api/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({firstName:f,lastName:l,phone:p,projectType:'Referral',projectDetails:`Referred contact: ${cn}, ${cp}. Role: ${role||'Not specified'}.`,source:'referral-quick-form'})
+    });
+  }catch(e){console.error('Quick referral form error:',e);}
+  document.getElementById('rq-form').hidden=true;
+  document.getElementById('rq-success').hidden=false;
+}
 async function submitCommForm(){
   const f=document.getElementById('cfname').value.trim();
   const l=document.getElementById('clname').value.trim();
@@ -1640,12 +1683,47 @@ _applyReviews();
 <!-- REFERRAL PROGRAM PAGE -->
 <div class="page" id="page-referral">
 
-  <div class="page-hero">
+  <div class="page-hero ref-hero">
     <div class="page-hero-bg"></div>
     <div class="page-hero-content">
-      <div class="hero-eyebrow">Referral Program</div>
-      <h1>Refer a friend.<br><span class="pw">Earn 10% of the job.</span></h1>
-      <p>Every time someone you refer gets their garage coated, you earn 10% of the invoice — paid after the job is complete. No minimums. Just a quick introduction.</p>
+      <div class="ref-hero-left">
+        <div class="hero-eyebrow">Referral Program</div>
+        <h1>Refer a friend.<br><span class="pw">Earn 10% of the job.</span></h1>
+        <p>Every time someone you refer gets their garage coated, you earn 10% of the invoice — paid after the job is complete. No minimums. Just a quick introduction.</p>
+      </div>
+      <div class="ref-hero-right">
+        <div class="rq-card">
+          <div id="rq-form">
+            <div class="rq-row">
+              <div class="rq-group"><label class="rq-label">Your First Name</label><input class="rq-input" type="text" id="qreffname" placeholder="Jane"></div>
+              <div class="rq-group"><label class="rq-label">Your Last Name</label><input class="rq-input" type="text" id="qreflname" placeholder="Smith"></div>
+            </div>
+            <div class="rq-group"><label class="rq-label">Your Phone</label><input class="rq-input" type="tel" id="qrefphone" placeholder="(555) 000-0000"></div>
+            <div class="rq-group">
+              <label class="rq-label">I Am A...</label>
+              <select class="rq-select" id="qrefrole">
+                <option value="">Select your role...</option>
+                <option>Real Estate Agent</option>
+                <option>Homeowner</option>
+                <option>Business Owner</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="rq-row">
+              <div class="rq-group"><label class="rq-label">Referral Contact Name</label><input class="rq-input" type="text" id="qrefcontactname" placeholder="John Doe"></div>
+              <div class="rq-group"><label class="rq-label">Referral Contact Phone</label><input class="rq-input" type="tel" id="qrefcontactphone" placeholder="(555) 000-0000"></div>
+            </div>
+            <button class="rq-btn" onclick="submitQuickReferralForm()">Submit Referral →</button>
+          </div>
+          <div id="rq-success" hidden>
+            <div class="rq-success">
+              <div class="rq-success-check">✓</div>
+              <div class="rq-success-title">Referral Received</div>
+              <p class="rq-success-sub">We'll reach out to your contact within one business day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
